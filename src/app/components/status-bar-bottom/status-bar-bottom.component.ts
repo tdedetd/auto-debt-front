@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+
+export interface Action {
+  label: string;
+  icon: IconDefinition;
+  callback: Function;
+}
 
 @Component({
   selector: 'ad-status-bar-bottom',
@@ -7,9 +14,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatusBarBottomComponent implements OnInit {
 
+  @Input() actions: Action[];
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onActionClick(action: Action) {
+    if (action.callback()) action.callback();
   }
 
 }

@@ -1,1 +1,7 @@
-<div class="status-bar-bottom"></div>
+<div class="status-bar-bottom">
+  <ul class="status-bar-bottom__action-list">
+    <li *ngFor="let action of actions" class="status-bar-bottom__action-item" (click)="onActionClick(action)">
+      <fa-icon [icon]="action.icon" [title]="action.label"></fa-icon>
+    </li>
+  </ul>
+</div>
