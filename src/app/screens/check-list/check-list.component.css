@@ -1,0 +1,10 @@
+.check-item__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.check-item__item {
+  margin: 15px 0;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .16);
+}

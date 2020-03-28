@@ -1,0 +1,29 @@
+.check-item {
+  background: #ffffff;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.check-item__info {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.check-item__name {
+  font-size: 20px;
+}
+
+.check-item__date {
+  font-size: 12px;
+}
+
+.check-item__sum {
+  width: 40%;
+  font-size: 20px;
+  text-align: right;
+  margin: 0 10px;
+}

@@ -5,6 +5,20 @@
   font-style: normal;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: roboto, Arial;
+  color: #707070;
+  background: #ebebeb;
+  padding: 60px 20px;
+  margin: 0;
+}
+
+.subtitle {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
 }
