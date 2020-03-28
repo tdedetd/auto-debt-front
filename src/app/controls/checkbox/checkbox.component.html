@@ -1,0 +1,12 @@
+<input
+  class="ad-checkbox__input"
+  type="checkbox"
+  [checked]="default"
+  [id]="id"
+  (change)="onCheckboxChange($event)">
+
+<label class="ad-checkbox__label" [for]="id">{{ label }}
+  <span class="ad-checkbox__check">
+    <fa-icon [icon]="faCheck"></fa-icon>
+  </span>
+</label>

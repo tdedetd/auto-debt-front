@@ -1,0 +1,32 @@
+.ad-checkbox__input {
+  display: none;
+}
+
+.ad-checkbox__label {
+  padding-left: calc(1em + 1em / 5);
+  position: relative;
+}
+
+.ad-checkbox__label::before {
+  content: "";
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  left: 0;
+  top: 0;
+  background: linear-gradient(#008ad3, #000da5);
+  border-radius: 5px;
+}
+
+.ad-checkbox__check {
+  position: absolute;
+  color: #ebebeb;
+  left: .1em;
+  top: .1em;
+  font-size: .8em;
+  display: none;
+}
+
+.ad-checkbox__input:checked + .ad-checkbox__label > .ad-checkbox__check {
+  display: inline;
+}

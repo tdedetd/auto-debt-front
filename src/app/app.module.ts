@@ -4,10 +4,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CheckboxComponent } from './controls/checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CheckboxComponent
   ],
   imports: [
     BrowserModule,
