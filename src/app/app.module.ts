@@ -10,6 +10,8 @@ import { StatusBarTopComponent } from './components/status-bar-top/status-bar-to
 import { StatusBarBottomComponent } from './components/status-bar-bottom/status-bar-bottom.component';
 import { CheckListComponent } from './screens/check-list/check-list.component';
 import { CheckItemComponent } from './components/check-item/check-item.component';
+import { environment } from 'src/environments/environment';
+import { MockInterceptor } from './services/mock.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { CheckItemComponent } from './components/check-item/check-item.component
     FontAwesomeModule
   ],
   providers: [
+    environment.mock ? MockInterceptor : [],
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
