@@ -8,7 +8,7 @@
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "ad",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -58,7 +58,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "auto-debt-front:build"
+            "browserTarget": "auto-debt-front:build",
+            "host": "0.0.0.0"
           },
           "configurations": {
             "production": {
