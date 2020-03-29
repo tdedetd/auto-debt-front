@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +14,7 @@ import { CheckItemComponent } from './components/check-item/check-item.component
 import { environment } from 'src/environments/environment';
 import { MockInterceptor } from './services/mock.interceptor';
 import { ApiService } from './services/api.service';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BadgeComponent } from './controls/badge/badge.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     StatusBarTopComponent,
     StatusBarBottomComponent,
     CheckListComponent,
-    CheckItemComponent
+    CheckItemComponent,
+    BadgeComponent
   ],
   imports: [
     BrowserModule,
