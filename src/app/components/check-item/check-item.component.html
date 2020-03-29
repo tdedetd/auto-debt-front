@@ -4,7 +4,14 @@
   [class.check-item_canceled]="status === 'canceled'">
 
   <div class="check-item__info">
-    <div class="check-item__name">{{ name }}</div>
+    <div class="check-item__title">
+      <span class="check-item__name">{{ name }}</span>
+      <ad-badge
+        *ngIf="status != 'accepted'"
+        class="check-item__badge"
+        [text]="statusSettings.text"
+        [background]="statusSettings.background"></ad-badge>
+    </div>
     <div class="check-item__date">{{ date | date:'dd.MM.yyyy HH:mm' }}</div>
   </div>
   <div class="check-item__sum">{{ sum | number:'1.2-2' }}</div>

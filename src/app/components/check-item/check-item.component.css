@@ -24,11 +24,20 @@
   flex-direction: column;
 }
 
-.check-item__name {
+.check-item__title {
   font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.check-item__name {
   overflow-x: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.check-item__badge {
+  margin-left: 3px;
 }
 
 .check-item__date {
