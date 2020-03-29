@@ -12,6 +12,8 @@ import { CheckListComponent } from './screens/check-list/check-list.component';
 import { CheckItemComponent } from './components/check-item/check-item.component';
 import { environment } from 'src/environments/environment';
 import { MockInterceptor } from './services/mock.interceptor';
+import { ApiService } from './services/api.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,13 @@ import { MockInterceptor } from './services/mock.interceptor';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FontAwesomeModule
   ],
   providers: [
-    environment.mock ? MockInterceptor : [],
+    ApiService,
+    environment.mock ? { provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true } : [],
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
