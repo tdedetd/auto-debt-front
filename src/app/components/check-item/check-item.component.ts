@@ -13,6 +13,8 @@ export class CheckItemComponent implements OnInit {
 
   @Input() sum: number;
 
+  @Input() status: 'draft' | 'accepted' | 'canceled';
+
   constructor() { }
 
   ngOnInit() {

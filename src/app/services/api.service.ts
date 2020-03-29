@@ -12,8 +12,12 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  public getChecksCredit(params: GetChecksParams): Observable<Check[]> {
+    return this.get(this.apiUrl + '/api/checks/credit', params);
+  }
+
   public getChecksDebit(params: GetChecksParams): Observable<Check[]> {
-    return this.get(this.apiUrl + '/api/checks/credit/', params);
+    return this.get(this.apiUrl + '/api/checks/debit', params);
   }
 
   private get(url: string, params: any): Observable<any> {

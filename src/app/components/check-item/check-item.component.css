@@ -7,6 +7,16 @@
   align-items: center;
 }
 
+.check-item_draft {
+  background: #fffee5;
+  color: #8b7448;
+}
+
+.check-item_canceled {
+  background: #ffeded;
+  color: #6e3d3d;
+}
+
 .check-item__info {
   margin: 0 10px;
   width: 60%;

@@ -34,7 +34,7 @@ export const CHECK_LIST_CREDIT: Check[] = [
     name: 'Теремок',
     date: '2020-01-12T18:20:00.000Z',
     sum: 213,
-    status: 'draft'
+    status: 'canceled'
   },
   {
     id: 6,

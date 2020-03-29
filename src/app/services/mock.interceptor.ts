@@ -3,6 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpResponse } from '@angula
 import { of } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { CHECK_LIST_CREDIT } from '../const/mock/check-list-credit';
+import { CHECK_LIST_DEBIT } from '../const/mock/check-list-debit';
 
 @Injectable()
 export class MockInterceptor implements HttpInterceptor {
@@ -10,9 +11,15 @@ export class MockInterceptor implements HttpInterceptor {
   private readonly apiUrl = environment.apiUrl;
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    if (req.url === this.apiUrl + '/api/checks/credit/') {
+
+    if (req.url === this.apiUrl + '/api/checks/credit') {
       return this.response(req, CHECK_LIST_CREDIT);
     }
+
+    if (req.url === this.apiUrl + '/api/checks/debit') {
+      return this.response(req, CHECK_LIST_DEBIT);
+    }
+
     return next.handle(req);
   }
 
