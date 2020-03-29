@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { CHECK_LIST_CREDIT } from '../const/mock/check-list-credit';
@@ -16,8 +16,8 @@ export class MockInterceptor implements HttpInterceptor {
     return next.handle(req);
   }
 
-  private response(req, data) {
-    console.log(`${req.method} ${req.urlWithParams}\nRESPONSE`, data);
-    return of(data);
+  private response(req, body) {
+    console.log(`${req.method} ${req.urlWithParams}\nRESPONSE`, body);
+    return of(new HttpResponse({ body }));
   }
 }

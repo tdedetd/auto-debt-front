@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'ad-check-item',
@@ -6,6 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./check-item.component.css']
 })
 export class CheckItemComponent implements OnInit {
+
+  @Input() name: string;
+
+  @Input() date: string;
+
+  @Input() sum: number;
 
   constructor() { }
 

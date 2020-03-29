@@ -1,7 +1,7 @@
 <div class="check-item">
   <div class="check-item__info">
-    <div class="check-item__name">Лента</div>
-    <div class="check-item__date">16.01.2020 12:25</div>
+    <div class="check-item__name">{{ name }}</div>
+    <div class="check-item__date">{{ date | date:'dd.MM.yyyy HH:mm' }}</div>
   </div>
-  <div class="check-item__sum">181.00</div>
+  <div class="check-item__sum">{{ sum }}</div>
 </div>

@@ -2,19 +2,7 @@
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
 <h2 class="subtitle">Чеки, по которым у вас задолженность</h2>
 <ul class="check-item__list">
-  <li class="check-item__item">
-    <ad-check-item></ad-check-item>
-  </li>
-  <li class="check-item__item">
-    <ad-check-item></ad-check-item>
-  </li>
-  <li class="check-item__item">
-    <ad-check-item></ad-check-item>
-  </li>
-  <li class="check-item__item">
-    <ad-check-item></ad-check-item>
-  </li>
-  <li class="check-item__item">
-    <ad-check-item></ad-check-item>
+  <li *ngFor="let check of checks" class="check-item__item">
+    <ad-check-item [name]="check.name" [date]="check.date" [sum]="check.sum"></ad-check-item>
   </li>
 </ul>
