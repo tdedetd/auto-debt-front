@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { CHECK_LIST_CREDIT } from '../const/mock/check-list-credit';
 import { CHECK_LIST_DEBIT } from '../const/mock/check-list-debit';
+import { SUMMARY_CREDIT, SUMMARY_DEBIT } from '../const/mock/summary';
 
 @Injectable()
 export class MockInterceptor implements HttpInterceptor {
@@ -18,6 +19,14 @@ export class MockInterceptor implements HttpInterceptor {
 
     if (req.url === this.apiUrl + '/api/checks/debit') {
       return this.response(req, CHECK_LIST_DEBIT);
+    }
+
+    if (req.url === this.apiUrl + '/api/summary/credit') {
+      return this.response(req, SUMMARY_CREDIT);
+    }
+
+    if (req.url === this.apiUrl + '/api/summary/debit') {
+      return this.response(req, SUMMARY_DEBIT);
     }
 
     return next.handle(req);
