@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 import { MockInterceptor } from './services/mock.interceptor';
 import { ApiService } from './services/api.service';
 import { BadgeComponent } from './controls/badge/badge.component';
+import { DebtSummaryComponent } from './screens/debt-summary/debt-summary.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BadgeComponent } from './controls/badge/badge.component';
     StatusBarBottomComponent,
     CheckListComponent,
     CheckItemComponent,
-    BadgeComponent
+    BadgeComponent,
+    DebtSummaryComponent
   ],
   imports: [
     BrowserModule,
