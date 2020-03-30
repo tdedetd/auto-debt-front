@@ -11,7 +11,7 @@
   width: 100%;
   height: 166px;
   background: linear-gradient(#000da5, #008ad3);
-  z-index: -945;
+  z-index: 18;
 }
 
 .debt-summary__title {
@@ -23,7 +23,7 @@
   top: 22px;
   left: 0;
   width: 100%;
-  z-index: -944;
+  z-index: 19;
 }
 
 .debt-summary__avatar-wrapper {
@@ -31,7 +31,7 @@
   margin: 0 auto;
   left: 0;
   width: 100%;
-  z-index: -942;
+  z-index: 21;
 }
 
 .debt-summary__avatar {
@@ -42,18 +42,10 @@
 }
 
 .debt-summary__total-debt-wrapper {
-  z-index: -943;
   width: 100%;
   top: 96px;
   left: 0;
-}
-
-.debt-summary__total-debt {
-  width: 258px;
-  height: 136px;
-  background: #ffffff;
-  margin: 0 auto;
-  box-shadow: 0 0 2px rgba(0, 0, 0, .16);
+  z-index: 20;
 }
 
 .debt-summary__content {
@@ -63,4 +55,18 @@
 
 .debt-summary__checkbox {
   font-size: 18px;
+}
+
+.debt-summary__debt-cards {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.debt-summary__debt-card {
+  width: 157px;
+  height: 85px;
+  background: #ffffff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .16);
+  margin: 0 9px;
 }

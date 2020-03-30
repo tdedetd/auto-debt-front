@@ -1,0 +1,13 @@
+<div class="summary-total-card">
+  <div class="summary-total-card__layer summary-total-card__icon-wrapper">
+    <fa-icon [icon]="faRubleSign"></fa-icon>
+  </div>
+
+  <div class="summary-total-card__layer">
+    <div class="summary-total-card__username">{{ username }}</div>
+    <div class="summary-total-card__sum-container">
+      <div class="summary-total-card__sum-label">Общий баланс</div>
+      <div class="summary-total-card__sum">{{ debt | number:'1.2-2' }}</div>
+    </div>
+  </div>
+</div>

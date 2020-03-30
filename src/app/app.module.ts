@@ -16,6 +16,7 @@ import { MockInterceptor } from './services/mock.interceptor';
 import { ApiService } from './services/api.service';
 import { BadgeComponent } from './controls/badge/badge.component';
 import { DebtSummaryComponent } from './screens/debt-summary/debt-summary.component';
+import { SummaryTotalCardComponent } from './components/summary-total-card/summary-total-card.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DebtSummaryComponent } from './screens/debt-summary/debt-summary.compon
     CheckListComponent,
     CheckItemComponent,
     BadgeComponent,
-    DebtSummaryComponent
+    DebtSummaryComponent,
+    SummaryTotalCardComponent
   ],
   imports: [
     BrowserModule,
