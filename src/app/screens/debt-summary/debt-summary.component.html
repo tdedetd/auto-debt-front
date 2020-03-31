@@ -2,10 +2,10 @@
 <div class="debt-summary__header"></div>
 <h1 class="debt-summary__title">AutoDebt</h1>
 <div class="debt-summary__avatar-wrapper">
-  <img src="/assets/avatar_default.jpg" class="debt-summary__avatar" alt="avatar_default">
+  <img [alt]="userInfo?.username" [src]="userInfo?.avatar" class="debt-summary__avatar">
 </div>
 <div class="debt-summary__total-debt-wrapper">
-  <ad-summary-total-card [debt]="debitSum - creditSum" [username]="'Дмитрий'"></ad-summary-total-card>
+  <ad-summary-total-card [debt]="debitSum - creditSum" [username]="userInfo?.username"></ad-summary-total-card>
 </div>
 
 <div class="debt-summary__content">

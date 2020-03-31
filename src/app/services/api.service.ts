@@ -14,7 +14,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  public getProfileInfo(): Observable<UserInfo> {
+  public getUserInfo(): Observable<UserInfo> {
     return this.get(this.apiUrl + '/auth/me', {});
   }
 

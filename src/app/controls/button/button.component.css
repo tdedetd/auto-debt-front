@@ -6,8 +6,9 @@
   font-family: roboto, Arial;
   padding: .5em 1em;
   border-radius: .5em;
+  cursor: pointer;
 }
 
-.button:focus, .button:focus{
+.button:focus, .button:focus {
   outline: none;
 }

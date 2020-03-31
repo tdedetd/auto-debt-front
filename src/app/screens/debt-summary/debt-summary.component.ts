@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 
 import { ApiService } from 'src/app/services/api.service';
 import { DebtType } from 'src/app/types';
+import { UserService } from 'src/app/services/user.service';
+import { UserInfo } from 'src/app/models/user-info';
 
 @Component({
   selector: 'ad-debt-summary',
@@ -18,12 +20,15 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
 
   selectedType: DebtType = 'credit';
 
-  summaryCreditSubscription: Subscription;
+  userInfo: UserInfo;
 
+  summaryCreditSubscription: Subscription;
   summaryDebitSubscription: Subscription;
+  userInfoSubscription: Subscription;
 
   constructor(private router: Router,
-              private api: ApiService) { }
+              private api: ApiService,
+              private userService: UserService) { }
 
   ngOnInit() {
     this.summaryCreditSubscription = this.api.getSummaryCredit()
@@ -35,11 +40,15 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
       .subscribe(debtItems => {
         this.debitSum = debtItems.reduce((add, item) => add + item.sum, 0)
       });
+
+    this.userInfoSubscription = this.userService.getUserInfo()
+      .subscribe(userInfo => this.userInfo = userInfo);
   }
 
   ngOnDestroy() {
     this.summaryCreditSubscription.unsubscribe();
     this.summaryDebitSubscription.unsubscribe();
+    this.userInfoSubscription.unsubscribe();
   }
 
   onSummaryCardClick(debtType: DebtType) {
