@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ApiService } from 'src/app/services/api.service';
-
-type DebtType = 'credit' | 'debit';
+import { DebtType } from 'src/app/types';
 
 @Component({
   selector: 'ad-debt-summary',
@@ -45,7 +44,7 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
 
   onSummaryCardClick(debtType: DebtType) {
     if (this.selectedType === debtType) {
-      this.router.navigate(['check-list']);
+      this.router.navigate(['check-list', this.selectedType]);
     } else {
       this.selectedType = debtType;
     }

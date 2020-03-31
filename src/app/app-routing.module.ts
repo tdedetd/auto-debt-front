@@ -5,7 +5,7 @@ import { DebtSummaryComponent } from './screens/debt-summary/debt-summary.compon
 
 const routes: Routes = [
   { path: '', component: DebtSummaryComponent },
-  { path: 'check-list', component: CheckListComponent },
+  { path: 'check-list/:debtType', component: CheckListComponent },
   { path: '**', component: CheckListComponent }
 ];
 
