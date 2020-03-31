@@ -8,3 +8,7 @@
   margin: 15px 0;
   box-shadow: 0 0 2px rgba(0, 0, 0, .16);
 }
+
+.check-item__more-button-container {
+  text-align: center;
+}

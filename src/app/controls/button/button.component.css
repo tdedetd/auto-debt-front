@@ -1,0 +1,13 @@
+.button {
+  appearance: none;
+  color: #ffffff;
+  border: none;
+  background: linear-gradient(#008ad3, #000da5);
+  font-family: roboto, Arial;
+  padding: .5em 1em;
+  border-radius: .5em;
+}
+
+.button:focus, .button:focus{
+  outline: none;
+}

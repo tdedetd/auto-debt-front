@@ -18,6 +18,7 @@ import { BadgeComponent } from './controls/badge/badge.component';
 import { DebtSummaryComponent } from './screens/debt-summary/debt-summary.component';
 import { SummaryTotalCardComponent } from './components/summary-total-card/summary-total-card.component';
 import { SummaryCardComponent } from './components/summary-card/summary-card.component';
+import { ButtonComponent } from './controls/button/button.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SummaryCardComponent } from './components/summary-card/summary-card.com
     BadgeComponent,
     DebtSummaryComponent,
     SummaryTotalCardComponent,
-    SummaryCardComponent
+    SummaryCardComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,
