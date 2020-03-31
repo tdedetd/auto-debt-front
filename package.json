@@ -5,8 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "mock": "ng serve --configuration=mock",
-    "build": "ng build",
-    "build_mock": "ng build --configuration=mock",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
