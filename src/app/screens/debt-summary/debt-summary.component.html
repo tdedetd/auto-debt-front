@@ -5,13 +5,22 @@
   <img src="/assets/avatar_default.jpg" class="debt-summary__avatar" alt="avatar_default">
 </div>
 <div class="debt-summary__total-debt-wrapper">
-  <ad-summary-total-card [debt]="-604.41" [username]="'Дмитрий'"></ad-summary-total-card>
+  <ad-summary-total-card [debt]="debitSum - creditSum" [username]="'Дмитрий'"></ad-summary-total-card>
 </div>
 
 <div class="debt-summary__content">
   <ad-checkbox class="debt-summary__checkbox" label="Нормализованные долги"></ad-checkbox>
   <div class="debt-summary__debt-cards">
-    <ad-summary-card [sum]="2034.64" type="credit"></ad-summary-card>
-    <ad-summary-card [sum]="1430.23" type="debit"></ad-summary-card>
+    <ad-summary-card
+      [isActive]="selectedType === 'credit'"
+      [sum]="creditSum"
+      type="credit"
+      (click)="onSummaryCardClick('credit')"></ad-summary-card>
+
+    <ad-summary-card
+      [isActive]="selectedType === 'debit'"
+      [sum]="debitSum"
+      type="debit"
+      (click)="onSummaryCardClick('debit')"></ad-summary-card>
   </div>
 </div>

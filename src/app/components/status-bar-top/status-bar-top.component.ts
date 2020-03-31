@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -10,9 +11,13 @@ export class StatusBarTopComponent implements OnInit {
 
   faChevronLeft = faChevronLeft;
 
-  constructor() { }
+  constructor(private location: Location) { }
 
   ngOnInit() {
+  }
+
+  onBackButtonClick() {
+    this.location.back();
   }
 
 }
