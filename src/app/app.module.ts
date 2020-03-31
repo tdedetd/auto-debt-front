@@ -12,7 +12,7 @@ import { StatusBarBottomComponent } from './components/status-bar-bottom/status-
 import { CheckListComponent } from './screens/check-list/check-list.component';
 import { CheckItemComponent } from './components/check-item/check-item.component';
 import { environment } from 'src/environments/environment';
-import { MockInterceptor } from './services/mock.interceptor';
+import { MockInterceptor } from './interceptors/mock.interceptor';
 import { ApiService } from './services/api.service';
 import { BadgeComponent } from './controls/badge/badge.component';
 import { DebtSummaryComponent } from './screens/debt-summary/debt-summary.component';
