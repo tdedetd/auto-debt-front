@@ -14,6 +14,10 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
+  public toAuth(): void {
+    document.location.href = this.apiUrl + '/auth/page';
+  }
+
   public getUserInfo(): Observable<UserInfo> {
     return this.get(this.apiUrl + '/auth/me', {});
   }

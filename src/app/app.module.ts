@@ -20,6 +20,7 @@ import { SummaryTotalCardComponent } from './components/summary-total-card/summa
 import { SummaryCardComponent } from './components/summary-card/summary-card.component';
 import { ButtonComponent } from './controls/button/button.component';
 import { UserService } from './services/user.service';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { UserService } from './services/user.service';
     ApiService,
     UserService,
     environment.mock ? { provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true } : [],
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
