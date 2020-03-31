@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { CHECK_LIST_CREDIT } from '../const/mock/check-list-credit';
 import { CHECK_LIST_DEBIT } from '../const/mock/check-list-debit';
 import { SUMMARY_CREDIT, SUMMARY_DEBIT } from '../const/mock/summary';
+import { USER_INFO } from '../const/mock/user-info';
 
 @Injectable()
 export class MockInterceptor implements HttpInterceptor {
@@ -12,6 +13,10 @@ export class MockInterceptor implements HttpInterceptor {
   private readonly apiUrl = environment.apiUrl;
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
+
+    if (req.url === this.apiUrl + '/auth/me') {
+      return this.response(req, USER_INFO);
+    }
 
     if (req.url === this.apiUrl + '/api/checks/credit') {
       return this.response(req, CHECK_LIST_CREDIT);
