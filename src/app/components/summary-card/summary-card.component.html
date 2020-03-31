@@ -1,0 +1,21 @@
+<div class="summary-card">
+  <div
+    class="summary-card__layer summary-card__icon-wrapper"
+    [class.summary-card__icon-wrapper-credit]="type === 'credit'"
+    [class.summary-card__icon-wrapper-debit]="type === 'debit'">
+    <fa-icon [icon]="type === 'credit' ? faLevelUpAlt : faLevelDownAlt"></fa-icon>
+  </div>
+
+  <div class="summary-card__layer">
+    <div class="summary-card__content">
+      <div class="summary-card__first-row">
+        <div class="summary-card__debt-type">
+           <fa-icon [icon]="type === 'credit' ? faLevelUpAlt : faLevelDownAlt"></fa-icon>
+        </div>
+        <div class="summary-card__sum">{{ sum | number:'1.2-2' }}</div>
+      </div>
+      <div class="summary-card__second-row">{{ type === 'credit' ? 'Исх. долги' : 'Вх. долги' }}</div>
+      <div class="summary-card__select-bar" [class.summary-card__select-bar_active]="isActive"></div>
+    </div>
+  </div>
+</div>

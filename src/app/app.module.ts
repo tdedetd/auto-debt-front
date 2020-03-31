@@ -17,6 +17,7 @@ import { ApiService } from './services/api.service';
 import { BadgeComponent } from './controls/badge/badge.component';
 import { DebtSummaryComponent } from './screens/debt-summary/debt-summary.component';
 import { SummaryTotalCardComponent } from './components/summary-total-card/summary-total-card.component';
+import { SummaryCardComponent } from './components/summary-card/summary-card.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SummaryTotalCardComponent } from './components/summary-total-card/summa
     CheckItemComponent,
     BadgeComponent,
     DebtSummaryComponent,
-    SummaryTotalCardComponent
+    SummaryTotalCardComponent,
+    SummaryCardComponent
   ],
   imports: [
     BrowserModule,

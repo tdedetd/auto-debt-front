@@ -62,11 +62,3 @@
   justify-content: center;
   margin-top: 15px;
 }
-
-.debt-summary__debt-card {
-  width: 157px;
-  height: 85px;
-  background: #ffffff;
-  box-shadow: 0 0 2px rgba(0, 0, 0, .16);
-  margin: 0 9px;
-}
