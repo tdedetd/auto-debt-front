@@ -6,6 +6,7 @@
   margin: 0 9px;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 }
 
 .summary-card__layer {

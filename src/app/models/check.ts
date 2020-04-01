@@ -1,7 +1,9 @@
 export class Check {
   id: number;
   name: string;
+  paidBy: number;
   date: string;
-  sum: number;
+  sumTotal: number;
+  sumInduvidual: number;
   status: 'draft' | 'accepted' | 'canceled';
 }
