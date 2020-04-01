@@ -4,6 +4,6 @@ export class Check {
   paidBy: number;
   date: string;
   sumTotal: number;
-  sumInduvidual: number;
+  sumIndividual: number;
   status: 'draft' | 'accepted' | 'canceled';
 }
