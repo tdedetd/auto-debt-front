@@ -97,6 +97,10 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
     }
   }
 
+  onUserItemClick(userId: number) {
+    this.router.navigate(['check-list', this.selectedType, userId]);
+  }
+
   private updateNormalizedDebt() {
     const usersCredit = this.userItems.unnormalized.credit;
     const usersDebit = this.userItems.unnormalized.debit;

@@ -28,7 +28,7 @@
 
   <div class="debt-summary__user-list-container">
     <ul class="debt-summary__user-list">
-      <li *ngFor="let debtItem of userItems[normalizeType][selectedType]" class="debt-summary__user-item">
+      <li *ngFor="let debtItem of userItems[normalizeType][selectedType]" class="debt-summary__user-item" (click)="onUserItemClick(debtItem.userId)">
         <div class="debt-summary__user-item-name">{{ debtItem.username }}</div>
         <div class="debt-summary__user-item-sum">{{ debtItem.sum | number:'1.2-2' }}</div>
       </li>

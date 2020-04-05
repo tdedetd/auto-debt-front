@@ -85,6 +85,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
+}
+
+.debt-summary__user-item:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, .16);
 }
 
 .debt-summary__user-item-name,

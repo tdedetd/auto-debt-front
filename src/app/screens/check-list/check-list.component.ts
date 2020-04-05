@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faLevelUpAlt, faLevelDownAlt } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 
 import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
@@ -29,17 +29,24 @@ export class CheckListComponent implements OnInit, OnDestroy {
 
   count = 20;
 
+  debtType: DebtType;
+
+  faLevelUpAlt = faLevelUpAlt;
+
+  faLevelDownAlt = faLevelDownAlt;
+
   page = 0;
 
   selectedStatuses: CheckStatus[] = ['draft', 'accepted', 'canceled'];
 
-  selectedType: DebtType;
+  userId: number = null;
 
   constructor(private activatedRoute: ActivatedRoute,
               private api: ApiService) { }
 
   ngOnInit() {
-    this.selectedType = this.activatedRoute.snapshot.params.debtType;
+    this.debtType = this.activatedRoute.snapshot.data.debtType;
+    this.userId = this.activatedRoute.snapshot.params.userId;
     this.loadChecks();
   }
 
@@ -58,7 +65,7 @@ export class CheckListComponent implements OnInit, OnDestroy {
       statuses: this.selectedStatuses.join(',')
     };
 
-    const checkObs = this.selectedType === 'credit' ?
+    const checkObs = this.debtType === 'credit' ?
       this.api.getChecksCredit(params) :
       this.api.getChecksDebit(params);
 

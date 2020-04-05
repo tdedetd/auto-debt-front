@@ -1,6 +1,8 @@
 <ad-status-bar-top></ad-status-bar-top>
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
-<h2 class="subtitle">Чеки, по которым у вас задолженность</h2>
+<h2 class="subtitle">Чеки
+  <fa-icon [icon]="debtType === 'credit' ? faLevelUpAlt : faLevelDownAlt"></fa-icon>
+</h2>
 <ul class="check-item__list">
   <li *ngFor="let check of checks" class="check-item__item">
     <ad-check-item
