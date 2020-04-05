@@ -1,5 +1,5 @@
 <ad-status-bar-top></ad-status-bar-top>
-<ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
+
 <h2 class="subtitle">Чеки /
   <fa-icon [icon]="debtType === 'credit' ? faLevelUpAlt : faLevelDownAlt"></fa-icon>
   <span *ngIf="userId !== undefined"> / {{ (userInfo$ | async)?.username }}</span>
@@ -16,3 +16,5 @@
 <div class="check-item__more-button-container">
   <ad-button (click)="onMoreButtonClick()">Загрузить еще</ad-button>
 </div>
+
+<ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>

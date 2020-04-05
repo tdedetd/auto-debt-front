@@ -21,6 +21,7 @@ import { SummaryCardComponent } from './components/summary-card/summary-card.com
 import { ButtonComponent } from './controls/button/button.component';
 import { UserService } from './services/user.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { EditCheckComponent } from './screens/edit-check/edit-check.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     DebtSummaryComponent,
     SummaryTotalCardComponent,
     SummaryCardComponent,
-    ButtonComponent
+    ButtonComponent,
+    EditCheckComponent
   ],
   imports: [
     BrowserModule,

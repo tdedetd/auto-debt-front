@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 
 import { ApiService } from 'src/app/services/api.service';
@@ -7,6 +8,7 @@ import { DebtType, DebtNormalizeType } from 'src/app/types';
 import { UserService } from 'src/app/services/user.service';
 import { UserInfo } from 'src/app/models/user-info';
 import { DebtSummaryItem } from 'src/app/models/debt-summary-item';
+import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
 
 @Component({
   selector: 'ad-debt-summary',
@@ -14,6 +16,14 @@ import { DebtSummaryItem } from 'src/app/models/debt-summary-item';
   styleUrls: ['./debt-summary.component.css']
 })
 export class DebtSummaryComponent implements OnInit, OnDestroy {
+
+  actions: Action[] = [
+    {
+      label: 'Добавить чек',
+      icon: faPlus,
+      callback: () => this.navigateToEditCheck()
+    }
+  ];
 
   debtSum = {
     normalized: {
@@ -99,6 +109,10 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
 
   onUserItemClick(userId: number) {
     this.router.navigate(['check-list', this.selectedType, userId]);
+  }
+
+  private navigateToEditCheck() {
+    this.router.navigate(['edit-check']);
   }
 
   private updateNormalizedDebt() {
