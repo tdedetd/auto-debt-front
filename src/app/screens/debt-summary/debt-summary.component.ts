@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ApiService } from 'src/app/services/api.service';
-import { DebtType } from 'src/app/types';
+import { DebtType, DebtNormalizeType } from 'src/app/types';
 import { UserService } from 'src/app/services/user.service';
 import { UserInfo } from 'src/app/models/user-info';
+import { DebtSummaryItem } from 'src/app/models/debt-summary-item';
 
 @Component({
   selector: 'ad-debt-summary',
@@ -14,11 +15,40 @@ import { UserInfo } from 'src/app/models/user-info';
 })
 export class DebtSummaryComponent implements OnInit, OnDestroy {
 
-  creditSum = 0;
+  debtSum = {
+    normalized: {
+      credit: 0,
+      debit: 0
+    },
+    unnormalized: {
+      credit: 0,
+      debit: 0
+    }
+  }
 
-  debitSum = 0;
+  userItems: {
+    normalized: {
+      credit: DebtSummaryItem[],
+      debit: DebtSummaryItem[]
+    },
+    unnormalized: {
+      credit: DebtSummaryItem[],
+      debit: DebtSummaryItem[]
+    }
+  } = {
+    normalized: {
+      credit: [],
+      debit: []
+    },
+    unnormalized: {
+      credit: [],
+      debit: []
+    }
+  };
 
   selectedType: DebtType = 'credit';
+
+  normalizeType: DebtNormalizeType = 'unnormalized';
 
   userInfo: UserInfo;
 
@@ -33,12 +63,14 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.summaryCreditSubscription = this.api.getSummaryCredit()
       .subscribe(debtItems => {
-        this.creditSum = debtItems.reduce((add, item) => add + item.sum, 0);
+        this.debtSum.unnormalized.credit = debtItems.reduce((add, item) => add + item.sum, 0);
+        this.userItems.unnormalized.credit = debtItems;
       });
 
     this.summaryDebitSubscription = this.api.getSummaryDebit()
       .subscribe(debtItems => {
-        this.debitSum = debtItems.reduce((add, item) => add + item.sum, 0)
+        this.debtSum.unnormalized.debit = debtItems.reduce((add, item) => add + item.sum, 0);
+        this.userItems.unnormalized.debit = debtItems;
       });
 
     this.userInfoSubscription = this.userService.getUserInfo()
@@ -49,6 +81,10 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
     this.summaryCreditSubscription.unsubscribe();
     this.summaryDebitSubscription.unsubscribe();
     this.userInfoSubscription.unsubscribe();
+  }
+
+  onCheckNormalizeCheck(checked: boolean) {
+    this.normalizeType = checked ? 'normalized' : 'unnormalized';
   }
 
   onSummaryCardClick(debtType: DebtType) {

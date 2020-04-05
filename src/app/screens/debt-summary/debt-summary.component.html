@@ -5,22 +5,33 @@
   <img [alt]="userInfo?.username" [src]="userInfo?.avatar" class="debt-summary__avatar">
 </div>
 <div class="debt-summary__total-debt-wrapper">
-  <ad-summary-total-card [debt]="debitSum - creditSum" [username]="userInfo?.username"></ad-summary-total-card>
+  <ad-summary-total-card
+    [debt]="debtSum[normalizeType].debit - debtSum[normalizeType].credit"
+    [username]="userInfo?.username"></ad-summary-total-card>
 </div>
 
 <div class="debt-summary__content">
-  <ad-checkbox class="debt-summary__checkbox" label="Нормализованные долги"></ad-checkbox>
+  <ad-checkbox class="debt-summary__checkbox" label="Нормализованные долги" (check)="onCheckNormalizeCheck($event)"></ad-checkbox>
   <div class="debt-summary__debt-cards">
     <ad-summary-card
       [isActive]="selectedType === 'credit'"
-      [sum]="creditSum"
+      [sum]="debtSum[normalizeType].credit"
       type="credit"
       (click)="onSummaryCardClick('credit')"></ad-summary-card>
 
     <ad-summary-card
       [isActive]="selectedType === 'debit'"
-      [sum]="debitSum"
+      [sum]="debtSum[normalizeType].debit"
       type="debit"
       (click)="onSummaryCardClick('debit')"></ad-summary-card>
+  </div>
+
+  <div class="debt-summary__user-list-container">
+    <ul class="debt-summary__user-list">
+      <li *ngFor="let debtItem of userItems[normalizeType][selectedType]" class="debt-summary__user-item">
+        <div class="debt-summary__user-item-name">{{ debtItem.username }}</div>
+        <div class="debt-summary__user-item-sum">{{ debtItem.sum | number:'1.2-2' }}</div>
+      </li>
+    </ul>
   </div>
 </div>
