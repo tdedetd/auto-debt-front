@@ -1,7 +1,8 @@
 <ad-status-bar-top></ad-status-bar-top>
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
-<h2 class="subtitle">Чеки
+<h2 class="subtitle">Чеки /
   <fa-icon [icon]="debtType === 'credit' ? faLevelUpAlt : faLevelDownAlt"></fa-icon>
+  <span *ngIf="userId !== undefined"> / {{ (userInfo$ | async)?.username }}</span>
 </h2>
 <ul class="check-item__list">
   <li *ngFor="let check of checks" class="check-item__item">

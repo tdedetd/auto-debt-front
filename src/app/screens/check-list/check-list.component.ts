@@ -1,12 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faFilter, faLevelUpAlt, faLevelDownAlt } from '@fortawesome/free-solid-svg-icons';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
 import { ApiService } from 'src/app/services/api.service';
 import { Check } from 'src/app/models/check';
 import { DebtType, CheckStatus } from 'src/app/types';
+import { UserInfo } from 'src/app/models/user-info';
+import { GetChecksParams } from 'src/app/params/get-checks.params';
 
 @Component({
   selector: 'ad-check-list',
@@ -39,7 +42,9 @@ export class CheckListComponent implements OnInit, OnDestroy {
 
   selectedStatuses: CheckStatus[] = ['draft', 'accepted', 'canceled'];
 
-  userId: number = null;
+  userId: number;
+
+  userInfo$: Observable<UserInfo>;
 
   constructor(private activatedRoute: ActivatedRoute,
               private api: ApiService) { }
@@ -48,6 +53,19 @@ export class CheckListComponent implements OnInit, OnDestroy {
     this.debtType = this.activatedRoute.snapshot.data.debtType;
     this.userId = this.activatedRoute.snapshot.params.userId;
     this.loadChecks();
+
+    if (this.userId !== undefined) {
+      this.userInfo$ = this.api.getUsers({ id: this.userId })
+        .pipe(map(users => {
+          if (users.length === 0) return {
+            id: 0,
+            username: 'unknown user',
+            avatar: '',
+            isSuperuser: false
+          };
+          return users[0];
+        }));
+    }
   }
 
   ngOnDestroy() {
@@ -59,11 +77,15 @@ export class CheckListComponent implements OnInit, OnDestroy {
   }
 
   private loadChecks() {
-    const params = {
+    let params: GetChecksParams = {
       page: this.page,
       count: this.count,
       statuses: this.selectedStatuses.join(',')
     };
+
+    if (this.userId) {
+      params = { ...params, userId: this.userId };
+    }
 
     const checkObs = this.debtType === 'credit' ?
       this.api.getChecksCredit(params) :
