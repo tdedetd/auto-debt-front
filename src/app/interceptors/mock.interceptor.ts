@@ -6,6 +6,7 @@ import { CHECK_LIST_CREDIT } from '../const/mock/check-list-credit';
 import { CHECK_LIST_DEBIT } from '../const/mock/check-list-debit';
 import { SUMMARY_CREDIT, SUMMARY_DEBIT } from '../const/mock/summary';
 import { USER_INFO } from '../const/mock/user-info';
+import { USERS_FIRST } from '../const/mock/users-first';
 
 @Injectable()
 export class MockInterceptor implements HttpInterceptor {
@@ -16,6 +17,10 @@ export class MockInterceptor implements HttpInterceptor {
 
     if (req.url === this.apiUrl + '/auth/me') {
       return this.response(req, USER_INFO);
+    }
+
+    if (req.url === this.apiUrl + '/api/users') {
+      return this.response(req, USERS_FIRST);
     }
 
     if (req.url === this.apiUrl + '/api/checks/credit') {
