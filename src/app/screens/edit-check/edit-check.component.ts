@@ -15,7 +15,7 @@ export class EditCheckComponent implements OnInit {
     {
       label: 'Добавить пункт',
       icon: faPlus,
-      callback: () => console.log('Добавить пункт')
+      callback: () => this.addItem()
     },
     {
       label: 'Импорт',
@@ -36,10 +36,22 @@ export class EditCheckComponent implements OnInit {
 
   checkInfo: CheckInfo;
 
+  checkTotal = 0;
+
   constructor() { }
 
   ngOnInit() {
     this.initCheck();
+  }
+
+  private addItem() {
+    this.checkInfo.items.push({
+      name: 'test',
+      count: 1.21,
+      price: 49.99,
+      sum: 60.39
+    });
+    this.updateCheckTotal();
   }
 
   private initCheck() {
@@ -51,6 +63,11 @@ export class EditCheckComponent implements OnInit {
       date: '',
       items: []
     };
+    this.updateCheckTotal();
+  }
+
+  private updateCheckTotal() {
+    this.checkTotal = this.checkInfo.items.reduce((add, item) => add + item.sum, 0);
   }
 
 }

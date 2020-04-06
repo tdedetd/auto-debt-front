@@ -1,1 +1,26 @@
-<p>edit-check works!</p>
+<ad-status-bar-top></ad-status-bar-top>
+
+<h2 class="subtitle">Редактирование чека</h2>
+<div class="edit-check__check-header">
+  <ad-textbox placeholder="Наименование*" width="100%"></ad-textbox>
+</div>
+<div class="edit-check__check-header">
+  <ad-textbox placeholder="Адрес" width="100%"></ad-textbox>
+</div>
+<div class="edit-check__item-list-container">
+  <ul class="edit-check__item-list">
+    <li *ngFor="let item of checkInfo.items" class="edit-check__item">
+      <ad-edit-check-item [checkItem]="item"></ad-edit-check-item>
+    </li>
+  </ul>
+</div>
+<div class="edit-check__check-summary">
+  <div>Товаров</div>
+  <div>{{ checkInfo.items.length }}</div>
+</div>
+<div class="edit-check__check-summary">
+  <div>Итого</div>
+  <div>{{ checkTotal | number:'1.2-2' }}</div>
+</div>
+
+<ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>

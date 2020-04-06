@@ -1,0 +1,24 @@
+.edit-check__check-header {
+  margin: 10px 0;
+}
+
+.edit-check__item-list-container {
+  margin: 20px 0;
+}
+
+.edit-check__item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.edit-check__item {
+  margin: 15px 0;
+}
+
+.edit-check__check-summary {
+  margin: 10px 0;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+}
