@@ -23,6 +23,7 @@ import { UserService } from './services/user.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { EditCheckComponent } from './screens/edit-check/edit-check.component';
 import { TextboxComponent } from './controls/textbox/textbox.component';
+import { EditCheckItemComponent } from './components/edit-check-item/edit-check-item.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TextboxComponent } from './controls/textbox/textbox.component';
     SummaryCardComponent,
     ButtonComponent,
     EditCheckComponent,
-    TextboxComponent
+    TextboxComponent,
+    EditCheckItemComponent
   ],
   imports: [
     BrowserModule,

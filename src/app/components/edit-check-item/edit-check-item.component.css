@@ -1,0 +1,40 @@
+.edit-check-item {
+  width: 100%;
+  height: 64px;
+  font-size: 20px;
+  background: #ffffff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .16);
+  display: flex;
+}
+
+.edit-check-item__data {
+  flex-grow: 1;
+  line-height: 32px;
+  margin-left: 10px;
+  width: calc(100% - 44px);
+}
+
+.edit-check-item__name {
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.edit-check-item__price {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-check-item__tools {
+  color: #8b8b8b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 36px;
+}
+
+.edit-check-item__tools > * {
+  padding: 0 8px;
+  cursor: pointer;
+}
