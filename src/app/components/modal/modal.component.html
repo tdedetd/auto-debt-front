@@ -1,0 +1,19 @@
+<div class="modal" [class.modal_shown]="visible">
+  <div class="modal__window">
+    <div class="modal__header">
+      <fa-icon class="modal__times" [icon]="faTimes" (click)="hide()"></fa-icon>
+      <h2 *ngIf="title" class="modal__title">{{ title }}</h2>
+    </div>
+    <div class="modal__body">
+      <ng-content></ng-content>
+    </div>
+    <div class="modal__footer">
+      <ad-button width="100px" class="modal__footer-button" (click)="hide()">
+        <fa-icon [icon]="faTimes"></fa-icon>
+      </ad-button>
+      <ad-button width="100px" class="modal__footer-button" (click)="onAcceptClick()">
+        <fa-icon [icon]="faCheck"></fa-icon>
+      </ad-button>
+    </div>
+  </div>
+</div>

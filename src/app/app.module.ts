@@ -24,6 +24,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { EditCheckComponent } from './screens/edit-check/edit-check.component';
 import { TextboxComponent } from './controls/textbox/textbox.component';
 import { EditCheckItemComponent } from './components/edit-check-item/edit-check-item.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { EditCheckItemComponent } from './components/edit-check-item/edit-check-
     ButtonComponent,
     EditCheckComponent,
     TextboxComponent,
-    EditCheckItemComponent
+    EditCheckItemComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
