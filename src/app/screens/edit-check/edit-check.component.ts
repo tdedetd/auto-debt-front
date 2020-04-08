@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { faPlus, faSave, faList, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
 import { CheckInfo } from 'src/app/models/check-info';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @Component({
   selector: 'ad-edit-check',
@@ -10,6 +11,8 @@ import { CheckInfo } from 'src/app/models/check-info';
   styleUrls: ['./edit-check.component.css']
 })
 export class EditCheckComponent implements OnInit {
+
+  @ViewChild('saveModal', { static: false }) saveModal: ModalComponent;
 
   actions: Action[] = [
     {
@@ -30,7 +33,7 @@ export class EditCheckComponent implements OnInit {
     {
       label: 'Сохранить',
       icon: faSave,
-      callback: () => console.log('Сохранить')
+      callback: () => this.dispalySaveModal()
     }
   ];
 
@@ -44,6 +47,11 @@ export class EditCheckComponent implements OnInit {
     this.initCheck();
   }
 
+  onSaveModalAccept() {
+    console.log('saved');
+    this.saveModal.hide();
+  }
+
   private addItem() {
     this.checkInfo.items.push({
       name: 'test',
@@ -52,6 +60,10 @@ export class EditCheckComponent implements OnInit {
       sum: 60.39
     });
     this.updateCheckTotal();
+  }
+
+  private dispalySaveModal() {
+    this.saveModal.show();
   }
 
   private initCheck() {

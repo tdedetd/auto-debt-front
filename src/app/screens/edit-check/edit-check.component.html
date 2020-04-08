@@ -24,3 +24,6 @@
 </div>
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
+<ad-modal #saveModal mode="confirm" (accept)="onSaveModalAccept()">
+  <div>Сохранить чек?</div>
+</ad-modal>
