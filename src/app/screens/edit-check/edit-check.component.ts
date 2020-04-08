@@ -60,6 +60,7 @@ export class EditCheckComponent implements OnInit {
       sum: 60.39
     });
     this.updateCheckTotal();
+    this.scrollToBottom();
   }
 
   private dispalySaveModal() {
@@ -76,6 +77,10 @@ export class EditCheckComponent implements OnInit {
       items: []
     };
     this.updateCheckTotal();
+  }
+
+  private scrollToBottom() {
+    window.scrollTo(0, document.body.scrollHeight);
   }
 
   private updateCheckTotal() {
