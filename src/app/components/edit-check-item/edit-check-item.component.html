@@ -1,13 +1,23 @@
 <div class="edit-check-item">
   <div class="edit-check-item__data">
-    <div class="edit-check-item__name">{{ checkItem.name }}</div>
-    <div class="edit-check-item__price">
+    <div *ngIf="!isEdit" class="edit-check-item__name">{{ checkItem.name }}</div>
+    <div *ngIf="isEdit" class="edit-check-item__name">
+      <ad-textbox [value]="checkItem.name" [styles]="{ height: '20px', width: 'calc(100% - 5px)' }"></ad-textbox>
+    </div>
+    <div *ngIf="isEdit" class="edit-check-item__price">
+      <div>
+        <ad-textbox [value]="checkItem.price" [styles]="{ width: '70px', height: '20px' }"></ad-textbox> *
+        <ad-textbox [value]="checkItem.count" [styles]="{ width: '70px', height: '20px' }"></ad-textbox>
+      </div>
+      <div>= {{ checkItem.sum | number:'1.2-2' }}</div>
+    </div>
+    <div *ngIf="!isEdit" class="edit-check-item__price">
       <div>{{ checkItem.price | number:'1.2-2' }} * {{ checkItem.count | number:'1.3-3' }}</div>
       <div>= {{ checkItem.sum | number:'1.2-2' }}</div>
     </div>
   </div>
   <div class="edit-check-item__tools">
-    <fa-icon [icon]="isEdited ? faCheck : faPencilAlt" (click)="onEditIconClick()"></fa-icon>
+    <fa-icon [icon]="isEdit ? faCheck : faPencilAlt" (click)="onEditIconClick()"></fa-icon>
     <fa-icon [icon]="faTrash"></fa-icon>
   </div>
 </div>

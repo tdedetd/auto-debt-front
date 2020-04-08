@@ -3,5 +3,5 @@
   type="text"
   [attr.placeholder]="placeholder || null"
   [attr.value]="value || null"
-  [style.width]="width || null"
+  [ngStyle]="styles || null"
   (change)="onInputChange($event)">

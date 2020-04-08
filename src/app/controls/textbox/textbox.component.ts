@@ -13,6 +13,8 @@ export class TextboxComponent implements OnInit {
 
   @Input() width: string;
 
+  @Input() styles: string;
+
   @Output() valueChange: EventEmitter<string> = new EventEmitter();
 
   constructor() { }

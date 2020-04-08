@@ -11,7 +11,7 @@ export class EditCheckItemComponent implements OnInit {
 
   @Input() checkItem: CheckItem;
 
-  isEdited = false;
+  isEdit = false;
 
   faPencilAlt = faPencilAlt;
 
@@ -25,7 +25,7 @@ export class EditCheckItemComponent implements OnInit {
   }
 
   onEditIconClick() {
-    this.isEdited = !this.isEdited;
+    this.isEdit = !this.isEdit;
   }
 
 }
