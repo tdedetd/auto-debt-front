@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { faPencilAlt, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { CheckItem } from 'src/app/models/check-item';
+import { TextboxComponent } from '../../controls/textbox/textbox.component';
 
 @Component({
   selector: 'ad-edit-check-item',
@@ -9,7 +9,17 @@ import { CheckItem } from 'src/app/models/check-item';
 })
 export class EditCheckItemComponent implements OnInit {
 
-  @Input() checkItem: CheckItem;
+  @ViewChild('nameInput', { static: false }) nameInput: TextboxComponent;
+
+  @ViewChild('countInput', { static: false }) countInput: TextboxComponent;
+
+  @ViewChild('priceInput', { static: false }) priceInput: TextboxComponent;
+
+  @Input() count: number;
+
+  @Input() name: string;
+
+  @Input() price: number;
 
   isEdit = false;
 
@@ -19,6 +29,8 @@ export class EditCheckItemComponent implements OnInit {
 
   faTrash = faTrash;
 
+  @Output() edited: EventEmitter<{ name: string, count: number, price: number }> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
@@ -26,6 +38,19 @@ export class EditCheckItemComponent implements OnInit {
 
   onEditIconClick() {
     this.isEdit = !this.isEdit;
+
+    if (!this.isEdit) {
+      this.edited.emit({
+        name: this.nameInput.getValue(),
+        count: +this.countInput.getValue(),
+        price: +this.priceInput.getValue()
+      });
+    }
+  }
+
+  updateDisplaySum() {
+    this.count = +this.countInput.getValue();
+    this.price = +this.priceInput.getValue();
   }
 
 }

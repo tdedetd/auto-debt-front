@@ -1,19 +1,30 @@
 <div class="edit-check-item">
   <div class="edit-check-item__data">
-    <div *ngIf="!isEdit" class="edit-check-item__name">{{ checkItem.name }}</div>
+    <div *ngIf="!isEdit" class="edit-check-item__name">{{ name }}</div>
     <div *ngIf="isEdit" class="edit-check-item__name">
-      <ad-textbox [value]="checkItem.name" [styles]="{ height: '20px', width: 'calc(100% - 5px)' }"></ad-textbox>
+      <ad-textbox
+        #nameInput
+        [value]="name"
+        [styles]="{ height: '20px', width: 'calc(100% - 7px)', 'margin-left': '2px' }"></ad-textbox>
     </div>
     <div *ngIf="isEdit" class="edit-check-item__price">
       <div>
-        <ad-textbox [value]="checkItem.price" [styles]="{ width: '70px', height: '20px' }"></ad-textbox> *
-        <ad-textbox [value]="checkItem.count" [styles]="{ width: '70px', height: '20px' }"></ad-textbox>
+        <ad-textbox
+          #priceInput
+          [value]="price"
+          [styles]="{ width: '70px', height: '20px' }"
+          (valueChange)="updateDisplaySum()"></ad-textbox> *
+        <ad-textbox
+          #countInput
+          [value]="count"
+          [styles]="{ width: '70px', height: '20px' }"
+          (valueChange)="updateDisplaySum()"></ad-textbox>
       </div>
-      <div>= {{ checkItem.sum | number:'1.2-2' }}</div>
+      <div>= {{ price * count | number:'1.2-2' }}</div>
     </div>
     <div *ngIf="!isEdit" class="edit-check-item__price">
-      <div>{{ checkItem.price | number:'1.2-2' }} * {{ checkItem.count | number:'1.3-3' }}</div>
-      <div>= {{ checkItem.sum | number:'1.2-2' }}</div>
+      <div>{{ price | number:'1.2-2' }} * {{ count | number:'1.3-3' }}</div>
+      <div>= {{ price * count | number:'1.2-2' }}</div>
     </div>
   </div>
   <div class="edit-check-item__tools">

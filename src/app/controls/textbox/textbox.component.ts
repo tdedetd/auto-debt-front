@@ -22,8 +22,13 @@ export class TextboxComponent implements OnInit {
   ngOnInit() {
   }
 
+  public getValue() {
+    return this.value;
+  }
+
   onInputChange(e) {
-    this.valueChange.emit(e.target.value);
+    this.value = e.target.value;
+    this.valueChange.emit(this.value);
   }
 
 }

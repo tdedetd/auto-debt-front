@@ -4,6 +4,7 @@ import { faPlus, faSave, faList, faTimesCircle } from '@fortawesome/free-solid-s
 import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
 import { CheckInfo } from 'src/app/models/check-info';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
+import { CheckItem } from 'src/app/models/check-item';
 
 @Component({
   selector: 'ad-edit-check',
@@ -47,6 +48,15 @@ export class EditCheckComponent implements OnInit {
     this.initCheck();
   }
 
+  onCheckItemEdited(e: { name: string, count: number, price: number }, item: CheckItem) {
+    item.count = e.count;
+    item.name = e.name;
+    item.price = e.price;
+    item.sum = item.price * item.count;
+
+    this.updateCheckTotal();
+  }
+
   onSaveModalAccept() {
     console.log('saved');
     this.saveModal.hide();
@@ -54,10 +64,10 @@ export class EditCheckComponent implements OnInit {
 
   private addItem() {
     this.checkInfo.items.push({
-      name: 'test',
-      count: 1.21,
-      price: 49.99,
-      sum: 60.39
+      name: 'Товар ' + (this.checkInfo.items.length + 1),
+      count: 0,
+      price: 0,
+      sum: 0
     });
     this.updateCheckTotal();
     this.scrollToBottom();
