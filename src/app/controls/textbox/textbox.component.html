@@ -2,6 +2,6 @@
   class="textbox__input"
   type="text"
   [attr.placeholder]="placeholder || null"
-  [attr.value]="value || null"
+  [attr.value]="value !== undefined ? value : null"
   [ngStyle]="styles || null"
   (change)="onInputChange($event)">
