@@ -28,6 +28,11 @@
 </div>
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
+
+<ad-modal #resetModal mode="confirm" (accept)="onResetModalAccept()">
+  <div>Очистить чек?</div>
+</ad-modal>
+
 <ad-modal #saveModal mode="confirm" (accept)="onSaveModalAccept()">
   <div>Сохранить чек?</div>
 </ad-modal>

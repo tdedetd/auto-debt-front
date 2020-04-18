@@ -13,6 +13,8 @@ import { CheckItem } from 'src/app/models/check-item';
 })
 export class EditCheckComponent implements OnInit {
 
+  @ViewChild('resetModal', { static: false }) resetModal: ModalComponent;
+
   @ViewChild('saveModal', { static: false }) saveModal: ModalComponent;
 
   actions: Action[] = [
@@ -29,7 +31,7 @@ export class EditCheckComponent implements OnInit {
     {
       label: 'Очистить',
       icon: faTimesCircle,
-      callback: () => console.log('Очистить')
+      callback: () => this.dispalyResetModal()
     },
     {
       label: 'Сохранить',
@@ -57,6 +59,11 @@ export class EditCheckComponent implements OnInit {
     this.updateCheckTotal();
   }
 
+  onResetModalAccept() {
+    this.initCheck();
+    this.resetModal.hide();
+  }
+
   onSaveModalAccept() {
     console.log('saved');
     this.saveModal.hide();
@@ -71,6 +78,10 @@ export class EditCheckComponent implements OnInit {
     });
     this.updateCheckTotal();
     this.scrollToBottom();
+  }
+
+  private dispalyResetModal() {
+    this.resetModal.show();
   }
 
   private dispalySaveModal() {
