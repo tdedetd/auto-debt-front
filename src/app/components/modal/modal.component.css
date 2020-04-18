@@ -47,3 +47,7 @@
 .modal__footer-button {
   margin: 10px;
 }
+
+.modal__footer-button-label {
+  font-size: 20px;
+}

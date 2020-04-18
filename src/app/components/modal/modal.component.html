@@ -9,10 +9,14 @@
     </div>
     <div class="modal__footer">
       <ad-button width="100px" class="modal__footer-button" (click)="hide()">
-        <fa-icon [icon]="faTimes"></fa-icon>
+        <span class="modal__footer-button-label">
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </span>
       </ad-button>
       <ad-button width="100px" class="modal__footer-button" (click)="onAcceptClick()">
-        <fa-icon [icon]="faCheck"></fa-icon>
+        <span class="modal__footer-button-label">
+          <fa-icon [icon]="faCheck"></fa-icon>
+        </span>
       </ad-button>
     </div>
   </div>
