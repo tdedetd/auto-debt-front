@@ -21,7 +21,7 @@ export class EditCheckItemComponent implements OnInit {
 
   @Input() price: number;
 
-  isEdit = false;
+  editMode = false;
 
   faPencilAlt = faPencilAlt;
 
@@ -37,9 +37,9 @@ export class EditCheckItemComponent implements OnInit {
   }
 
   onEditIconClick() {
-    this.isEdit = !this.isEdit;
+    this.editMode = !this.editMode;
 
-    if (!this.isEdit) {
+    if (!this.editMode) {
       this.edited.emit({
         name: this.nameInput.getValue(),
         count: +this.countInput.getValue(),
