@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ad-textbox',
@@ -15,11 +16,40 @@ export class TextboxComponent implements OnInit {
 
   @Input() styles: string;
 
+  @Input() maxLength: number;
+
+  @Input() minLength: number;
+
+  @Input() pattern: string;
+
+  @Input() required = false;
+
+  formControl: FormControl;
+
   @Output() valueChange: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+    const validators =  [];
+
+    if (this.required || typeof this.required === 'string') {
+      validators.push(Validators.required);
+    }
+
+    if (this.minLength !== undefined) {
+      validators.push(Validators.minLength(this.minLength));
+    }
+
+    if (this.pattern !== undefined) {
+      validators.push(Validators.pattern(this.pattern));
+    }
+
+    if (this.maxLength !== undefined) {
+      validators.push(Validators.maxLength(this.maxLength));
+    }
+
+    this.formControl = new FormControl(this.value, validators);
   }
 
   public getValue() {

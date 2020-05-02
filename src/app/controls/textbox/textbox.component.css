@@ -16,3 +16,13 @@
   color: #d1d1d1;
   font-style: italic;
 }
+
+.textbox__input_invalid {
+  box-shadow: 0 0 2px rgba(255, 0, 0, .16);
+  background: #ffeded;
+  color: #6e3d3d;
+}
+
+.textbox__input_invalid::placeholder {
+  color: #cc9d9d;
+}
