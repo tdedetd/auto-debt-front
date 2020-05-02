@@ -48,6 +48,10 @@ export class EditCheckItemComponent implements OnInit {
     }
   }
 
+  onTextboxClick(e) {
+    e.target.select();
+  }
+
   updateDisplaySum() {
     this.count = +this.countInput.getValue();
     this.price = +this.priceInput.getValue();

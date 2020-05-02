@@ -7,7 +7,8 @@
         [value]="name"
         [styles]="{ height: '20px', width: 'calc(100% - 7px)', 'margin-left': '2px' }"
         [maxLength]="128"
-        required></ad-textbox>
+        required
+        (click)="onTextboxClick($event)"></ad-textbox>
     </div>
     <div *ngIf="editMode" class="edit-check-item__price">
       <div>
@@ -17,6 +18,7 @@
           [styles]="{ width: '70px', height: '20px' }"
           pattern="^[0-9]*\.?[0-9]{0,2}$"
           required
+          (click)="onTextboxClick($event)"
           (valueChange)="updateDisplaySum()"></ad-textbox> *
         <ad-textbox
           #countInput
@@ -24,6 +26,7 @@
           [styles]="{ width: '70px', height: '20px' }"
           pattern="^[0-9]*\.?[0-9]{0,3}$"
           required
+          (click)="onTextboxClick($event)"
           (valueChange)="updateDisplaySum()"></ad-textbox>
       </div>
       <div>= {{ price * count | number:'1.2-2' }}</div>
