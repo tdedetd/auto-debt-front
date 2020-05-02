@@ -16,6 +16,7 @@
           #priceInput
           [value]="price"
           [styles]="{ width: '70px', height: '20px' }"
+          type="number"
           pattern="^[0-9]*\.?[0-9]{0,2}$"
           required
           (click)="onTextboxClick($event)"
@@ -24,6 +25,7 @@
           #countInput
           [value]="count"
           [styles]="{ width: '70px', height: '20px' }"
+          type="number"
           pattern="^[0-9]*\.?[0-9]{0,3}$"
           required
           (click)="onTextboxClick($event)"

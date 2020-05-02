@@ -18,8 +18,7 @@
 }
 
 .textbox__input_invalid {
-  box-shadow: 0 0 2px rgba(255, 0, 0, .16);
-  background: #ffeded;
+  background: #fdf0f0;
   color: #6e3d3d;
 }
 

@@ -5,6 +5,7 @@
   <ad-textbox
     placeholder="Наименование*"
     [styles]="{ width: '100%' }"
+    [value]="checkInfo.name"
     [maxLength]="50"
     required></ad-textbox>
 </div>
@@ -12,8 +13,8 @@
   <ad-textbox
     placeholder="Адрес"
     [styles]="{ width: '100%' }"
-    [maxLength]="255"
-    required></ad-textbox>
+    [value]="checkInfo.address"
+    [maxLength]="255"></ad-textbox>
 </div>
 <div class="edit-check__item-list-container">
   <ul class="edit-check__item-list">

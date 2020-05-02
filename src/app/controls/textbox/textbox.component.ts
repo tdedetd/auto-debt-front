@@ -24,6 +24,8 @@ export class TextboxComponent implements OnInit {
 
   @Input() required = false;
 
+  @Input() type = 'text';
+
   formControl: FormControl;
 
   @Output() valueChange: EventEmitter<string> = new EventEmitter();

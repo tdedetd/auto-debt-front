@@ -1,6 +1,6 @@
 <input
   class="textbox__input"
-  type="text"
+  [type]="type"
   [class.textbox__input_invalid]="formControl.invalid"
   [attr.placeholder]="placeholder || null"
   [ngStyle]="styles || null"
