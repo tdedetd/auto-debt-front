@@ -19,11 +19,11 @@
 <div class="edit-check__item-list-container">
   <ul class="edit-check__item-list">
     <li *ngFor="let item of checkInfo.items" class="edit-check__item">
-      <ad-edit-check-item
+      <ad-edit-check-item-card
         [count]="item.count"
         [name]="item.name"
         [price]="item.price"
-        (edited)="onCheckItemEdited($event, item)"></ad-edit-check-item>
+        (edited)="onCheckItemEdited($event, item)"></ad-edit-check-item-card>
     </li>
   </ul>
 </div>

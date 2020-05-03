@@ -3,11 +3,11 @@ import { faPencilAlt, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons
 import { TextboxComponent } from '../../controls/textbox/textbox.component';
 
 @Component({
-  selector: 'ad-edit-check-item',
-  templateUrl: './edit-check-item.component.html',
-  styleUrls: ['./edit-check-item.component.css']
+  selector: 'ad-edit-check-item-card',
+  templateUrl: './edit-check-item-card.component.html',
+  styleUrls: ['./edit-check-item-card.component.css']
 })
-export class EditCheckItemComponent implements OnInit {
+export class EditCheckItemCardComponent implements OnInit {
 
   @ViewChild('nameInput', { static: false }) nameInput: TextboxComponent;
 

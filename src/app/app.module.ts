@@ -24,7 +24,7 @@ import { UserService } from './services/user.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { EditCheckComponent } from './screens/edit-check/edit-check.component';
 import { TextboxComponent } from './controls/textbox/textbox.component';
-import { EditCheckItemComponent } from './components/edit-check-item/edit-check-item.component';
+import { EditCheckItemCardComponent } from './components/edit-check-item-card/edit-check-item-card.component';
 import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
@@ -42,7 +42,7 @@ import { ModalComponent } from './components/modal/modal.component';
     ButtonComponent,
     EditCheckComponent,
     TextboxComponent,
-    EditCheckItemComponent,
+    EditCheckItemCardComponent,
     ModalComponent
   ],
   imports: [
