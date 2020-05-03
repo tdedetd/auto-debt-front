@@ -12,6 +12,8 @@ export class ModalComponent implements OnInit {
 
   @Input() title: string;
 
+  @Input() preventHideOnAccept = false;
+
   faCheck = faCheck;
 
   faTimes = faTimes;
@@ -26,6 +28,7 @@ export class ModalComponent implements OnInit {
   }
 
   onAcceptClick() {
+    if (!this.preventHideOnAccept) this.hide();
     this.accept.emit();
   }
 

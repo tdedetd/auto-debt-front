@@ -37,6 +37,7 @@
 .modal__title {
   font-weight: 100;
   margin: 22px 0;
+  text-align: center;
 }
 
 .modal__footer {

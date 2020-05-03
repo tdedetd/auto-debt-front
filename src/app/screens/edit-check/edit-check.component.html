@@ -38,6 +38,10 @@
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
 
+<ad-modal #importModal mode="confirm" title="Импорт чека" [preventHideOnAccept]="true" (accept)="onImportModalAccept()">
+  <div></div>
+</ad-modal>
+
 <ad-modal #resetModal mode="confirm" (accept)="onResetModalAccept()">
   <div>Очистить чек?</div>
 </ad-modal>

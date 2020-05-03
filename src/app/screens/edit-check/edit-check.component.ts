@@ -13,6 +13,8 @@ import { CheckItem } from 'src/app/models/check-item';
 })
 export class EditCheckComponent implements OnInit {
 
+  @ViewChild('importModal', { static: false }) importModal: ModalComponent;
+
   @ViewChild('resetModal', { static: false }) resetModal: ModalComponent;
 
   @ViewChild('saveModal', { static: false }) saveModal: ModalComponent;
@@ -26,17 +28,17 @@ export class EditCheckComponent implements OnInit {
     {
       label: 'Импорт',
       icon: faList,
-      callback: () => console.log('Импорт')
+      callback: () => this.showModal(this.importModal)
     },
     {
       label: 'Очистить',
       icon: faTimesCircle,
-      callback: () => this.dispalyResetModal()
+      callback: () => this.showModal(this.resetModal)
     },
     {
       label: 'Сохранить',
       icon: faSave,
-      callback: () => this.dispalySaveModal()
+      callback: () => this.showModal(this.saveModal)
     }
   ];
 
@@ -59,14 +61,16 @@ export class EditCheckComponent implements OnInit {
     this.updateCheckTotal();
   }
 
+  onImportModalAccept() {
+    console.log('onImportModalAccept');
+  }
+
   onResetModalAccept() {
     this.initCheck();
-    this.resetModal.hide();
   }
 
   onSaveModalAccept() {
     console.log('saved');
-    this.saveModal.hide();
   }
 
   private addItem() {
@@ -80,12 +84,8 @@ export class EditCheckComponent implements OnInit {
     this.scrollToBottom();
   }
 
-  private dispalyResetModal() {
-    this.resetModal.show();
-  }
-
-  private dispalySaveModal() {
-    this.saveModal.show();
+  private showModal(modal: ModalComponent) {
+    modal.show();
   }
 
   private initCheck() {
