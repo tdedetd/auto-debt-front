@@ -17,11 +17,11 @@ export class EditCheckItemCardComponent implements OnInit {
 
   @Input() count: number;
 
+  @Input() editMode = false;
+
   @Input() name: string;
 
   @Input() price: number;
-
-  editMode = false;
 
   faPencilAlt = faPencilAlt;
 

@@ -4,8 +4,8 @@ import { faPlus, faSave, faList, faTimesCircle } from '@fortawesome/free-solid-s
 import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
 import { CheckInfo } from 'src/app/models/check-info';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
-import { CheckItem } from 'src/app/models/check-item';
 import { ApiService } from 'src/app/services/api.service';
+import { EditCheckItemCard } from 'src/app/models/edit-check-item-card';
 
 @Component({
   selector: 'ad-edit-check',
@@ -47,17 +47,20 @@ export class EditCheckComponent implements OnInit {
 
   checkTotal = 0;
 
+  itemCards: EditCheckItemCard[] = [];
+
   constructor(private api: ApiService) { }
 
   ngOnInit() {
     this.initCheck();
   }
 
-  onCheckItemEdited(e: { name: string, count: number, price: number }, item: CheckItem) {
-    item.count = e.count;
-    item.name = e.name;
-    item.price = e.price;
-    item.sum = item.price * item.count;
+  onCheckItemEdited(e: { name: string, count: number, price: number }, card: EditCheckItemCard) {
+    card.item.count = e.count;
+    card.item.name = e.name;
+    card.item.price = e.price;
+    card.item.sum = card.item.price * card.item.count;
+    card.editMode = false;
 
     this.updateCheckTotal();
   }
@@ -66,6 +69,7 @@ export class EditCheckComponent implements OnInit {
     this.api.importCheck({ fpd: '123', total: 123 })
       .subscribe(checkInfo => {
         this.checkInfo = checkInfo;
+        this.itemCards = this.checkInfo.items.map(item => ({ editMode: false, item }));
         this.updateCheckTotal();
         this.importModal.hide();
       });
@@ -76,15 +80,19 @@ export class EditCheckComponent implements OnInit {
   }
 
   onSaveModalAccept() {
-    console.log('saved');
+    this.checkInfo.items = this.itemCards.map(card => card.item);
+    console.log('saved', this.checkInfo);
   }
 
   private addItem() {
-    this.checkInfo.items.push({
-      name: 'Товар ' + (this.checkInfo.items.length + 1),
-      count: 0,
-      price: 0,
-      sum: 0
+    this.itemCards.push({
+      editMode: true,
+      item: {
+        name: 'Товар ' + (this.itemCards.length + 1),
+        count: 0,
+        price: 0,
+        sum: 0
+      } 
     });
     this.updateCheckTotal();
     this.scrollToBottom();
@@ -103,6 +111,7 @@ export class EditCheckComponent implements OnInit {
       date: '',
       items: []
     };
+    this.itemCards = [];
     this.updateCheckTotal();
   }
 
@@ -111,7 +120,7 @@ export class EditCheckComponent implements OnInit {
   }
 
   private updateCheckTotal() {
-    this.checkTotal = this.checkInfo.items.reduce((add, item) => add + item.sum, 0);
+    this.checkTotal = this.itemCards.reduce((add, card) => add + card.item.sum, 0);
   }
 
 }

@@ -18,18 +18,19 @@
 </div>
 <div class="edit-check__item-list-container">
   <ul class="edit-check__item-list">
-    <li *ngFor="let item of checkInfo.items" class="edit-check__item">
+    <li *ngFor="let card of itemCards" class="edit-check__item">
       <ad-edit-check-item-card
-        [count]="item.count"
-        [name]="item.name"
-        [price]="item.price"
-        (edited)="onCheckItemEdited($event, item)"></ad-edit-check-item-card>
+        [count]="card.item.count"
+        [name]="card.item.name"
+        [price]="card.item.price"
+        [editMode]="card.editMode"
+        (edited)="onCheckItemEdited($event, card)"></ad-edit-check-item-card>
     </li>
   </ul>
 </div>
 <div class="edit-check__check-summary">
   <div>Товаров</div>
-  <div>{{ checkInfo.items.length }}</div>
+  <div>{{ itemCards.length }}</div>
 </div>
 <div class="edit-check__check-summary">
   <div>Итого</div>
