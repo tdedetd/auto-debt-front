@@ -38,8 +38,19 @@
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
 
-<ad-modal #importModal mode="confirm" title="Импорт чека" [preventHideOnAccept]="true" (accept)="onImportModalAccept()">
-  <div></div>
+<ad-modal #importModal mode="accept" title="Импорт чека" [preventHideOnAccept]="true" (accept)="onImportModalAccept()">
+  <div class="modal-import__field">
+    <ad-textbox
+      placeholder="ФПД*"
+      [styles]="{ 'width': '100%', 'max-width': '240px' }"
+      required></ad-textbox>
+  </div>
+  <div class="modal-import__field">
+    <ad-textbox
+      placeholder="Общая стоимость*"
+      [styles]="{ 'width': '100%', 'max-width': '240px' }"
+      required></ad-textbox>
+  </div>
 </ad-modal>
 
 <ad-modal #resetModal mode="confirm" (accept)="onResetModalAccept()">

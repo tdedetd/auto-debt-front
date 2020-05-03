@@ -8,7 +8,7 @@
       <ng-content></ng-content>
     </div>
     <div class="modal__footer">
-      <ad-button width="100px" class="modal__footer-button" (click)="hide()">
+      <ad-button *ngIf="mode === 'confirm'" width="100px" class="modal__footer-button" (click)="hide()">
         <span class="modal__footer-button-label">
           <fa-icon [icon]="faTimes"></fa-icon>
         </span>
