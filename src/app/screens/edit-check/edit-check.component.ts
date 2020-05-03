@@ -5,6 +5,7 @@ import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.c
 import { CheckInfo } from 'src/app/models/check-info';
 import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { CheckItem } from 'src/app/models/check-item';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'ad-edit-check',
@@ -46,7 +47,7 @@ export class EditCheckComponent implements OnInit {
 
   checkTotal = 0;
 
-  constructor() { }
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
     this.initCheck();
@@ -62,7 +63,12 @@ export class EditCheckComponent implements OnInit {
   }
 
   onImportModalAccept() {
-    console.log('onImportModalAccept');
+    this.api.importCheck({ fpd: '123', total: 123 })
+      .subscribe(checkInfo => {
+        this.checkInfo = checkInfo;
+        this.updateCheckTotal();
+        this.importModal.hide();
+      });
   }
 
   onResetModalAccept() {

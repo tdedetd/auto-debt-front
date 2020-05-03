@@ -1,42 +1,52 @@
 <div class="edit-check-item">
   <div class="edit-check-item__data">
-    <div *ngIf="!editMode" class="edit-check-item__name">{{ name }}</div>
-    <div *ngIf="editMode" class="edit-check-item__name">
-      <ad-textbox
-        #nameInput
-        [value]="name"
-        [styles]="{ height: '20px', width: 'calc(100% - 7px)', 'margin-left': '2px' }"
-        [maxLength]="128"
-        required
-        (click)="onTextboxClick($event)"></ad-textbox>
-    </div>
-    <div *ngIf="editMode" class="edit-check-item__price">
-      <div>
+
+    <ng-container *ngIf="editMode">
+      <div class="edit-check-item__name">
         <ad-textbox
-          #priceInput
-          [value]="price"
-          [styles]="{ width: '70px', height: '20px' }"
-          type="number"
-          pattern="^[0-9]*\.?[0-9]{0,2}$"
+          #nameInput
+          placeholder="Наименование*"
+          [value]="name"
+          [styles]="{ height: '20px', width: 'calc(100% - 7px)', 'margin-left': '2px' }"
+          [maxLength]="128"
           required
-          (click)="onTextboxClick($event)"
-          (valueChange)="updateDisplaySum()"></ad-textbox> *
-        <ad-textbox
-          #countInput
-          [value]="count"
-          [styles]="{ width: '70px', height: '20px' }"
-          type="number"
-          pattern="^[0-9]*\.?[0-9]{0,3}$"
-          required
-          (click)="onTextboxClick($event)"
-          (valueChange)="updateDisplaySum()"></ad-textbox>
+          (click)="onTextboxClick($event)"></ad-textbox>
       </div>
-      <div>= {{ price * count | number:'1.2-2' }}</div>
-    </div>
-    <div *ngIf="!editMode" class="edit-check-item__price">
-      <div>{{ price | number:'1.2-2' }} * {{ count | number:'1.3-3' }}</div>
-      <div>= {{ price * count | number:'1.2-2' }}</div>
-    </div>
+      <div class="edit-check-item__price">
+        <div>
+          <ad-textbox
+            #priceInput
+            placeholder="Цена*"
+            [value]="price"
+            [styles]="{ width: '85px', height: '20px' }"
+            type="number"
+            pattern="^[0-9]*\.?[0-9]{0,2}$"
+            required
+            (click)="onTextboxClick($event)"
+            (valueChange)="updateDisplaySum()"></ad-textbox> *
+          <ad-textbox
+            #countInput
+            placeholder="Кол-во*"
+            [value]="count"
+            [styles]="{ width: '85px', height: '20px' }"
+            type="number"
+            pattern="^[0-9]*\.?[0-9]{0,3}$"
+            required
+            (click)="onTextboxClick($event)"
+            (valueChange)="updateDisplaySum()"></ad-textbox>
+        </div>
+        <div>= {{ price * count | number:'1.2-2' }}</div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="!editMode">
+      <div class="edit-check-item__name">{{ name }}</div>
+      <div class="edit-check-item__price">
+        <div>{{ price | number:'1.2-2' }} * {{ count | number:'1.3-3' }}</div>
+        <div>= {{ price * count | number:'1.2-2' }}</div>
+      </div>
+    </ng-container>
+
   </div>
   <div class="edit-check-item__tools">
     <fa-icon [icon]="editMode ? faCheck : faPencilAlt" (click)="onEditIconClick()"></fa-icon>
