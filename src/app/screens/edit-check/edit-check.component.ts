@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { faPlus, faSave, faList, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSave, faFileImport, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
 import { CheckInfo } from 'src/app/models/check-info';
@@ -30,7 +30,7 @@ export class EditCheckComponent implements OnInit {
     },
     {
       label: 'Импорт',
-      icon: faList,
+      icon: faFileImport,
       callback: () => this.showModal(this.importModal)
     },
     {
