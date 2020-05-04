@@ -18,3 +18,15 @@
 </div>
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
+
+<ad-modal #filtersModal mode="accept" title="Настройка фильтров" (accept)="onFiltersModalAccept()">
+  <div class="filter-modal__option">
+    <ad-checkbox label="Отображать отмененные чеки"></ad-checkbox>
+  </div>
+  <div class="filter-modal__option">
+    <ad-checkbox label="Отображать черновые чеки"></ad-checkbox>
+  </div>
+  <div class="filter-modal__option">
+    <ad-checkbox label="Отображать закрытые чеки"></ad-checkbox>
+  </div>
+</ad-modal>

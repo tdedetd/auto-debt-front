@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faFilter, faLevelUpAlt, faLevelDownAlt } from '@fortawesome/free-solid-svg-icons';
 import { Subscription, Observable } from 'rxjs';
@@ -10,6 +10,7 @@ import { Check } from 'src/app/models/check';
 import { DebtType, CheckStatus } from 'src/app/types';
 import { UserInfo } from 'src/app/models/user-info';
 import { GetChecksParams } from 'src/app/params/get-checks.params';
+import { ModalComponent } from 'src/app/components/modal/modal.component';
 
 @Component({
   selector: 'ad-check-list',
@@ -18,11 +19,13 @@ import { GetChecksParams } from 'src/app/params/get-checks.params';
 })
 export class CheckListComponent implements OnInit, OnDestroy {
 
+  @ViewChild('filtersModal', { static: false }) filtersModal: ModalComponent;
+
   actions: Action[] = [
     {
       label: 'Фильтр',
       icon: faFilter,
-      callback: () => console.log('filter')
+      callback: () => this.showModal(this.filtersModal)
     }
   ];
 
@@ -72,6 +75,10 @@ export class CheckListComponent implements OnInit, OnDestroy {
     this.checksSubscriptions.forEach(sub => sub.unsubscribe());
   }
 
+  onFiltersModalAccept() {
+    console.log('onFiltersModalAccept');
+  }
+
   onMoreButtonClick() {
     this.loadChecks();
   }
@@ -99,6 +106,10 @@ export class CheckListComponent implements OnInit, OnDestroy {
   private resetChecks() {
     this.page = 0;
     this.checks = [];
+  }
+
+  private showModal(modal: ModalComponent) {
+    modal.show();
   }
 
 }

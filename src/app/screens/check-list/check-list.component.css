@@ -12,3 +12,8 @@
 .check-item__more-button-container {
   text-align: center;
 }
+
+.filter-modal__option {
+  margin: 12px 0;
+  text-align: left;
+}
