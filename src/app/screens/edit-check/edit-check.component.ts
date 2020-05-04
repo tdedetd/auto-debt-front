@@ -14,6 +14,8 @@ import { EditCheckItemCard } from 'src/app/models/edit-check-item-card';
 })
 export class EditCheckComponent implements OnInit {
 
+  @ViewChild('deleteItemModal', { static: false }) deleteItemModal: ModalComponent;
+
   @ViewChild('importModal', { static: false }) importModal: ModalComponent;
 
   @ViewChild('resetModal', { static: false }) resetModal: ModalComponent;
@@ -45,7 +47,7 @@ export class EditCheckComponent implements OnInit {
 
   checkInfo: CheckInfo;
 
-  checkTotal = 0;
+  cardSelected: EditCheckItemCard;
 
   itemCards: EditCheckItemCard[] = [];
 
@@ -53,6 +55,17 @@ export class EditCheckComponent implements OnInit {
 
   ngOnInit() {
     this.initCheck();
+  }
+
+  deleteSelectedCard() {
+    const index = this.itemCards.indexOf(this.cardSelected);
+    this.itemCards.splice(index, 1);
+    this.updateCheckTotal();
+  }
+
+  onCardDelete(card: EditCheckItemCard) {
+    this.cardSelected = card;
+    this.showModal(this.deleteItemModal);
   }
 
   onCheckItemEdited(e: { name: string, count: number, price: number }, card: EditCheckItemCard) {
@@ -98,10 +111,6 @@ export class EditCheckComponent implements OnInit {
     this.scrollToBottom();
   }
 
-  private showModal(modal: ModalComponent) {
-    modal.show();
-  }
-
   private initCheck() {
     this.checkInfo = {
       name: null,
@@ -119,8 +128,12 @@ export class EditCheckComponent implements OnInit {
     window.scrollTo(0, document.body.scrollHeight);
   }
 
+  private showModal(modal: ModalComponent) {
+    modal.show();
+  }
+
   private updateCheckTotal() {
-    this.checkTotal = this.itemCards.reduce((add, card) => add + card.item.sum, 0);
+    this.checkInfo.sum = this.itemCards.reduce((add, card) => add + card.item.sum, 0);
   }
 
 }

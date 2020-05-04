@@ -29,11 +29,17 @@ export class EditCheckItemCardComponent implements OnInit {
 
   faTrash = faTrash;
 
+  @Output() delete: EventEmitter<void> = new EventEmitter();
+
   @Output() edited: EventEmitter<{ name: string, count: number, price: number }> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onDeleteButtonClick() {
+    this.delete.emit();
   }
 
   onEditIconClick() {

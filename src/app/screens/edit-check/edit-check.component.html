@@ -24,6 +24,7 @@
         [name]="card.item.name"
         [price]="card.item.price"
         [editMode]="card.editMode"
+        (delete)="onCardDelete(card)"
         (edited)="onCheckItemEdited($event, card)"></ad-edit-check-item-card>
     </li>
   </ul>
@@ -34,7 +35,7 @@
 </div>
 <div class="edit-check__check-summary">
   <div>Итого</div>
-  <div>{{ checkTotal | number:'1.2-2' }}</div>
+  <div>{{ checkInfo.sum | number:'1.2-2' }}</div>
 </div>
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
@@ -52,6 +53,10 @@
       [styles]="{ 'width': '100%', 'max-width': '240px' }"
       required></ad-textbox>
   </div>
+</ad-modal>
+
+<ad-modal #deleteItemModal mode="confirm" (accept)="deleteSelectedCard()">
+  <div>Удалить товар "{{ cardSelected?.item.name }}"?</div>
 </ad-modal>
 
 <ad-modal #resetModal mode="confirm" (accept)="onResetModalAccept()">
