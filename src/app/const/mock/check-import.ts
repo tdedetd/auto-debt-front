@@ -1,6 +1,6 @@
 import { CheckInfo } from 'src/app/models/check-info';
 
-export const CHECK_PARSE: CheckInfo = {
+export const CHECK_IMPORT: CheckInfo = {
   name: 'ООО\"Лента\"',
   address: 'Наб. Обводного канала, 118',
   fpd: '1659733341',

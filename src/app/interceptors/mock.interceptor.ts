@@ -7,7 +7,7 @@ import { CHECK_LIST_DEBIT } from '../const/mock/check-list-debit';
 import { SUMMARY_CREDIT, SUMMARY_DEBIT } from '../const/mock/summary';
 import { USER_INFO } from '../const/mock/user-info';
 import { USERS_FIRST } from '../const/mock/users-first';
-import { CHECK_PARSE } from '../const/mock/check-parse';
+import { CHECK_IMPORT } from '../const/mock/check-import';
 
 @Injectable()
 export class MockInterceptor implements HttpInterceptor {
@@ -33,7 +33,7 @@ export class MockInterceptor implements HttpInterceptor {
     }
 
     if (req.url === this.apiUrl + '/api/checks/import') {
-      return this.response(req, CHECK_PARSE);
+      return this.response(req, {...CHECK_IMPORT});
     }
 
     if (req.url === this.apiUrl + '/api/summary/credit') {
