@@ -40,7 +40,7 @@
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
 
-<ad-modal #importModal mode="accept" title="Импорт чека" [preventHideOnAccept]="true" (accept)="onImportModalAccept()">
+<ad-modal mode="accept" title="Импорт чека" [preventHideOnAccept]="true" [(visible)]="importModalVisible" (accept)="onImportModalAccept()">
   <div class="modal-import__field">
     <ad-textbox
       placeholder="ФПД*"
@@ -55,14 +55,14 @@
   </div>
 </ad-modal>
 
-<ad-modal #deleteItemModal mode="confirm" (accept)="deleteSelectedCard()">
+<ad-modal mode="confirm" [(visible)]="deleteItemModalVisible" (accept)="deleteSelectedCard()">
   <div>Удалить товар "{{ cardSelected?.item.name }}"?</div>
 </ad-modal>
 
-<ad-modal #resetModal mode="confirm" (accept)="onResetModalAccept()">
+<ad-modal mode="confirm" [(visible)]="resetModalVisible" (accept)="onResetModalAccept()">
   <div>Очистить чек?</div>
 </ad-modal>
 
-<ad-modal #saveModal mode="confirm" (accept)="onSaveModalAccept()">
+<ad-modal mode="confirm" [(visible)]="saveModalVisible" (accept)="onSaveModalAccept()">
   <div>Сохранить чек?</div>
 </ad-modal>

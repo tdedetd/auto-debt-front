@@ -19,7 +19,7 @@
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
 
-<ad-modal #filtersModal mode="accept" title="Настройка фильтров" (accept)="onFiltersModalAccept()">
+<ad-modal mode="accept" title="Настройка фильтров" [(visible)]="filtersModalVisible" (accept)="onFiltersModalAccept()">
   <div class="filter-modal__option">
     <ad-checkbox label="Отображать отмененные чеки" [(checked)]="checkedShowCanceled"></ad-checkbox>
   </div>

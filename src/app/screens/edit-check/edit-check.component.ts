@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faPlus, faSave, faFileImport, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
 import { CheckInfo } from 'src/app/models/check-info';
-import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { ApiService } from 'src/app/services/api.service';
 import { EditCheckItemCard } from 'src/app/models/edit-check-item-card';
 
@@ -14,14 +13,6 @@ import { EditCheckItemCard } from 'src/app/models/edit-check-item-card';
 })
 export class EditCheckComponent implements OnInit {
 
-  @ViewChild('deleteItemModal', { static: false }) deleteItemModal: ModalComponent;
-
-  @ViewChild('importModal', { static: false }) importModal: ModalComponent;
-
-  @ViewChild('resetModal', { static: false }) resetModal: ModalComponent;
-
-  @ViewChild('saveModal', { static: false }) saveModal: ModalComponent;
-
   actions: Action[] = [
     {
       label: 'Добавить пункт',
@@ -31,19 +22,27 @@ export class EditCheckComponent implements OnInit {
     {
       label: 'Импорт',
       icon: faFileImport,
-      callback: () => this.showModal(this.importModal)
+      callback: () => this.importModalVisible = true
     },
     {
       label: 'Очистить',
       icon: faTimesCircle,
-      callback: () => this.showModal(this.resetModal)
+      callback: () => this.resetModalVisible = true
     },
     {
       label: 'Сохранить',
       icon: faSave,
-      callback: () => this.showModal(this.saveModal)
+      callback: () => this.saveModalVisible = true
     }
   ];
+
+  deleteItemModalVisible = false;
+
+  importModalVisible = false;
+
+  resetModalVisible = false;
+
+  saveModalVisible = false;
 
   checkInfo: CheckInfo;
 
@@ -65,7 +64,7 @@ export class EditCheckComponent implements OnInit {
 
   onCardDelete(card: EditCheckItemCard) {
     this.cardSelected = card;
-    this.showModal(this.deleteItemModal);
+    this.deleteItemModalVisible = true;
   }
 
   onCheckItemEdited(e: { name: string, count: number, price: number }, card: EditCheckItemCard) {
@@ -84,7 +83,7 @@ export class EditCheckComponent implements OnInit {
         this.checkInfo = checkInfo;
         this.itemCards = this.checkInfo.items.map(item => ({ editMode: false, item }));
         this.updateCheckTotal();
-        this.importModal.hide();
+        this.importModalVisible = false;
       });
   }
 
@@ -126,10 +125,6 @@ export class EditCheckComponent implements OnInit {
 
   private scrollToBottom() {
     window.scrollTo(0, document.body.scrollHeight);
-  }
-
-  private showModal(modal: ModalComponent) {
-    modal.show();
   }
 
   private updateCheckTotal() {

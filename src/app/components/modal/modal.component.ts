@@ -14,13 +14,15 @@ export class ModalComponent implements OnInit {
 
   @Input() preventHideOnAccept = false;
 
+  @Input() visible = false;
+
   faCheck = faCheck;
 
   faTimes = faTimes;
 
-  visible = false;
-
   @Output() accept: EventEmitter<void> = new EventEmitter();
+
+  @Output() visibleChange: EventEmitter<boolean> = new EventEmitter();
 
   constructor() { }
 
@@ -33,9 +35,12 @@ export class ModalComponent implements OnInit {
   }
 
   public hide() {
-    this.visible = false;
+    this.visibleChange.emit(false);
   }
 
+  /**
+   * @deprecated
+   */
   public show() {
     this.visible = true;
   }
