@@ -1,8 +1,8 @@
 <input
   class="textbox__input"
   [type]="type"
-  [class.textbox__input_invalid]="formControl.invalid"
   [attr.placeholder]="placeholder || null"
   [ngStyle]="styles || null"
+  [value]="value || null"
   [formControl]="formControl"
   (change)="onInputChange($event)">

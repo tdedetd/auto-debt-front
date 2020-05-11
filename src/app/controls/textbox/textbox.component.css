@@ -17,11 +17,11 @@
   font-style: italic;
 }
 
-.textbox__input_invalid {
+.ng-invalid {
   background: #fdf0f0;
   color: #6e3d3d;
 }
 
-.textbox__input_invalid::placeholder {
+.ng-invalid::placeholder {
   color: #cc9d9d;
 }

@@ -5,15 +5,15 @@
   <ad-textbox
     placeholder="Наименование*"
     [styles]="{ width: '100%' }"
-    [value]="checkInfo.name"
     [maxLength]="50"
+    [(value)]="checkInfo.name"
     required></ad-textbox>
 </div>
 <div class="edit-check__check-header">
   <ad-textbox
     placeholder="Адрес"
     [styles]="{ width: '100%' }"
-    [value]="checkInfo.address"
+    [(value)]="checkInfo.address"
     [maxLength]="255"></ad-textbox>
 </div>
 <div class="edit-check__item-list-container">
@@ -40,7 +40,13 @@
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
 
-<ad-modal mode="accept" title="Импорт чека" [preventHideOnAccept]="true" [(visible)]="importModalVisible" (accept)="onImportModalAccept()">
+<ad-modal
+  mode="accept"
+  title="Импорт чека"
+  [preventHideOnAccept]="true"
+  [(visible)]="importModalVisible"
+  (accept)="onImportModalAccept()">
+
   <div class="modal-import__field">
     <ad-textbox
       placeholder="ФПД*"
