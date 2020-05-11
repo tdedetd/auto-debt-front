@@ -1,3 +1,5 @@
+import { CheckStatus } from '../types';
+
 export class Check {
   id: number;
   name: string;
@@ -5,5 +7,5 @@ export class Check {
   date: string;
   sumTotal: number;
   sumIndividual: number;
-  status: 'draft' | 'accepted' | 'canceled';
+  status: CheckStatus;
 }

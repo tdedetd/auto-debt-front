@@ -54,5 +54,14 @@ export const CHECK_LIST_CREDIT: Check[] = [
     sumTotal: 366,
     sumIndividual: 366,
     status: 'accepted'
+  },
+  {
+    id: 7,
+    name: 'Лента',
+    paidBy: 1,
+    date: '2020-01-03T14:56:04.000Z',
+    sumTotal: 964,
+    sumIndividual: 964,
+    status: 'closed'
   }
 ];

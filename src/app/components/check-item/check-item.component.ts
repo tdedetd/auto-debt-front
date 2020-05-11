@@ -7,10 +7,15 @@ const BADGE_STATUSES = [
     background: '#f2c587'
   },
   {
+    status: 'closed',
+    text: 'ЗАКРЫТ',
+    background: '#009908'
+  },
+  {
     status: 'canceled',
     text: 'ОТМЕНЕН',
     background: '#ff9090'
-  },
+  }
 ];
 
 @Component({

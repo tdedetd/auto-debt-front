@@ -12,6 +12,11 @@
   color: #8b7448;
 }
 
+.check-item_closed {
+  background: #deffde;
+  color: #004e04;
+}
+
 .check-item_canceled {
   background: #ffeded;
   color: #6e3d3d;

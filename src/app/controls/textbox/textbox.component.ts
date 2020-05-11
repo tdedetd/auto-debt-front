@@ -12,9 +12,7 @@ export class TextboxComponent implements OnInit {
 
   @Input() value: string;
 
-  @Input() width: string;
-
-  @Input() styles: string;
+  @Input() styles: object;
 
   @Input() maxLength: number;
 

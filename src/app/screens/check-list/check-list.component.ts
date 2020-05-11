@@ -126,6 +126,7 @@ export class CheckListComponent implements OnInit, OnDestroy {
 
     if (this.checkedShowDraft) this.selectedStatuses.push('draft');
     if (this.checkedShowCanceled) this.selectedStatuses.push('canceled');
+    if (this.checkedShowClosed) this.selectedStatuses.push('closed');
   }
 
 }

@@ -1,4 +1,4 @@
-export type CheckStatus = 'draft' | 'accepted' | 'canceled';
+export type CheckStatus = 'draft' | 'accepted' | 'closed' | 'canceled';
 
 export type DebtType = 'credit' | 'debit';
 
