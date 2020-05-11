@@ -31,9 +31,11 @@ export class CheckListComponent implements OnInit, OnDestroy {
 
   checks: Check[] = [];
 
-  checksSubscriptions: Subscription[] = [];
+  checkedShowCanceled = true;
 
-  count = 20;
+  checkedShowDraft = true;
+
+  checkedShowClosed = false;
 
   debtType: DebtType;
 
@@ -41,13 +43,17 @@ export class CheckListComponent implements OnInit, OnDestroy {
 
   faLevelDownAlt = faLevelDownAlt;
 
-  page = 0;
-
-  selectedStatuses: CheckStatus[] = ['draft', 'accepted', 'canceled'];
-
   userId: number;
 
   userInfo$: Observable<UserInfo>;
+
+  private checksSubscriptions: Subscription[] = [];
+
+  private count = 20;
+
+  private page = 0;
+
+  private selectedStatuses: CheckStatus[] = ['draft', 'accepted', 'canceled'];
 
   constructor(private activatedRoute: ActivatedRoute,
               private api: ApiService) { }
@@ -55,7 +61,8 @@ export class CheckListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.debtType = this.activatedRoute.snapshot.data.debtType;
     this.userId = this.activatedRoute.snapshot.params.userId;
-    this.loadChecks();
+    this.updateSelectedStatuses();
+    this.resetChecks();
 
     if (this.userId !== undefined) {
       this.userInfo$ = this.api.getUsers({ id: this.userId })
@@ -76,7 +83,8 @@ export class CheckListComponent implements OnInit, OnDestroy {
   }
 
   onFiltersModalAccept() {
-    console.log('onFiltersModalAccept');
+    this.updateSelectedStatuses();
+    this.resetChecks();
   }
 
   onMoreButtonClick() {
@@ -106,10 +114,18 @@ export class CheckListComponent implements OnInit, OnDestroy {
   private resetChecks() {
     this.page = 0;
     this.checks = [];
+    this.loadChecks();
   }
 
   private showModal(modal: ModalComponent) {
     modal.show();
+  }
+
+  private updateSelectedStatuses() {
+    this.selectedStatuses = ['accepted'];
+
+    if (this.checkedShowDraft) this.selectedStatuses.push('draft');
+    if (this.checkedShowCanceled) this.selectedStatuses.push('canceled');
   }
 
 }

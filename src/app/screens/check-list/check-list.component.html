@@ -21,12 +21,12 @@
 
 <ad-modal #filtersModal mode="accept" title="Настройка фильтров" (accept)="onFiltersModalAccept()">
   <div class="filter-modal__option">
-    <ad-checkbox label="Отображать отмененные чеки"></ad-checkbox>
+    <ad-checkbox label="Отображать отмененные чеки" [(checked)]="checkedShowCanceled"></ad-checkbox>
   </div>
   <div class="filter-modal__option">
-    <ad-checkbox label="Отображать черновые чеки"></ad-checkbox>
+    <ad-checkbox label="Отображать черновые чеки" [(checked)]="checkedShowDraft"></ad-checkbox>
   </div>
   <div class="filter-modal__option">
-    <ad-checkbox label="Отображать закрытые чеки"></ad-checkbox>
+    <ad-checkbox label="Отображать закрытые чеки" [(checked)]="checkedShowClosed"></ad-checkbox>
   </div>
 </ad-modal>

@@ -9,7 +9,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 })
 export class CheckboxComponent implements OnInit {
 
-  @Input() default = false;
+  @Input() checked = false;
 
   @Input() id: string;
 
@@ -17,7 +17,7 @@ export class CheckboxComponent implements OnInit {
 
   faCheck = faCheck;
 
-  @Output() check = new EventEmitter();
+  @Output() checkedChange: EventEmitter<boolean> = new EventEmitter();
 
   constructor() { }
 
@@ -28,7 +28,7 @@ export class CheckboxComponent implements OnInit {
   }
 
   onCheckboxChange(e) {
-    this.check.emit(e.target.checked);
+    this.checkedChange.emit(e.target.checked);
   }
 
 }

@@ -10,7 +10,7 @@
 </div>
 
 <div class="debt-summary__content">
-  <ad-checkbox class="debt-summary__checkbox" label="Нормализованные долги" (check)="onCheckNormalizeCheck($event)"></ad-checkbox>
+  <ad-checkbox class="debt-summary__checkbox" label="Нормализованные долги" (checkedChange)="onCheckNormalizeCheck($event)"></ad-checkbox>
   <div class="debt-summary__debt-cards">
     <ad-summary-card
       [isActive]="selectedType === 'credit'"
