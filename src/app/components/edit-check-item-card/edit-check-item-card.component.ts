@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { faPencilAlt, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { TextboxComponent } from '../../controls/textbox/textbox.component';
+import { CheckItem } from 'src/app/models/check-item';
 
 @Component({
   selector: 'ad-edit-check-item-card',
@@ -31,7 +32,7 @@ export class EditCheckItemCardComponent implements OnInit {
 
   @Output() delete: EventEmitter<void> = new EventEmitter();
 
-  @Output() edited: EventEmitter<{ name: string, count: number, price: number }> = new EventEmitter();
+  @Output() edited: EventEmitter<CheckItem> = new EventEmitter();
 
   constructor() { }
 
@@ -49,7 +50,8 @@ export class EditCheckItemCardComponent implements OnInit {
       this.edited.emit({
         name: this.nameInput.getValue(),
         count: +this.countInput.getValue(),
-        price: +this.priceInput.getValue()
+        price: +this.priceInput.getValue(),
+        sum: this.count * this.price
       });
     }
   }

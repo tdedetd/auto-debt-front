@@ -20,7 +20,6 @@
 }
 
 .status-bar-bottom__action-item {
-  display: inline;
   font-size: 27px;
   margin: 16px;
   cursor: pointer;

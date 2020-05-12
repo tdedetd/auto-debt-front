@@ -5,6 +5,7 @@ import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.c
 import { CheckInfo } from 'src/app/models/check-info';
 import { ApiService } from 'src/app/services/api.service';
 import { EditCheckItemCard } from 'src/app/models/edit-check-item-card';
+import { CheckItem } from 'src/app/models/check-item';
 
 @Component({
   selector: 'ad-edit-check',
@@ -67,11 +68,8 @@ export class EditCheckComponent implements OnInit {
     this.deleteItemModalVisible = true;
   }
 
-  onCheckItemEdited(e: { name: string, count: number, price: number }, card: EditCheckItemCard) {
-    card.item.count = e.count;
-    card.item.name = e.name;
-    card.item.price = e.price;
-    card.item.sum = card.item.price * card.item.count;
+  onCheckItemEdited(item: CheckItem, card: EditCheckItemCard) {
+    card.item = item;
     card.editMode = false;
 
     this.updateCheckTotal();
