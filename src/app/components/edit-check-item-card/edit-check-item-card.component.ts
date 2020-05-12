@@ -34,6 +34,8 @@ export class EditCheckItemCardComponent implements OnInit {
 
   @Output() edited: EventEmitter<CheckItem> = new EventEmitter();
 
+  @Output() editModeChange: EventEmitter<boolean> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
@@ -47,6 +49,7 @@ export class EditCheckItemCardComponent implements OnInit {
     this.editMode = !this.editMode;
 
     if (!this.editMode) {
+      this.editModeChange.emit(this.editMode);
       this.edited.emit({
         name: this.nameInput.getValue(),
         count: +this.countInput.getValue(),

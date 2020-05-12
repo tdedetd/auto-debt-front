@@ -23,7 +23,7 @@
         [count]="card.item.count"
         [name]="card.item.name"
         [price]="card.item.price"
-        [editMode]="card.editMode"
+        [(editMode)]="card.editMode"
         (delete)="onCardDelete(card)"
         (edited)="onCheckItemEdited($event, card)"></ad-edit-check-item-card>
     </li>

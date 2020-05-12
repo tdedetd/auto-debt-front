@@ -70,8 +70,6 @@ export class EditCheckComponent implements OnInit {
 
   onCheckItemEdited(item: CheckItem, card: EditCheckItemCard) {
     card.item = item;
-    card.editMode = false;
-
     this.updateCheckTotal();
   }
 
