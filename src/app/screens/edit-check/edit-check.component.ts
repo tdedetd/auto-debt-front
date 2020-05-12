@@ -63,6 +63,10 @@ export class EditCheckComponent implements OnInit {
     this.updateCheckTotal();
   }
 
+  editedCardsExist() {
+    return this.itemCards.filter(card => card.editMode).length > 0;
+  }
+
   onCardDelete(card: EditCheckItemCard) {
     this.cardSelected = card;
     this.deleteItemModalVisible = true;

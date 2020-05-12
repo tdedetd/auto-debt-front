@@ -70,5 +70,6 @@
 </ad-modal>
 
 <ad-modal mode="confirm" [(visible)]="saveModalVisible" (accept)="onSaveModalAccept()">
+  <div *ngIf="editedCardsExist()">Имеются несохраненные товары.</div>
   <div>Сохранить чек?</div>
 </ad-modal>
