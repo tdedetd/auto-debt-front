@@ -64,16 +64,7 @@ export class CheckListComponent implements OnInit, OnDestroy {
     this.resetChecks();
 
     if (this.userId !== undefined) {
-      this.userInfo$ = this.api.getUsers({ id: this.userId })
-        .pipe(map(users => {
-          if (users.length === 0) return {
-            id: 0,
-            username: 'unknown user',
-            avatar: '',
-            isSuperuser: false
-          };
-          return users[0];
-        }));
+      this.userInfo$ = this.api.getUser(this.userId);
     }
   }
 

@@ -1,3 +1,1 @@
-export class GetUsersParams {
-  id?: number;
-}
+export class GetUsersParams { }

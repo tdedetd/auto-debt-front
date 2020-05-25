@@ -14,6 +14,8 @@ export class MockInterceptor implements HttpInterceptor {
 
   private readonly apiUrl = environment.apiUrl;
 
+  private readonly getUserRegex = /api\/users\/\d+/;
+
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
     if (req.url === this.apiUrl + '/auth/me') {
@@ -22,6 +24,10 @@ export class MockInterceptor implements HttpInterceptor {
 
     if (req.url === this.apiUrl + '/api/users') {
       return this.response(req, USERS_FIRST);
+    }
+
+    if (this.getUserRegex.test(req.url)) {
+      return this.response(req, USERS_FIRST[0]);
     }
 
     if (req.url === this.apiUrl + '/api/checks/credit') {

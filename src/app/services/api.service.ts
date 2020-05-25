@@ -30,6 +30,10 @@ export class ApiService {
     return this.get(this.apiUrl + '/api/users', params);
   }
 
+  public getUser(userId: number): Observable<UserInfo> {
+    return this.get(this.apiUrl + `/api/users/${userId}`, {});
+  }
+
   public getChecksCredit(params: GetChecksParams): Observable<Check[]> {
     return this.get(this.apiUrl + '/api/checks/credit', params);
   }
