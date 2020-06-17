@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CheckStatus } from 'src/app/types';
 
 const BADGE_STATUSES = [
   {
@@ -31,7 +32,7 @@ export class CheckItemComponent implements OnInit {
 
   @Input() sum: number;
 
-  @Input() status: 'draft' | 'accepted' | 'canceled';
+  @Input() status: CheckStatus;
 
   statusSettings;
 
