@@ -1,5 +1,18 @@
 <ad-status-bar-top></ad-status-bar-top>
 
-
+<h2 class="subtitle">Редактирование долгов</h2>
+<div class="edit-debt__users">
+  <ul class="edit-debt__users-ul">
+    <li *ngFor="let user of participants" class="edit-debt__users-li">
+      <div class="edit-debt__users-color-indicator" [style.background]="user.color"></div>
+      <div class="edit-debt__users-username">{{ user.name }}</div>
+      <div class="edit-debt__users-sum">{{ user.sum | number:'1.2-2' }}</div>
+      <fa-icon *ngIf="edit" class="edit-debt__users-trash" [icon]="faTrash" title="Добавить участника"></fa-icon>
+    </li>
+    <li *ngIf="edit" class="edit-debt__users-li">
+      <fa-icon class="edit-debt__users-plus" [icon]="faPlus" title="Добавить участника"></fa-icon>
+    </li>
+  </ul>
+</div>
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
