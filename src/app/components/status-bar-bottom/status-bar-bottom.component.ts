@@ -16,13 +16,15 @@ export class StatusBarBottomComponent implements OnInit {
 
   @Input() actions: Action[];
 
+  @Input() showCopyright = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
   onActionClick(action: Action) {
-    if (action.callback()) action.callback();
+    action.callback();
   }
 
 }
