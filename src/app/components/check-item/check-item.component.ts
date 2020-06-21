@@ -26,6 +26,8 @@ const BADGE_STATUSES = [
 })
 export class CheckItemComponent implements OnInit {
 
+  @Input() id: number;
+
   @Input() name: string;
 
   @Input() date: string;
