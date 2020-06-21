@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faFilter, faLevelUpAlt, faLevelDownAlt } from '@fortawesome/free-solid-svg-icons';
 import { Subscription, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
 import { ApiService } from 'src/app/services/api.service';

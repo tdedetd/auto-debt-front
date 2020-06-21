@@ -26,6 +26,7 @@ import { EditCheckComponent } from './screens/edit-check/edit-check.component';
 import { TextboxComponent } from './controls/textbox/textbox.component';
 import { EditCheckItemCardComponent } from './components/edit-check-item-card/edit-check-item-card.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { EditDebtComponent } from './screens/edit-debt/edit-debt.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ModalComponent } from './components/modal/modal.component';
     EditCheckComponent,
     TextboxComponent,
     EditCheckItemCardComponent,
-    ModalComponent
+    ModalComponent,
+    EditDebtComponent
   ],
   imports: [
     BrowserModule,

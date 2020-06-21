@@ -1,5 +1,6 @@
-<div
+<a
   class="check-item"
+  routerLink="/edit-debt/{{ id }}"
   [class.check-item_draft]="status === 'draft'"
   [class.check-item_closed]="status === 'closed'"
   [class.check-item_canceled]="status === 'canceled'">
@@ -16,4 +17,4 @@
     <div class="check-item__date">{{ date | date:'dd.MM.yyyy HH:mm' }}</div>
   </div>
   <div class="check-item__sum">{{ sum | number:'1.2-2' }}</div>
-</div>
+</a>

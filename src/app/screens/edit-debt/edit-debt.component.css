@@ -1,0 +1,49 @@
+:host {
+  display: block;
+  padding: 0 20px;
+}
+
+.edit-debt__users {
+  background: #ffffff;
+}
+
+.edit-debt__users-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}
+
+.edit-debt__users-li {
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.edit-debt__users-li:nth-child(odd) {
+  background: #FAFAFA;
+}
+
+.edit-debt__users-plus {
+  margin-left: 10px;
+}
+
+.edit-debt__users-color-indicator {
+  width: 5px;
+  height: 100%;
+}
+
+.edit-debt__users-username,
+.edit-debt__users-sum,
+.edit-debt__users-trash {
+  margin: 0 10px 0 5px;
+}
+
+.edit-debt__users-username,
+.edit-debt__users-sum {
+  flex-grow: 1;
+}
+
+.edit-debt__users-sum {
+  text-align: right;
+}
