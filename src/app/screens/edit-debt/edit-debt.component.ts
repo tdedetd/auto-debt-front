@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrash, faTimesCircle, faSave, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
 
@@ -12,7 +12,26 @@ import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.c
 export class EditDebtComponent implements OnInit {
 
   actions: Action[] = [
-    
+    {
+      label: 'Очистить',
+      icon: faTimesCircle,
+      callback: () => {}
+    },
+    {
+      label: 'Сохранить',
+      icon: faSave,
+      callback: () => {}
+    },
+    {
+      label: 'Подтвердить чек',
+      icon: faCheck,
+      callback: () => {}
+    },
+    {
+      label: 'Отменить чек',
+      icon: faTrash,
+      callback: () => {}
+    }
   ];
 
   checkId: number;
