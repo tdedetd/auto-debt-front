@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faList } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 
 import { ApiService } from 'src/app/services/api.service';
@@ -18,6 +18,11 @@ import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.c
 export class DebtSummaryComponent implements OnInit, OnDestroy {
 
   actions: Action[] = [
+    {
+      label: 'Перейти к чекам',
+      icon: faList,
+      callback: () => this.router.navigate(['check-list', this.selectedType])
+    },
     {
       label: 'Добавить чек',
       icon: faPlus,
@@ -100,11 +105,7 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
   }
 
   onSummaryCardClick(debtType: DebtType) {
-    if (this.selectedType === debtType) {
-      this.router.navigate(['check-list', this.selectedType]);
-    } else {
-      this.selectedType = debtType;
-    }
+    this.selectedType = debtType;
   }
 
   onUserItemClick(userId: number) {
