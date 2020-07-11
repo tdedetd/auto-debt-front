@@ -8,13 +8,19 @@ import { SUMMARY_CREDIT, SUMMARY_DEBIT } from '../const/mock/summary';
 import { USER_INFO } from '../const/mock/user-info';
 import { USERS_FIRST } from '../const/mock/users-first';
 import { CHECK_IMPORT } from '../const/mock/check-import';
+import { CHECK_INFO } from '../const/mock/check-info';
+import { CHECK_DEBTS } from '../const/mock/check-debts';
 
 @Injectable()
 export class MockInterceptor implements HttpInterceptor {
 
   private readonly apiUrl = environment.apiUrl;
 
-  private readonly getUserRegex = /api\/users\/\d+/;
+  private readonly GET_CHECK_INFO_REGEX = /api\/checks\/\d+$/;
+
+  private readonly GET_CHECK_DEBTS_REGEX = /api\/checks\/\d+\/debts$/;
+
+  private readonly GET_USER_REGEX = /api\/users\/\d+/;
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
@@ -26,7 +32,7 @@ export class MockInterceptor implements HttpInterceptor {
       return this.response(req, USERS_FIRST);
     }
 
-    if (this.getUserRegex.test(req.url)) {
+    if (this.GET_USER_REGEX.test(req.url)) {
       return this.response(req, USERS_FIRST[0]);
     }
 
@@ -40,6 +46,14 @@ export class MockInterceptor implements HttpInterceptor {
 
     if (req.url === this.apiUrl + '/api/checks/import') {
       return this.response(req, {...CHECK_IMPORT});
+    }
+
+    if (this.GET_CHECK_INFO_REGEX.test(req.url)) {
+      return this.response(req, CHECK_INFO);
+    }
+
+    if (this.GET_CHECK_DEBTS_REGEX.test(req.url)) {
+      return this.response(req, CHECK_DEBTS);
     }
 
     if (req.url === this.apiUrl + '/api/summary/credit') {

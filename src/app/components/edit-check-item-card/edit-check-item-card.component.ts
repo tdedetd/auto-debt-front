@@ -51,6 +51,7 @@ export class EditCheckItemCardComponent implements OnInit {
 
     if (!this.editMode) {
       this.edited.emit({
+        id: null,
         name: this.nameInput.getValue(),
         count: +this.countInput.getValue(),
         price: +this.priceInput.getValue(),

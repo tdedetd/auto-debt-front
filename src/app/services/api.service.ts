@@ -10,6 +10,7 @@ import { UserInfo } from '../models/user-info';
 import { GetUsersParams } from '../params/get-users.params';
 import { ImportCheckParams } from '../params/import-check.params';
 import { CheckInfo } from '../models/check-info';
+import { CheckDebts } from '../models/check-debts';
 
 @Injectable()
 export class ApiService {
@@ -44,6 +45,14 @@ export class ApiService {
 
   public importCheck(params: ImportCheckParams): Observable<CheckInfo> {
     return this.get(this.apiUrl + '/api/checks/import', params);
+  }
+
+  public getCheckInfo(checkId: number): Observable<CheckInfo> {
+    return this.get(this.apiUrl + `/api/checks/${checkId}`, {});
+  }
+
+  public getCheckDebts(checkId: number): Observable<CheckDebts> {
+    return this.get(this.apiUrl + `/api/checks/${checkId}/debts`, {});
   }
 
   public getSummaryCredit(): Observable<DebtSummaryItem[]> {

@@ -100,11 +100,12 @@ export class EditCheckComponent implements OnInit {
     this.itemCards.push({
       editMode: true,
       item: {
+        id: null,
         name: 'Товар ' + (this.itemCards.length + 1),
         count: 0,
         price: 0,
         sum: 0
-      } 
+      }
     });
     this.updateCheckTotal();
     this.scrollToBottom();
