@@ -6,5 +6,6 @@ export class CheckInfo {
   fpd: string;
   sum: number;
   date: string;
+  paidBy: number;
   items: CheckItem[];
 }

@@ -6,6 +6,7 @@ export const CHECK_IMPORT: CheckInfo = {
   fpd: '1659733341',
   sum: 2740,
   date: '07.04.2020 15:58',
+  paidBy: null,
   items: [
     {
       name: 'Ложка НЫТВА чайная 3шт',

@@ -117,6 +117,7 @@ export class EditCheckComponent implements OnInit {
       fpd: null,
       sum: 0,
       date: '',
+      paidBy: null,
       items: []
     };
     this.itemCards = [];
