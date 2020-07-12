@@ -113,6 +113,7 @@ export class EditCheckComponent implements OnInit {
 
   private initCheck() {
     this.checkInfo = {
+      id: null,
       name: null,
       address: null,
       fpd: null,

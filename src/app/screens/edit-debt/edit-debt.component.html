@@ -5,12 +5,26 @@
   <ul class="edit-debt__users-ul">
     <li *ngFor="let user of participants" class="edit-debt__users-li">
       <div class="edit-debt__users-color-indicator" [style.background]="user.color"></div>
-      <div class="edit-debt__users-username">{{ user.name }}</div>
+      <div class="edit-debt__users-username">{{ user.participant.username }}</div>
       <div class="edit-debt__users-sum">{{ user.sum | number:'1.2-2' }}</div>
-      <fa-icon *ngIf="edit" class="edit-debt__users-trash" [icon]="faTrash" title="Добавить участника"></fa-icon>
+      <fa-icon *ngIf="editMode" class="edit-debt__users-trash" [icon]="faTrash" title="Добавить участника"></fa-icon>
     </li>
-    <li *ngIf="edit" class="edit-debt__users-li">
+    <li *ngIf="editMode" class="edit-debt__users-li">
       <fa-icon class="edit-debt__users-plus" [icon]="faPlus" title="Добавить участника"></fa-icon>
+    </li>
+  </ul>
+</div>
+
+<div class="edit-debt__item-list-container">
+  <ul class="edit-debt__item-list">
+    <li *ngFor="let item of items" class="edit-debt__item">
+      <ad-edit-debt-item-card
+        [count]="item.item.count"
+        [editMode]="editMode"
+        [name]="item.item.name"
+        [personalItemsDebt]="item.personal"
+        [price]="item.item.price"
+        [sum]="item.item.sum"></ad-edit-debt-item-card>
     </li>
   </ul>
 </div>

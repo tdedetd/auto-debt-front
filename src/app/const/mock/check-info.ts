@@ -1,6 +1,7 @@
 import { CheckInfo } from 'src/app/models/check-info';
 
 export const CHECK_INFO: CheckInfo = {
+  id: 1,
   name: 'ООО \"Призма\"',
   address: '194156,г.Санкт-Петербург',
   fpd: '368505536',

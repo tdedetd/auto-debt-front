@@ -10,3 +10,7 @@
   background: #aaaaaa;
   border-radius: .5em;
 }
+
+.badge__times {
+  cursor: pointer;
+}

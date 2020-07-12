@@ -27,6 +27,8 @@ import { TextboxComponent } from './controls/textbox/textbox.component';
 import { EditCheckItemCardComponent } from './components/edit-check-item-card/edit-check-item-card.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { EditDebtComponent } from './screens/edit-debt/edit-debt.component';
+import { AppStateService } from './services/app-state.service';
+import { EditDebtItemCardComponent } from './components/edit-debt-item-card/edit-debt-item-card.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { EditDebtComponent } from './screens/edit-debt/edit-debt.component';
     TextboxComponent,
     EditCheckItemCardComponent,
     ModalComponent,
-    EditDebtComponent
+    EditDebtComponent,
+    EditDebtItemCardComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +60,7 @@ import { EditDebtComponent } from './screens/edit-debt/edit-debt.component';
   providers: [
     ApiService,
     UserService,
+    AppStateService,
     environment.mock ? { provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true } : [],
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: LocationStrategy, useClass: HashLocationStrategy }

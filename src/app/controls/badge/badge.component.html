@@ -1,1 +1,3 @@
-<span class="badge" [style.background]="background || null">{{ text }}</span>
+<span class="badge" [ngStyle]="styles || null">{{ text }}
+  <fa-icon *ngIf="closable" class="badge__times" [icon]="faTimes"></fa-icon>
+</span>
