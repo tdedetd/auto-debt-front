@@ -14,7 +14,7 @@
         </div>
         <div class="summary-card__sum">{{ sum | number:'1.2-2' }}</div>
       </div>
-      <div class="summary-card__second-row">{{ type === 'credit' ? 'Исх. долги' : 'Вх. долги' }}</div>
+      <div class="summary-card__second-row">{{ type === 'credit' ? 'Кредит' : 'Дебет' }}</div>
       <div class="summary-card__select-bar" [class.summary-card__select-bar_active]="isActive"></div>
     </div>
   </div>
