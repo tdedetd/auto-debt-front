@@ -1,6 +1,7 @@
 import { CheckItem } from './check-item';
 
 export class CheckInfo {
+  id: number;
   name: string;
   address: string;
   fpd: string;
