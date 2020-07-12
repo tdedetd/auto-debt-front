@@ -1,0 +1,37 @@
+.edit-debt-item {
+  width: 100%;
+  font-size: 18px;
+  background: #ffffff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .16);
+}
+
+.edit-debt-item__name,
+.edit-debt-item__numbers {
+  line-height: 32px;
+  padding: 0 10px;
+}
+
+.edit-debt-item__name {
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.edit-debt-item__numbers {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-debt-item__personal {
+  padding: 8px 10px 0px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.edit-debt-item__personal-item-badge-container {
+  margin: 0px 10px 10px 0;
+  font-size: 15px;
+}

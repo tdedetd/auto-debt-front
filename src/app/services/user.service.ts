@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { UserInfo } from '../models/user-info';
 import { ApiService } from './api.service';
 
+// TODO: move to app-state service
 @Injectable()
 export class UserService {
 
