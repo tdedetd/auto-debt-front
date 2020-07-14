@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { faPlus, faTrash, faTimesCircle, faSave, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrash, faTimesCircle, faSave, faCheck, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 
 import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
@@ -46,9 +46,15 @@ export class EditDebtComponent implements OnInit, OnDestroy {
 
   checkId: number;
 
+  checkOwner: number;
+
   colors = ['#B7ADEF', '#FAB0B0', '#FACD85', '#75DE91', '#EE8AF2', '#74D9CE'];
 
-  editMode = false;
+  editMode = true;
+
+  faCheck = faCheck;
+
+  faMoneyBill = faMoneyBill;
 
   faPlus = faPlus;
 
@@ -109,6 +115,8 @@ export class EditDebtComponent implements OnInit, OnDestroy {
 
   private extractCheckItems() {
     if (!this.isLoaded()) return;
+
+    this.checkOwner = this.appState.checkInfoSelected.paidBy;
 
     this.items = this.appState.checkInfoSelected.items.map<ItemDebts>(item => ({ item, personal: [] }));
     this.items.forEach(item => {

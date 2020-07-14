@@ -6,8 +6,12 @@
     <li *ngFor="let user of participants" class="edit-debt__users-li">
       <div class="edit-debt__users-color-indicator" [style.background]="user.color"></div>
       <div class="edit-debt__users-username">{{ user.participant.username }}</div>
+      <div *ngIf="user.participant.isPaidBack" class="edit-debt__users-icon">
+        <fa-icon *ngIf="user.participant.userId === checkOwner" [icon]="faMoneyBill" title="Оплатил чек"></fa-icon>
+        <fa-icon *ngIf="user.participant.userId !== checkOwner" [icon]="faCheck" title="Долг возвращен"></fa-icon>
+      </div>
       <div class="edit-debt__users-sum">{{ user.sum | number:'1.2-2' }}</div>
-      <fa-icon *ngIf="editMode" class="edit-debt__users-trash" [icon]="faTrash" title="Добавить участника"></fa-icon>
+      <fa-icon *ngIf="editMode" class="edit-debt__users-trash" [icon]="faTrash" title="Удалить участника"></fa-icon>
     </li>
     <li *ngIf="editMode" class="edit-debt__users-li">
       <fa-icon class="edit-debt__users-plus" [icon]="faPlus" title="Добавить участника"></fa-icon>
