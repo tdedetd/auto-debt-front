@@ -129,11 +129,38 @@ export class EditDebtComponent implements OnInit, OnDestroy {
   }
 
   onAddUserModalAccept() {
-    console.log('onAddUserModalAccept', this.participantsDropdownItemSelected);
+    if (this.participantsDropdownItemSelected) {
+      this.addParticipant(this.participantsDropdownItemSelected);
+      this.participantsDropdownItemSelected = null;
+    }
   }
 
   isLoaded(): boolean {
     return !!this.appState.checkInfoSelected && !!this.personalItems;
+  }
+
+  private addParticipant(participantItem: DropdownItem) {
+    const newParticipant: ParticipantDebt = {
+      participant: {
+        userId: participantItem.value.id,
+        username: participantItem.value.username,
+        isPaidBack: false
+      },
+      sum: 0,
+      color: 'black'
+    };
+
+    this.participants.push(newParticipant);
+    this.updateParticipantsSum();
+    this.updatePerticipantsColors();
+  }
+
+  private addSumToEachParticipant(sum: number) {
+    this.participants.forEach(participant => participant.sum += sum);
+  }
+
+  private clearSum() {
+    this.participants.forEach(participant => participant.sum = 0);
   }
 
   private getParticipantColor(index: number) {
@@ -160,6 +187,12 @@ export class EditDebtComponent implements OnInit, OnDestroy {
     this.updateParticipantsSum();
   }
 
+  private updatePerticipantsColors() {
+    this.participants.forEach((participant, i) => {
+      participant.color = this.getParticipantColor(i);
+    });
+  }
+
   private updateParticipantsSum() {
     const count = this.participants.length;
     this.clearSum();
@@ -175,14 +208,6 @@ export class EditDebtComponent implements OnInit, OnDestroy {
       }
     });
     // FIXME: calculated sum not matching
-  }
-
-  private addSumToEachParticipant(sum: number) {
-    this.participants.forEach(participant => participant.sum += sum);
-  }
-
-  private clearSum() {
-    this.participants.forEach(participant => participant.sum = 0);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation, HostListener, OnDestroy, Query } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation, HostListener, OnDestroy, OnChanges } from '@angular/core';
 import { Observable, of, Subject, Subscription } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
 
@@ -16,7 +16,7 @@ export type DropdownItemsFunc = (query: string) => Observable<DropdownItem[]>;
   styleUrls: ['./dropdown.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class DropdownComponent implements OnInit, OnDestroy {
+export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() items: DropdownItem[];
 
@@ -65,6 +65,12 @@ export class DropdownComponent implements OnInit, OnDestroy {
         this.items$ = this.itemsFunc ? this.itemsFunc(query) : of(this.items);
         this.listVisible = true;
       });
+  }
+
+  ngOnChanges(changes) {
+    if (changes.value && !changes.value.currentValue) {
+      this.inputText = '';
+    }
   }
 
   ngOnDestroy() {
