@@ -11,7 +11,12 @@
         <fa-icon *ngIf="user.participant.userId !== checkOwner" [icon]="faCheck" title="Долг возвращен"></fa-icon>
       </div>
       <div class="edit-debt__users-sum">{{ user.sum | number:'1.2-2' }}</div>
-      <fa-icon *ngIf="editMode" class="edit-debt__users-trash" [icon]="faTrash" title="Удалить участника"></fa-icon>
+      <fa-icon
+        *ngIf="editMode"
+        class="edit-debt__users-trash"
+        [icon]="faTrash"
+        title="Удалить участника"
+        (click)="onRemoveParticipantClick(user)"></fa-icon>
     </li>
     <li *ngIf="editMode" class="edit-debt__users-li">
       <fa-icon class="edit-debt__users-plus" [icon]="faPlus" title="Добавить участника" (click)="onAddUserClick()"></fa-icon>
@@ -35,6 +40,7 @@
 
 <ad-modal
   title="Добавить участника"
+  [preventHideOnAccept]="true"
   [(visible)]="addParticipantModalVisible"
   (accept)="onAddUserModalAccept()">
 
@@ -42,6 +48,14 @@
     placeholder="Начните вводить имя или id"
     [itemsFunc]="getUsersFunc"
     [(value)]="participantsDropdownItemSelected"></ad-dropdown>
+
+  <div
+    *ngIf="participantAlreadyAddedMessageVisible"
+    class="edit-debt__error-participant-added-already">Пользователь уже добавлен в чек!</div>
+</ad-modal>
+
+<ad-modal mode="confirm" [(visible)]="removeParticipantModalVisible" (accept)="onRemoveParticipantModalAccept()">
+  <div>Вы точно хотите удалить участника "{{ participantForRemoveSelected?.participant.username }}" из чека?</div>
 </ad-modal>
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>

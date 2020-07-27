@@ -50,9 +50,13 @@ export class EditDebtComponent implements OnInit, OnDestroy {
 
   checkId: number;
 
+  checkInfoSubscription$: Subscription;
+
   checkOwner: number;
 
   colors = ['#B7ADEF', '#FAB0B0', '#FACD85', '#75DE91', '#EE8AF2', '#74D9CE'];
+
+  debtsSubscription$: Subscription;
 
   editMode = true;
 
@@ -70,13 +74,15 @@ export class EditDebtComponent implements OnInit, OnDestroy {
 
   participants: ParticipantDebt[] = [];
 
+  participantAlreadyAddedMessageVisible = false;
+
+  participantForRemoveSelected: ParticipantDebt;
+
   participantsDropdownItemSelected: DropdownItem;
 
   personalItems: PersonalItem[];
 
-  checkInfoSubscription$: Subscription;
-
-  debtsSubscription$: Subscription;
+  removeParticipantModalVisible = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               private api: ApiService,
@@ -126,13 +132,39 @@ export class EditDebtComponent implements OnInit, OnDestroy {
 
   onAddUserClick() {
     this.addParticipantModalVisible = true;
+    this.participantAlreadyAddedMessageVisible = false;
   }
 
   onAddUserModalAccept() {
     if (this.participantsDropdownItemSelected) {
-      this.addParticipant(this.participantsDropdownItemSelected);
-      this.participantsDropdownItemSelected = null;
+      if (this.participants.map(part => part.participant.userId)
+        .indexOf(this.participantsDropdownItemSelected.value.id) !== -1) {
+
+        this.participantAlreadyAddedMessageVisible = true;
+      } else {
+        this.addParticipant(this.participantsDropdownItemSelected);
+        this.participantsDropdownItemSelected = null;
+        this.addParticipantModalVisible = false;
+      }
     }
+  }
+
+  onRemoveParticipantClick(participant: ParticipantDebt) {
+    this.removeParticipantModalVisible = true;
+    this.participantForRemoveSelected = participant;
+  }
+
+  onRemoveParticipantModalAccept() {
+    const userId = this.participantForRemoveSelected.participant.userId;
+    this.removeElementFromList(this.participants, this.participantForRemoveSelected);
+
+    const personalItemsForRemove = this.personalItems.filter(personal => personal.userId === userId);
+    personalItemsForRemove.forEach(personal => this.removeElementFromList(this.personalItems, personal));
+
+    this.participantForRemoveSelected = null;
+    this.extractCheckItems();
+    this.updateParticipantsSum();
+    this.updatePerticipantsColors();
   }
 
   isLoaded(): boolean {
@@ -208,6 +240,12 @@ export class EditDebtComponent implements OnInit, OnDestroy {
       }
     });
     // FIXME: calculated sum not matching
+  }
+
+  // TODO: to utils
+  private removeElementFromList<T>(list: T[], element: T) {
+    const index = list.indexOf(element);
+    list.splice(index, 1);
   }
 
 }

@@ -41,6 +41,10 @@
   margin: 0 10px 0 5px;
 }
 
+.edit-debt__users-trash {
+  cursor: pointer;
+}
+
 .edit-debt__users-username {
   flex-grow: 1;
   overflow-x: hidden;
@@ -70,4 +74,9 @@
 
 .edit-debt__item {
   margin: 15px 0;
+}
+
+.edit-debt__error-participant-added-already {
+  margin-top: 15px;
+  color: #6e3d3d;
 }
