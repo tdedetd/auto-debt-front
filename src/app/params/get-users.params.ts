@@ -1,1 +1,3 @@
-export class GetUsersParams { }
+export class GetUsersParams {
+  query?: string;
+}

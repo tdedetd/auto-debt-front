@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
+
 import { environment } from '../../environments/environment';
 import { CHECK_LIST_CREDIT } from '../const/mock/check-list-credit';
 import { CHECK_LIST_DEBIT } from '../const/mock/check-list-debit';
@@ -10,6 +11,7 @@ import { USERS_FIRST } from '../const/mock/users-first';
 import { CHECK_IMPORT } from '../const/mock/check-import';
 import { CHECK_INFO } from '../const/mock/check-info';
 import { CHECK_DEBTS } from '../const/mock/check-debts';
+import { USERS_LIST } from '../const/mock/users-list';
 
 @Injectable()
 export class MockInterceptor implements HttpInterceptor {
@@ -29,7 +31,10 @@ export class MockInterceptor implements HttpInterceptor {
     }
 
     if (req.url === this.apiUrl + '/api/users') {
-      return this.response(req, USERS_FIRST);
+      const query = req.params.get('query').toLowerCase();
+      if (!query) return this.empty();
+
+      return this.response(req, USERS_LIST.filter(user => user.username.toLowerCase().indexOf(query) !== -1));
     }
 
     if (this.GET_USER_REGEX.test(req.url)) {
@@ -70,5 +75,9 @@ export class MockInterceptor implements HttpInterceptor {
   private response(req, body) {
     console.log(`${req.method} ${req.urlWithParams}\nRESPONSE`, body);
     return of(new HttpResponse({ body }));
+  }
+
+  private empty() {
+    return of(new HttpResponse({ body: [] }));
   }
 }

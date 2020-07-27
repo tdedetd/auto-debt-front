@@ -1,0 +1,20 @@
+<div class="dropdown">
+  <ad-textbox
+    class="dropdown__textbox"
+    [id]="textboxId"
+    [styles]="{ width: '100%' }"
+    [placeholder]="placeholder || null"
+    [(value)]="inputText"
+    (click)="onInputClick()"
+    (valueInput)="onInputValueInput($event)"></ad-textbox>
+
+  <div *ngIf="listVisible" [id]="listId" class="dropdown__list-container">
+    <ul class="dropdown__ul">
+      <li *ngFor="let item of items$ | async" class="dropdown__li" (click)="onItemClick(item)">
+        <img class="dropdown__pic" [src]="item.picture" [alt]="item.label">
+        {{ item.label }}
+      </li>
+    </ul>
+  </div>
+
+</div>

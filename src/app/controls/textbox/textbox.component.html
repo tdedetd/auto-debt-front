@@ -5,4 +5,6 @@
   [ngStyle]="styles || null"
   [value]="value || null"
   [formControl]="formControl"
-  (change)="onInputChange($event)">
+  (change)="onInputChange($event)"
+  (ngModelChange)="onInputModelChange($event)"
+>

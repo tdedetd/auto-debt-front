@@ -26,11 +26,13 @@
 
 .edit-debt__users-plus {
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .edit-debt__users-color-indicator {
   width: 5px;
   height: 100%;
+  flex-shrink: 0;
 }
 
 .edit-debt__users-username,
@@ -39,9 +41,21 @@
   margin: 0 10px 0 5px;
 }
 
-.edit-debt__users-username,
-.edit-debt__users-sum {
+.edit-debt__users-trash {
+  cursor: pointer;
+}
+
+.edit-debt__users-username {
   flex-grow: 1;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.edit-debt__users-icon {
+  font-size: 14px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 
 .edit-debt__users-sum {
@@ -60,4 +74,9 @@
 
 .edit-debt__item {
   margin: 15px 0;
+}
+
+.edit-debt__error-participant-added-already {
+  margin-top: 15px;
+  color: #6e3d3d;
 }

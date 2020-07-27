@@ -29,6 +29,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { EditDebtComponent } from './screens/edit-debt/edit-debt.component';
 import { AppStateService } from './services/app-state.service';
 import { EditDebtItemCardComponent } from './components/edit-debt-item-card/edit-debt-item-card.component';
+import { DropdownComponent } from './controls/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { EditDebtItemCardComponent } from './components/edit-debt-item-card/edit
     EditCheckItemCardComponent,
     ModalComponent,
     EditDebtComponent,
-    EditDebtItemCardComponent
+    EditDebtItemCardComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,

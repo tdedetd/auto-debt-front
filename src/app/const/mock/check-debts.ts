@@ -10,7 +10,7 @@ export const CHECK_DEBTS: CheckDebts = {
     {
       userId: 2,
       username: 'Алексей',
-      isPaidBack: false
+      isPaidBack: true
     },
     {
       userId: 3,
@@ -20,7 +20,7 @@ export const CHECK_DEBTS: CheckDebts = {
     {
       userId: 4,
       username: 'Александр',
-      isPaidBack: false
+      isPaidBack: true
     }
   ],
   personalItems: [

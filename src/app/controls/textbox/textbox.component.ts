@@ -28,6 +28,8 @@ export class TextboxComponent implements OnInit {
 
   @Output() valueChange: EventEmitter<string> = new EventEmitter();
 
+  @Output() valueInput: EventEmitter<string> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
@@ -59,6 +61,10 @@ export class TextboxComponent implements OnInit {
   onInputChange(e) {
     this.value = e.target.value;
     this.valueChange.emit(this.value);
+  }
+
+  onInputModelChange(text: string) {
+    this.valueInput.emit(text);
   }
 
 }
