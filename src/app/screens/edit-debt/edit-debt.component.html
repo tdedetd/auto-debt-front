@@ -14,7 +14,7 @@
       <fa-icon *ngIf="editMode" class="edit-debt__users-trash" [icon]="faTrash" title="Удалить участника"></fa-icon>
     </li>
     <li *ngIf="editMode" class="edit-debt__users-li">
-      <fa-icon class="edit-debt__users-plus" [icon]="faPlus" title="Добавить участника"></fa-icon>
+      <fa-icon class="edit-debt__users-plus" [icon]="faPlus" title="Добавить участника" (click)="onAddUserClick()"></fa-icon>
     </li>
   </ul>
 </div>
@@ -32,5 +32,16 @@
     </li>
   </ul>
 </div>
+
+<ad-modal
+  title="Добавить участника"
+  [(visible)]="addParticipantModalVisible"
+  (accept)="onAddUserModalAccept()">
+
+  <ad-dropdown
+    placeholder="Начните вводить имя или id"
+    [itemsFunc]="getUsersFunc"
+    [(value)]="participantsDropdownItemSelected"></ad-dropdown>
+</ad-modal>
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>

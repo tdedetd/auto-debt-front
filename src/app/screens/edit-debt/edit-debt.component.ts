@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { faPlus, faTrash, faTimesCircle, faSave, faCheck, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
 import { Participant } from 'src/app/models/participant';
@@ -9,6 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { PersonalItem } from 'src/app/models/personal-item';
 import { CheckItem } from 'src/app/models/check-item';
 import { AppStateService } from 'src/app/services/app-state.service';
+import { DropdownItemsFunc, DropdownItem } from '../../controls/dropdown/dropdown.component';
 
 type ParticipantDebt = { participant: Participant, sum?: number, color: string };
 export type PersonalItemDebt = { participant: ParticipantDebt, personalItem: PersonalItem };
@@ -44,6 +46,8 @@ export class EditDebtComponent implements OnInit, OnDestroy {
     }
   ];
 
+  addParticipantModalVisible = false;
+
   checkId: number;
 
   checkOwner: number;
@@ -62,7 +66,11 @@ export class EditDebtComponent implements OnInit, OnDestroy {
 
   items: ItemDebts[];
 
+  getUsersFunc: DropdownItemsFunc;
+
   participants: ParticipantDebt[] = [];
+
+  participantsDropdownItemSelected: DropdownItem;
 
   personalItems: PersonalItem[];
 
@@ -98,11 +106,30 @@ export class EditDebtComponent implements OnInit, OnDestroy {
       this.personalItems = debts.personalItems;
       this.extractCheckItems();
     });
+
+    this.getUsersFunc = (query: string) => {
+      return this.api.getUsers({ query })
+        .pipe(map(users => {
+          return users.map<DropdownItem>(user => ({
+            label: user.username,
+            value: user,
+            picture: user.avatar
+          }));
+        }));
+    };
   }
 
   ngOnDestroy() {
     this.debtsSubscription$.unsubscribe();
     if (this.checkInfoSubscription$) this.checkInfoSubscription$.unsubscribe();
+  }
+
+  onAddUserClick() {
+    this.addParticipantModalVisible = true;
+  }
+
+  onAddUserModalAccept() {
+    console.log('onAddUserModalAccept', this.participantsDropdownItemSelected);
   }
 
   isLoaded(): boolean {

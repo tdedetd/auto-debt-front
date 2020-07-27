@@ -26,6 +26,7 @@
 
 .edit-debt__users-plus {
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .edit-debt__users-color-indicator {
