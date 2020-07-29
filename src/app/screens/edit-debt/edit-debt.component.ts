@@ -10,7 +10,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { PersonalItem } from 'src/app/models/personal-item';
 import { CheckItem } from 'src/app/models/check-item';
 import { AppStateService } from 'src/app/services/app-state.service';
-import { DropdownItemsFunc, DropdownItem } from '../../controls/find-textbox/find-textbox.component';
+import { DropdownItemsFunc } from '../../controls/find-textbox/find-textbox.component';
+import { DropdownItem } from 'src/app/models/dropdown-item';
 
 type ParticipantDebt = { participant: Participant, sum?: number, color: string };
 export type PersonalItemDebt = { participant: ParticipantDebt, personalItem: PersonalItem };

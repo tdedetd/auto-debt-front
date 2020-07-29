@@ -30,6 +30,7 @@ import { EditDebtComponent } from './screens/edit-debt/edit-debt.component';
 import { AppStateService } from './services/app-state.service';
 import { EditDebtItemCardComponent } from './components/edit-debt-item-card/edit-debt-item-card.component';
 import { FindTextboxComponent } from './controls/find-textbox/find-textbox.component';
+import { DropdownComponent } from './controls/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { FindTextboxComponent } from './controls/find-textbox/find-textbox.compo
     ModalComponent,
     EditDebtComponent,
     EditDebtItemCardComponent,
-    FindTextboxComponent
+    FindTextboxComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,

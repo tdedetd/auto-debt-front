@@ -1,0 +1,14 @@
+.dropdown {
+  appearance: none;
+  box-sizing: border-box;
+  border: none;
+  height: 30px;
+  font-size: 20px;
+  font-family: roboto, Arial;
+  color: #707070;
+  background: #fafafa;
+  padding: 0 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .16);
+  outline: none;
+}

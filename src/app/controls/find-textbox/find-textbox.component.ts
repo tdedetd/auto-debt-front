@@ -1,12 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation, HostListener, OnDestroy, OnChanges } from '@angular/core';
 import { Observable, of, Subject, Subscription } from 'rxjs';
 import { debounceTime, filter } from 'rxjs/operators';
-
-export interface DropdownItem {
-  label: string;
-  value: any;
-  picture: string;
-}
+import { DropdownItem } from 'src/app/models/dropdown-item';
 
 export type DropdownItemsFunc = (query: string) => Observable<DropdownItem[]>;
 
