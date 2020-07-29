@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { PersonalItemDebt } from 'src/app/screens/edit-debt/edit-debt.component';
+import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { PersonalItemDebt } from 'src/app/screens/edit-debt/edit-debt.component';
 
 @Component({
   selector: 'ad-edit-debt-item-card',
@@ -26,10 +26,16 @@ export class EditDebtItemCardComponent implements OnInit {
 
   partsSame: boolean;
 
+  @Output() addPersonalItemClick: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
     this.partsSame = this.checkPartsSame();
+  }
+
+  onAddParticipantClick() {
+    this.addPersonalItemClick.emit();
   }
 
   private checkPartsSame(): boolean {

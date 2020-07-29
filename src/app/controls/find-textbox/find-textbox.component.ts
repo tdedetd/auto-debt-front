@@ -11,12 +11,12 @@ export interface DropdownItem {
 export type DropdownItemsFunc = (query: string) => Observable<DropdownItem[]>;
 
 @Component({
-  selector: 'ad-dropdown',
-  templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.css'],
+  selector: 'ad-find-textbox',
+  templateUrl: './find-textbox.component.html',
+  styleUrls: ['./find-textbox.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
+export class FindTextboxComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() items: DropdownItem[];
 

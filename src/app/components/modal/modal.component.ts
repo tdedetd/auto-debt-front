@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -43,6 +43,13 @@ export class ModalComponent implements OnInit {
    */
   public show() {
     this.visible = true;
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  private onKeyDown(e) {
+    if (e.keyCode === 27) {
+      this.visibleChange.emit(false);
+    }
   }
 
 }

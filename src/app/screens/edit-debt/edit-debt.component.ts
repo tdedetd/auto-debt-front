@@ -10,7 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { PersonalItem } from 'src/app/models/personal-item';
 import { CheckItem } from 'src/app/models/check-item';
 import { AppStateService } from 'src/app/services/app-state.service';
-import { DropdownItemsFunc, DropdownItem } from '../../controls/dropdown/dropdown.component';
+import { DropdownItemsFunc, DropdownItem } from '../../controls/find-textbox/find-textbox.component';
 
 type ParticipantDebt = { participant: Participant, sum?: number, color: string };
 export type PersonalItemDebt = { participant: ParticipantDebt, personalItem: PersonalItem };
@@ -47,6 +47,8 @@ export class EditDebtComponent implements OnInit, OnDestroy {
   ];
 
   addParticipantModalVisible = false;
+
+  addPersonalItemModalVisible = false;
 
   checkId: number;
 
@@ -128,6 +130,10 @@ export class EditDebtComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.debtsSubscription$.unsubscribe();
     if (this.checkInfoSubscription$) this.checkInfoSubscription$.unsubscribe();
+  }
+
+  onAddPersonalItemClick(e) {
+    this.addPersonalItemModalVisible = true;
   }
 
   onAddUserClick() {

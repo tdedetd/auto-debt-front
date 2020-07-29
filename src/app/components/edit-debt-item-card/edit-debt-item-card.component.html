@@ -17,10 +17,14 @@
         [text]="partsSame ? personalItemDebt.participant.participant.username :
                 personalItemDebt.participant.participant.username + ' (' + personalItemDebt.personalItem.part + ')'"
         [styles]="{ 'font-size': '1em', background: personalItemDebt.participant.color }"
-        ></ad-badge>
+      ></ad-badge>
     </div>
     <div *ngIf="editMode" class="edit-debt-item__personal-item-badge-container">
-      <fa-icon [icon]="faPlus" title="Добавить участника"></fa-icon>
+      <fa-icon
+        class="edit-debt-item__add-participant"
+        [icon]="faPlus"
+        title="Добавить участника"
+        (click)="onAddParticipantClick()"></fa-icon>
     </div>
   </div>
 </div>
