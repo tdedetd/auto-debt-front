@@ -16,7 +16,11 @@ export class TextboxComponent implements OnInit {
 
   @Input() maxLength: number;
 
+  @Input() max: number;
+
   @Input() minLength: number;
+
+  @Input() min: number;
 
   @Input() pattern: string;
 
@@ -49,6 +53,14 @@ export class TextboxComponent implements OnInit {
 
     if (this.maxLength !== undefined) {
       validators.push(Validators.maxLength(this.maxLength));
+    }
+
+    if (this.min !== undefined) {
+      validators.push(Validators.min(this.min));
+    }
+
+    if (this.max !== undefined) {
+      validators.push(Validators.max(this.max));
     }
 
     this.formControl = new FormControl(this.value, validators);

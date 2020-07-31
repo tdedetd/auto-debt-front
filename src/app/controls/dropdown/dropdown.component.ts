@@ -14,11 +14,15 @@ export class DropdownComponent implements OnInit {
 
   @Input() value: DropdownItem;
 
-  @Output() valueChange: EventEmitter<DropdownItem> = new EventEmitter();
+  @Output() valueChange: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSelectChange(event) {
+    this.valueChange.emit(event.target.value);
   }
 
 }

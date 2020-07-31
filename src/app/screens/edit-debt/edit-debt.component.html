@@ -59,8 +59,28 @@
   <div>Вы точно хотите удалить участника "{{ participantForRemoveSelected?.participant.username }}" из чека?</div>
 </ad-modal>
 
-<ad-modal title="Выбрать участника" [(visible)]="addPersonalItemModalVisible">
-  <ad-dropdown></ad-dropdown>
+<ad-modal
+  title="Выбрать участника"
+  [preventHideOnAccept]="true"
+  [(visible)]="addPersonalItemModalVisible"
+  (accept)="onaAddPersonalItemModalAccept()">
+
+  <div class="edit-debt__modal-field">
+    Пользователь
+    <ad-dropdown
+      [items]="getParticipantsKeyValue()"
+      [styles]="{ width: '100%' }"
+      [(value)]="editPersonalItemForm.userId"></ad-dropdown>
+  </div>
+
+  <div class="edit-debt__modal-field">
+    Доля
+    <ad-textbox
+      [styles]="{ width: '100%' }"
+      type="number"
+      [min]="1"
+      [(value)]="editPersonalItemForm.parts" required></ad-textbox>
+  </div>
 </ad-modal>
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>

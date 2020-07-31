@@ -63,6 +63,8 @@ export class EditDebtComponent implements OnInit, OnDestroy {
 
   editMode = true;
 
+  editPersonalItemForm: { userId: any, parts: number } = { userId: null, parts: 1 };
+
   faCheck = faCheck;
 
   faMoneyBill = faMoneyBill;
@@ -72,6 +74,8 @@ export class EditDebtComponent implements OnInit, OnDestroy {
   faTrash = faTrash;
 
   items: ItemDebts[];
+
+  itemSelected: ItemDebts;
 
   getUsersFunc: DropdownItemsFunc;
 
@@ -133,8 +137,34 @@ export class EditDebtComponent implements OnInit, OnDestroy {
     if (this.checkInfoSubscription$) this.checkInfoSubscription$.unsubscribe();
   }
 
-  onAddPersonalItemClick(e) {
+  getParticipantsKeyValue(): DropdownItem[] {
+    return this.participants.map(participant => ({
+      label: participant.participant.username,
+      value: participant.participant.userId
+    }));
+  }
+
+  onAddPersonalItemClick(item: ItemDebts) {
+    this.itemSelected = item;
     this.addPersonalItemModalVisible = true;
+  }
+
+  onaAddPersonalItemModalAccept() {
+    const personal = this.itemSelected.personal.find(item => item.participant.participant.userId === this.editPersonalItemForm.userId);
+    if (personal) {
+      personal.personalItem.part = +this.editPersonalItemForm.parts;
+    } else {
+      const participant = this.participants.find(part => part.participant.userId === this.editPersonalItemForm.userId);
+      this.itemSelected.personal.push({
+        participant,
+        personalItem: {
+          itemId: this.itemSelected.item.id,
+          userId: this.editPersonalItemForm.userId,
+          part: +this.editPersonalItemForm.parts
+        }
+      });
+    }
+    this.itemSelected = null;
   }
 
   onAddUserClick() {
