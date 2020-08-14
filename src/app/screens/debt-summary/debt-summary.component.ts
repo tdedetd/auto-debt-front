@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { faPlus, faList } from '@fortawesome/free-solid-svg-icons';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 import { ApiService } from 'src/app/services/api.service';
 import { DebtType, DebtNormalizeType } from 'src/app/types';
@@ -65,7 +65,7 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
 
   normalizeType: DebtNormalizeType = 'unnormalized';
 
-  userInfo: UserInfo;
+  userInfo$: Observable<UserInfo>;
 
   summaryCreditSubscription: Subscription;
   summaryDebitSubscription: Subscription;
@@ -90,8 +90,7 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
         this.updateNormalizedDebt();
       });
 
-    this.userInfoSubscription = this.userService.getUserInfo()
-      .subscribe(userInfo => this.userInfo = userInfo);
+    this.userInfo$ = this.userService.getUserInfo();
   }
 
   ngOnDestroy() {
