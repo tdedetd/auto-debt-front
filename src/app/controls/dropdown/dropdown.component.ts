@@ -22,7 +22,7 @@ export class DropdownComponent implements OnInit {
   }
 
   onSelectChange(event) {
-    this.valueChange.emit(event.target.value);
+    this.valueChange.emit(this.items[event.target.selectedIndex].value);
   }
 
 }
