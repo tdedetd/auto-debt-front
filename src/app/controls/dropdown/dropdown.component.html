@@ -1,3 +1,8 @@
-<select class="dropdown" [ngStyle]="styles || null" (change)="onSelectChange($event)">
-  <option *ngFor="let item of items" [value]="item.value">{{ item.label }}</option>
+<select
+  class="dropdown"
+  [ngStyle]="styles || null"
+  [(ngModel)]="value"
+  (ngModelChange)="onSelectChange($event)">
+
+  <option *ngFor="let item of items" [ngValue]="item.value">{{ item.label }}</option>
 </select>

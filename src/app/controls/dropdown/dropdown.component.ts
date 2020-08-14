@@ -12,7 +12,7 @@ export class DropdownComponent implements OnInit {
 
   @Input() styles: object;
 
-  @Input() value: DropdownItem;
+  @Input() value: any;
 
   @Output() valueChange: EventEmitter<any> = new EventEmitter();
 
@@ -21,8 +21,8 @@ export class DropdownComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSelectChange(event) {
-    this.valueChange.emit(this.items[event.target.selectedIndex].value);
+  onSelectChange(value: any) {
+    this.valueChange.emit(value);
   }
 
 }
