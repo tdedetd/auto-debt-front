@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { faRubleSign } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'ad-summary-total-card',
   templateUrl: './summary-total-card.component.html',
-  styleUrls: ['./summary-total-card.component.css']
+  styleUrls: ['./summary-total-card.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SummaryTotalCardComponent implements OnInit {
 

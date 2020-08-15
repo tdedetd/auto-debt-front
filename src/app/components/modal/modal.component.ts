@@ -1,12 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, ViewEncapsulation } from '@angular/core';
 import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'ad-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  styleUrls: ['./modal.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit {
+
+  @Input() acceptable = true;
 
   @Input() mode: 'alert' | 'confirm';
 
@@ -36,13 +39,6 @@ export class ModalComponent implements OnInit {
 
   public hide() {
     this.visibleChange.emit(false);
-  }
-
-  /**
-   * @deprecated
-   */
-  public show() {
-    this.visible = true;
   }
 
   @HostListener('document:keydown', ['$event'])

@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ad-textbox',
   templateUrl: './textbox.component.html',
-  styleUrls: ['./textbox.component.css']
+  styleUrls: ['./textbox.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TextboxComponent implements OnInit {
 

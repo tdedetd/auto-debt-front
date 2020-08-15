@@ -60,6 +60,7 @@
 </ad-modal>
 
 <ad-modal
+  [acceptable]="!!editPersonalItemForm.participant && !!editPersonalItemForm.parts"
   title="Выбрать участника"
   [preventHideOnAccept]="true"
   [(visible)]="addPersonalItemModalVisible"

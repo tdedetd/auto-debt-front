@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { DropdownItem } from 'src/app/models/dropdown-item';
 
 @Component({
   selector: 'ad-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.css']
+  styleUrls: ['./dropdown.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DropdownComponent implements OnInit {
 

@@ -141,6 +141,7 @@ export class EditDebtComponent implements OnInit, OnDestroy {
 
   onAddPersonalItemClick(item: ItemDebts) {
     this.itemSelected = item;
+    this.editPersonalItemForm = { participant: null, parts: 1 };
 
     this.participantsDropdownItems = this.participants.map(participant => ({
       label: participant.participant.username,
@@ -166,7 +167,6 @@ export class EditDebtComponent implements OnInit, OnDestroy {
       });
     }
 
-    this.editPersonalItemForm = { participant: null, parts: 1 };
     this.itemSelected = null;
     this.addPersonalItemModalVisible = false;
   }

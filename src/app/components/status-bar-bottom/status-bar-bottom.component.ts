@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 export interface Action {
@@ -10,7 +10,8 @@ export interface Action {
 @Component({
   selector: 'ad-status-bar-bottom',
   templateUrl: './status-bar-bottom.component.html',
-  styleUrls: ['./status-bar-bottom.component.css']
+  styleUrls: ['./status-bar-bottom.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class StatusBarBottomComponent implements OnInit {
 

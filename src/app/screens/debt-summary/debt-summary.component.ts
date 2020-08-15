@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { faPlus, faList } from '@fortawesome/free-solid-svg-icons';
 import { Subscription, Observable } from 'rxjs';
@@ -13,7 +13,8 @@ import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.c
 @Component({
   selector: 'ad-debt-summary',
   templateUrl: './debt-summary.component.html',
-  styleUrls: ['./debt-summary.component.css']
+  styleUrls: ['./debt-summary.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DebtSummaryComponent implements OnInit, OnDestroy {
 

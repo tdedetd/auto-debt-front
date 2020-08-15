@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Location } from '@angular/common';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
@@ -9,7 +9,8 @@ import { UserInfo } from 'src/app/models/user-info';
 @Component({
   selector: 'ad-status-bar-top',
   templateUrl: './status-bar-top.component.html',
-  styleUrls: ['./status-bar-top.component.css']
+  styleUrls: ['./status-bar-top.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class StatusBarTopComponent implements OnInit {
 
