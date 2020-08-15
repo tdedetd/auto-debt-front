@@ -1,21 +1,24 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { CheckStatus } from 'src/app/types';
+import { CheckStatuses } from 'src/app/enums/check-statuses';
 
 const BADGE_STATUSES = [
   {
-    status: 'draft',
+    status: CheckStatuses.Draft,
     text: 'ЧЕРНОВИК',
-    background: '#f2c587'
+    background: '#f2c587',
+    class: 'check-item_draft'
   },
   {
-    status: 'closed',
+    status: CheckStatuses.Closed,
     text: 'ЗАКРЫТ',
-    background: '#009908'
+    background: '#009908',
+    class: 'check-item_closed'
   },
   {
-    status: 'canceled',
+    status: CheckStatuses.Canceled,
     text: 'ОТМЕНЕН',
-    background: '#ff9090'
+    background: '#ff9090',
+    class: 'check-item_canceled'
   }
 ];
 
@@ -35,7 +38,7 @@ export class CheckItemComponent implements OnInit {
 
   @Input() sum: number;
 
-  @Input() status: CheckStatus;
+  @Input() status: CheckStatuses;
 
   statusSettings;
 

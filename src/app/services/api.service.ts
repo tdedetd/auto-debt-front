@@ -11,6 +11,7 @@ import { GetUsersParams } from '../params/get-users.params';
 import { ImportCheckParams } from '../params/import-check.params';
 import { CheckInfo } from '../models/check-info';
 import { CheckDebts } from '../models/check-debts';
+import { DebtTypes } from '../enums/debt-type';
 
 @Injectable()
 export class ApiService {
@@ -32,15 +33,11 @@ export class ApiService {
   }
 
   public getUser(userId: number): Observable<UserInfo> {
-    return this.get(this.apiUrl + `/api/users/${userId}`, {});
+    return this.get(`${this.apiUrl}/api/users/${userId}`, {});
   }
 
-  public getChecksCredit(params: GetChecksParams): Observable<Check[]> {
-    return this.get(this.apiUrl + '/api/checks/credit', params);
-  }
-
-  public getChecksDebit(params: GetChecksParams): Observable<Check[]> {
-    return this.get(this.apiUrl + '/api/checks/debit', params);
+  public getChecks(debtType: DebtTypes, params: GetChecksParams): Observable<Check[]> {
+    return this.get(`${this.apiUrl}/api/checks/${debtType}`, params);
   }
 
   public importCheck(params: ImportCheckParams): Observable<CheckInfo> {
@@ -48,11 +45,11 @@ export class ApiService {
   }
 
   public getCheckInfo(checkId: number): Observable<CheckInfo> {
-    return this.get(this.apiUrl + `/api/checks/${checkId}`, {});
+    return this.get(`${this.apiUrl}/api/checks/${checkId}`, {});
   }
 
   public getCheckDebts(checkId: number): Observable<CheckDebts> {
-    return this.get(this.apiUrl + `/api/checks/${checkId}/debts`, {});
+    return this.get(`${this.apiUrl}/api/checks/${checkId}/debts`, {});
   }
 
   public getSummaryCredit(): Observable<DebtSummaryItem[]> {

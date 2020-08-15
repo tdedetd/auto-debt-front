@@ -7,30 +7,35 @@
   </div>
   <div class="debt-summary__total-debt-wrapper">
     <ad-summary-total-card
-      [debt]="debtSum[normalizeType].debit - debtSum[normalizeType].credit"
+      [debt]="debtSum[appState.summaryScreen.normalizeType].debit - debtSum[appState.summaryScreen.normalizeType].credit"
       [username]="userInfo.username"></ad-summary-total-card>
   </div>
 </ng-container>
 
 <div class="debt-summary__content">
-  <ad-checkbox class="debt-summary__checkbox" label="Взаимоуничтоженные долги" (checkedChange)="onCheckNormalizeCheck($event)"></ad-checkbox>
+  <ad-checkbox
+    [checked]="normalizedTypeSwitch"
+    class="debt-summary__checkbox"
+    label="Взаимоуничтоженные долги"
+    (checkedChange)="onCheckNormalizeCheck($event)"></ad-checkbox>
+
   <div class="debt-summary__debt-cards">
     <ad-summary-card
-      [isActive]="selectedType === 'credit'"
-      [sum]="debtSum[normalizeType].credit"
+      [isActive]="appState.summaryScreen.debtTypeSelected === 'credit'"
+      [sum]="debtSum[appState.summaryScreen.normalizeType].credit"
       type="credit"
       (click)="onSummaryCardClick('credit')"></ad-summary-card>
 
     <ad-summary-card
-      [isActive]="selectedType === 'debit'"
-      [sum]="debtSum[normalizeType].debit"
+      [isActive]="appState.summaryScreen.debtTypeSelected === 'debit'"
+      [sum]="debtSum[appState.summaryScreen.normalizeType].debit"
       type="debit"
       (click)="onSummaryCardClick('debit')"></ad-summary-card>
   </div>
 
   <div class="debt-summary__user-list-container">
     <ul class="debt-summary__user-list">
-      <li *ngFor="let debtItem of userItems[normalizeType][selectedType]" class="debt-summary__user-item" (click)="onUserItemClick(debtItem.userId)">
+      <li *ngFor="let debtItem of userItems[appState.summaryScreen.normalizeType][appState.summaryScreen.debtTypeSelected]" class="debt-summary__user-item" (click)="onUserItemClick(debtItem.userId)">
         <div class="debt-summary__user-item-name">{{ debtItem.username }}</div>
         <div class="debt-summary__user-item-sum">{{ debtItem.sum | number:'1.2-2' }}</div>
       </li>

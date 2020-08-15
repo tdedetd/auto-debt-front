@@ -1,15 +1,13 @@
 <a
   class="check-item"
   routerLink="/edit-debt/{{ id }}"
-  [class.check-item_draft]="status === 'draft'"
-  [class.check-item_closed]="status === 'closed'"
-  [class.check-item_canceled]="status === 'canceled'">
+  [ngClass]="statusSettings?.class">
 
   <div class="check-item__info">
     <div class="check-item__title">
       <span class="check-item__name">{{ name }}</span>
       <ad-badge
-        *ngIf="status != 'accepted'"
+        *ngIf="status !== 'accepted'"
         class="check-item__badge"
         [text]="statusSettings.text"
         [styles]="{ background: statusSettings.background }"></ad-badge>

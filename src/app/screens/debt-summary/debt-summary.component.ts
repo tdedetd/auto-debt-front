@@ -4,11 +4,13 @@ import { faPlus, faList } from '@fortawesome/free-solid-svg-icons';
 import { Subscription, Observable } from 'rxjs';
 
 import { ApiService } from 'src/app/services/api.service';
-import { DebtType, DebtNormalizeType } from 'src/app/types';
 import { UserService } from 'src/app/services/user.service';
 import { UserInfo } from 'src/app/models/user-info';
 import { DebtSummaryItem } from 'src/app/models/debt-summary-item';
 import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
+import { DebtTypes } from 'src/app/enums/debt-type';
+import { DebtNormalizeTypes } from 'src/app/enums/debt-normalize-type';
+import { AppStateService } from 'src/app/services/app-state.service';
 
 @Component({
   selector: 'ad-debt-summary',
@@ -22,7 +24,7 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
     {
       label: 'Перейти к чекам',
       icon: faList,
-      callback: () => this.router.navigate(['check-list', this.selectedType])
+      callback: () => this.router.navigate(['check-list', this.appState.summaryScreen.debtTypeSelected])
     },
     {
       label: 'Добавить чек',
@@ -62,9 +64,7 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
     }
   };
 
-  selectedType: DebtType = 'credit';
-
-  normalizeType: DebtNormalizeType = 'unnormalized';
+  normalizedTypeSwitch: boolean;
 
   userInfo$: Observable<UserInfo>;
 
@@ -73,9 +73,12 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
               private api: ApiService,
-              private userService: UserService) { }
+              private userService: UserService,
+              public appState: AppStateService) { }
 
   ngOnInit() {
+    this.normalizedTypeSwitch = this.appState.summaryScreen.normalizeType === DebtNormalizeTypes.Normalized;
+
     this.summaryCreditSubscription = this.api.getSummaryCredit()
       .subscribe(debtItems => {
         this.debtSum.unnormalized.credit = debtItems.reduce((add, item) => add + item.sum, 0);
@@ -99,15 +102,15 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
   }
 
   onCheckNormalizeCheck(checked: boolean) {
-    this.normalizeType = checked ? 'normalized' : 'unnormalized';
+    this.appState.summaryScreen.normalizeType = checked ? DebtNormalizeTypes.Normalized : DebtNormalizeTypes.Unnormalized;
   }
 
-  onSummaryCardClick(debtType: DebtType) {
-    this.selectedType = debtType;
+  onSummaryCardClick(debtType: DebtTypes) {
+    this.appState.summaryScreen.debtTypeSelected = debtType;
   }
 
   onUserItemClick(userId: number) {
-    this.router.navigate(['check-list', this.selectedType, userId]);
+    this.router.navigate(['check-list', this.appState.summaryScreen.debtTypeSelected, userId]);
   }
 
   private navigateToEditCheck() {

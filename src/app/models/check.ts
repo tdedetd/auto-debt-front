@@ -1,4 +1,4 @@
-import { CheckStatus } from '../types';
+import { CheckStatuses } from '../enums/check-statuses';
 
 export class Check {
   id: number;
@@ -7,5 +7,5 @@ export class Check {
   date: string;
   sumTotal: number;
   sumIndividual: number;
-  status: CheckStatus;
+  status: CheckStatuses;
 }

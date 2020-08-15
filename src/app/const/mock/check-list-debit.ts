@@ -1,4 +1,5 @@
 import { Check } from 'src/app/models/check';
+import { CheckStatuses } from 'src/app/enums/check-statuses';
 
 export const CHECK_LIST_DEBIT: Check[] = [
   {
@@ -8,7 +9,7 @@ export const CHECK_LIST_DEBIT: Check[] = [
     date: '2019-12-19T17:12:00.000Z',
     sumTotal: 181,
     sumIndividual: 181,
-    status: 'draft'
+    status: CheckStatuses.Draft
   },
   {
     id: 123,
@@ -17,7 +18,7 @@ export const CHECK_LIST_DEBIT: Check[] = [
     date: '2019-12-18T20:24:00.000Z',
     sumTotal: 1034,
     sumIndividual: 1034,
-    status: 'accepted'
+    status: CheckStatuses.Accepted
   },
   {
     id: 124,
@@ -26,7 +27,7 @@ export const CHECK_LIST_DEBIT: Check[] = [
     date: '2019-12-16T18:30:00.000Z',
     sumTotal: 431.31,
     sumIndividual: 431.31,
-    status: 'accepted'
+    status: CheckStatuses.Accepted
   },
   {
     id: 125,
@@ -35,7 +36,7 @@ export const CHECK_LIST_DEBIT: Check[] = [
     date: '2019-12-16T18:30:00.000Z',
     sumTotal: 431.31,
     sumIndividual: 431.31,
-    status: 'canceled'
+    status: CheckStatuses.Canceled
   },
   {
     id: 1012,
@@ -44,7 +45,7 @@ export const CHECK_LIST_DEBIT: Check[] = [
     date: '2019-12-13T22:29:00.000Z',
     sumTotal: 213,
     sumIndividual: 213,
-    status: 'accepted'
+    status: CheckStatuses.Accepted
   },
   {
     id: 216,
@@ -53,7 +54,7 @@ export const CHECK_LIST_DEBIT: Check[] = [
     date: '2019-12-11T20:19:00.000Z',
     sumTotal: 366,
     sumIndividual: 366,
-    status: 'accepted'
+    status: CheckStatuses.Accepted
   },
   {
     id: 366,
@@ -62,6 +63,6 @@ export const CHECK_LIST_DEBIT: Check[] = [
     date: '2019-12-10T19:21:00.000Z',
     sumTotal: 366,
     sumIndividual: 366,
-    status: 'accepted'
+    status: CheckStatuses.Accepted
   }
 ];

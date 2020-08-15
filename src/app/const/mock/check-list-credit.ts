@@ -1,4 +1,5 @@
 import { Check } from 'src/app/models/check';
+import { CheckStatuses } from 'src/app/enums/check-statuses';
 
 export const CHECK_LIST_CREDIT: Check[] = [
   {
@@ -8,7 +9,7 @@ export const CHECK_LIST_CREDIT: Check[] = [
     date: '2020-01-16T12:25:00.000Z',
     sumTotal: 181,
     sumIndividual: 181,
-    status: 'accepted'
+    status: CheckStatuses.Accepted
   },
   {
     id: 2,
@@ -17,7 +18,7 @@ export const CHECK_LIST_CREDIT: Check[] = [
     date: '2020-01-15T21:03:00.000Z',
     sumTotal: 1034,
     sumIndividual: 1034,
-    status: 'accepted'
+    status: CheckStatuses.Accepted
   },
   {
     id: 3,
@@ -26,7 +27,7 @@ export const CHECK_LIST_CREDIT: Check[] = [
     date: '2020-01-14T15:28:00.000Z',
     sumTotal: 12.35,
     sumIndividual: 12.35,
-    status: 'accepted'
+    status: CheckStatuses.Accepted
   },
   {
     id: 4,
@@ -35,7 +36,7 @@ export const CHECK_LIST_CREDIT: Check[] = [
     date: '2020-01-12T18:20:00.000Z',
     sumTotal: 203,
     sumIndividual: 203,
-    status: 'accepted'
+    status: CheckStatuses.Accepted
   },
   {
     id: 5,
@@ -44,7 +45,7 @@ export const CHECK_LIST_CREDIT: Check[] = [
     date: '2020-01-12T18:20:00.000Z',
     sumTotal: 213,
     sumIndividual: 213,
-    status: 'canceled'
+    status: CheckStatuses.Canceled
   },
   {
     id: 6,
@@ -53,7 +54,7 @@ export const CHECK_LIST_CREDIT: Check[] = [
     date: '2020-01-10T22:01:00.000Z',
     sumTotal: 366,
     sumIndividual: 366,
-    status: 'accepted'
+    status: CheckStatuses.Accepted
   },
   {
     id: 7,
@@ -62,6 +63,6 @@ export const CHECK_LIST_CREDIT: Check[] = [
     date: '2020-01-03T14:56:04.000Z',
     sumTotal: 964,
     sumIndividual: 964,
-    status: 'closed'
+    status: CheckStatuses.Closed
   }
 ];

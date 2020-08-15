@@ -6,9 +6,10 @@ import { Subscription, Observable } from 'rxjs';
 import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
 import { ApiService } from 'src/app/services/api.service';
 import { Check } from 'src/app/models/check';
-import { DebtType, CheckStatus } from 'src/app/types';
 import { UserInfo } from 'src/app/models/user-info';
 import { GetChecksParams } from 'src/app/params/get-checks.params';
+import { CheckStatuses } from 'src/app/enums/check-statuses';
+import { DebtTypes } from 'src/app/enums/debt-type';
 
 @Component({
   selector: 'ad-check-list',
@@ -33,7 +34,7 @@ export class CheckListComponent implements OnInit, OnDestroy {
 
   checkedShowClosed = false;
 
-  debtType: DebtType;
+  debtType: DebtTypes;
 
   faLevelUpAlt = faLevelUpAlt;
 
@@ -51,7 +52,7 @@ export class CheckListComponent implements OnInit, OnDestroy {
 
   private page = 0;
 
-  private selectedStatuses: CheckStatus[] = ['draft', 'accepted', 'canceled'];
+  private selectedStatuses: CheckStatuses[] = [CheckStatuses.Draft, CheckStatuses.Accepted, CheckStatuses.Canceled];
 
   constructor(private activatedRoute: ActivatedRoute,
               private api: ApiService) { }
@@ -91,11 +92,7 @@ export class CheckListComponent implements OnInit, OnDestroy {
       params = { ...params, userId: this.userId };
     }
 
-    const checkObs = this.debtType === 'credit' ?
-      this.api.getChecksCredit(params) :
-      this.api.getChecksDebit(params);
-
-    const subscription = checkObs.subscribe(data => this.checks.push(...data));
+    const subscription = this.api.getChecks(this.debtType, params).subscribe(data => this.checks.push(...data));
     this.checksSubscriptions.push(subscription);
     this.page++;
   }
@@ -107,11 +104,11 @@ export class CheckListComponent implements OnInit, OnDestroy {
   }
 
   private updateSelectedStatuses() {
-    this.selectedStatuses = ['accepted'];
+    this.selectedStatuses = [CheckStatuses.Accepted];
 
-    if (this.checkedShowDraft) this.selectedStatuses.push('draft');
-    if (this.checkedShowCanceled) this.selectedStatuses.push('canceled');
-    if (this.checkedShowClosed) this.selectedStatuses.push('closed');
+    if (this.checkedShowDraft) this.selectedStatuses.push(CheckStatuses.Draft);
+    if (this.checkedShowCanceled) this.selectedStatuses.push(CheckStatuses.Canceled);
+    if (this.checkedShowClosed) this.selectedStatuses.push(CheckStatuses.Closed);
   }
 
 }
