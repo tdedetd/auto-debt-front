@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
+import { delay, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { CHECK_LIST_CREDIT } from '../const/mock/check-list-credit';
@@ -50,7 +51,7 @@ export class MockInterceptor implements HttpInterceptor {
     }
 
     if (req.url === this.apiUrl + '/api/checks/import') {
-      return this.response(req, {...CHECK_IMPORT});
+      return this.response(req, {...CHECK_IMPORT}, 2000);
     }
 
     if (this.GET_CHECK_INFO_REGEX.test(req.url)) {
@@ -72,9 +73,11 @@ export class MockInterceptor implements HttpInterceptor {
     return next.handle(req);
   }
 
-  private response(req, body) {
-    console.log(`${req.method} ${req.urlWithParams}\nRESPONSE`, body);
-    return of(new HttpResponse({ body }));
+  private response(req, body, duration = 0) {
+    return of(new HttpResponse({ body })).pipe(
+      delay(duration),
+      tap(() => console.log(`${req.method} ${req.urlWithParams}\nRESPONSE`, body))
+    );
   }
 
   private empty() {

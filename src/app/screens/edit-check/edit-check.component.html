@@ -41,6 +41,7 @@
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>
 
 <ad-modal
+  [acceptable]="!importCheckLoading && !!importCheckForm.fpd && !!importCheckForm.total"
   mode="accept"
   title="Импорт чека"
   [preventHideOnAccept]="true"
@@ -51,13 +52,16 @@
     <ad-textbox
       placeholder="ФПД*"
       [styles]="{ 'width': '100%', 'max-width': '240px' }"
-      required></ad-textbox>
+      required
+      [(value)]="importCheckForm.fpd"></ad-textbox>
   </div>
   <div class="modal-import__field">
     <ad-textbox
+      type="number"
       placeholder="Общая стоимость*"
       [styles]="{ 'width': '100%', 'max-width': '240px' }"
-      required></ad-textbox>
+      required
+      [(value)]="importCheckForm.total"></ad-textbox>
   </div>
 </ad-modal>
 

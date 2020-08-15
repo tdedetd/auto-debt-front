@@ -6,6 +6,7 @@ import { CheckInfo } from 'src/app/models/check-info';
 import { ApiService } from 'src/app/services/api.service';
 import { EditCheckItemCard } from 'src/app/models/edit-check-item-card';
 import { CheckItem } from 'src/app/models/check-item';
+import { ImportCheckParams } from 'src/app/params/import-check.params';
 
 @Component({
   selector: 'ad-edit-check',
@@ -23,7 +24,10 @@ export class EditCheckComponent implements OnInit {
     {
       label: 'Импорт',
       icon: faFileImport,
-      callback: () => this.importModalVisible = true
+      callback: () => {
+        this.importCheckForm = { fpd: null, total: 0 };
+        this.importModalVisible = true;
+      }
     },
     {
       label: 'Очистить',
@@ -40,6 +44,10 @@ export class EditCheckComponent implements OnInit {
   deleteItemModalVisible = false;
 
   importModalVisible = false;
+
+  importCheckForm: ImportCheckParams = { fpd: null, total: 0 };
+
+  importCheckLoading: boolean;
 
   resetModalVisible = false;
 
@@ -78,8 +86,10 @@ export class EditCheckComponent implements OnInit {
   }
 
   onImportModalAccept() {
-    this.api.importCheck({ fpd: '123', total: 123 })
+    this.importCheckLoading = true;
+    this.api.importCheck(this.importCheckForm)
       .subscribe(checkInfo => {
+        this.importCheckLoading = false;
         this.checkInfo = checkInfo;
         this.itemCards = this.checkInfo.items.map(item => ({ editMode: false, item }));
         this.updateCheckTotal();
