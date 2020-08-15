@@ -87,7 +87,7 @@ export class EditDebtComponent implements OnInit, OnDestroy {
 
   participantForRemoveSelected: ParticipantDebt;
 
-  participantsDropdownItemSelected: DropdownItem;
+  participantsFindboxItemSelected: DropdownItem;
 
   personalItems: PersonalItem[];
 
@@ -151,22 +151,20 @@ export class EditDebtComponent implements OnInit, OnDestroy {
     this.addPersonalItemModalVisible = true;
   }
 
-  onaAddPersonalItemModalAccept() {
-    const personal = this.itemSelected.personal.find(item => item.participant.participant.userId === this.editPersonalItemForm.participant.userId);
-    if (personal) {
-      personal.personalItem.part = +this.editPersonalItemForm.parts;
-    } else {
-      const participant = this.participants.find(part => part.participant.userId === this.editPersonalItemForm.participant.userId);
-      this.itemSelected.personal.push({
-        participant,
-        personalItem: {
-          itemId: this.itemSelected.item.id,
-          userId: this.editPersonalItemForm.participant.userId,
-          part: +this.editPersonalItemForm.parts
-        }
-      });
-    }
+  onAddPersonalItemModalAccept() {
 
+    const personalItem = this.personalItems
+      .find(item => item.itemId === this.itemSelected.item.id && item.userId === this.editPersonalItemForm.participant.userId);
+
+    if (personalItem) this.removeElementFromList(this.personalItems, personalItem);
+
+    this.personalItems.push({
+      itemId: this.itemSelected.item.id,
+      userId: this.editPersonalItemForm.participant.userId,
+      part: +this.editPersonalItemForm.parts
+    });
+
+    this.extractCheckItems();
     this.itemSelected = null;
     this.addPersonalItemModalVisible = false;
   }
@@ -177,14 +175,14 @@ export class EditDebtComponent implements OnInit, OnDestroy {
   }
 
   onAddUserModalAccept() {
-    if (this.participantsDropdownItemSelected) {
+    if (this.participantsFindboxItemSelected) {
       if (this.participants.map(part => part.participant.userId)
-        .indexOf(this.participantsDropdownItemSelected.value.id) !== -1) {
+        .indexOf(this.participantsFindboxItemSelected.value.id) !== -1) {
 
         this.participantAlreadyAddedMessageVisible = true;
       } else {
-        this.addParticipant(this.participantsDropdownItemSelected);
-        this.participantsDropdownItemSelected = null;
+        this.addParticipant(this.participantsFindboxItemSelected);
+        this.participantsFindboxItemSelected = null;
         this.addParticipantModalVisible = false;
       }
     }
@@ -206,6 +204,12 @@ export class EditDebtComponent implements OnInit, OnDestroy {
     this.extractCheckItems();
     this.updateParticipantsSum();
     this.updatePerticipantsColors();
+  }
+
+  onRemovePersonalItem(personalItemDebt: PersonalItemDebt) {
+    const personalItem = personalItemDebt.personalItem;
+    this.removeElementFromList(this.personalItems, personalItem);
+    this.extractCheckItems();
   }
 
   isLoaded(): boolean {

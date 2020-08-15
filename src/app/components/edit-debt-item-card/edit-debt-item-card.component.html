@@ -17,6 +17,7 @@
         [text]="partsSame ? personalItemDebt.participant.participant.username :
                 personalItemDebt.participant.participant.username + ' (' + personalItemDebt.personalItem.part + ')'"
         [styles]="{ 'font-size': '1em', background: personalItemDebt.participant.color }"
+        (close)="onBadgeClose(personalItemDebt)"
       ></ad-badge>
     </div>
     <div *ngIf="editMode" class="edit-debt-item__personal-item-badge-container">

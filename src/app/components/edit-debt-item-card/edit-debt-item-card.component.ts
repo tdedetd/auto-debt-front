@@ -28,6 +28,8 @@ export class EditDebtItemCardComponent implements OnInit, AfterContentChecked {
 
   @Output() addPersonalItemClick: EventEmitter<any> = new EventEmitter();
 
+  @Output() removePersonalItem: EventEmitter<PersonalItemDebt> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
@@ -39,6 +41,10 @@ export class EditDebtItemCardComponent implements OnInit, AfterContentChecked {
 
   onAddParticipantClick() {
     this.addPersonalItemClick.emit();
+  }
+
+  onBadgeClose(personalItemDebt: PersonalItemDebt) {
+    this.removePersonalItem.emit(personalItemDebt);
   }
 
   private checkPartsSame(): boolean {
