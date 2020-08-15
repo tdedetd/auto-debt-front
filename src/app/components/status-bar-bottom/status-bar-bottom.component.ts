@@ -19,9 +19,12 @@ export class StatusBarBottomComponent implements OnInit {
 
   @Input() showCopyright = false;
 
+  year: number;
+
   constructor() { }
 
   ngOnInit() {
+    this.year = new Date().getFullYear();
   }
 
   onActionClick(action: Action) {

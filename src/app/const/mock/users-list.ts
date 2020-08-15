@@ -2,79 +2,79 @@ import { UserInfo } from 'src/app/models/user-info';
 
 export const USERS_LIST: UserInfo[] = [
   {
-    id: 1,
+    id: 10,
     username: 'Азиза',
     avatar: '/assets/avatar_default.jpg',
     isSuperuser: false
   },
   {
-    id: 2,
+    id: 20,
     username: 'Акакий',
     avatar: '/assets/avatar_default.jpg',
     isSuperuser: false
   },
   {
-    id: 3,
+    id: 30,
     username: 'Галактион',
     avatar: '/assets/avatar_default.jpg',
     isSuperuser: false
   },
   {
-    id: 4,
+    id: 40,
     username: 'Геласий',
     avatar: '/assets/avatar_default.jpg',
     isSuperuser: false
   },
   {
-    id: 5,
+    id: 50,
     username: 'Глафира',
     avatar: '/assets/avatar_default.jpg',
     isSuperuser: false
   },
   {
-    id: 6,
+    id: 60,
     username: 'Дарерка',
     avatar: '/assets/avatar_default.jpg',
     isSuperuser: false
   },
   {
-    id: 7,
+    id: 70,
     username: 'Дебора',
     avatar: '/assets/avatar_default.jpg',
     isSuperuser: false
   },
   {
-    id: 8,
+    id: 80,
     username: 'Донат',
     avatar: '/assets/avatar_default.jpg',
     isSuperuser: false
   },
   {
-    id: 9,
+    id: 90,
     username: 'Марисоль',
     avatar: '/assets/avatar_default.jpg',
     isSuperuser: false
   },
   {
-    id: 10,
+    id: 100,
     username: 'Мастридия',
     avatar: '/assets/avatar_default.jpg',
     isSuperuser: false
   },
   {
-    id: 11,
+    id: 110,
     username: 'Мафтуха',
     avatar: '/assets/avatar_default.jpg',
     isSuperuser: false
   },
   {
-    id: 12,
+    id: 120,
     username: 'Пантелеймон',
     avatar: '/assets/avatar_default.jpg',
     isSuperuser: false
   },
   {
-    id: 13,
+    id: 130,
     username: 'Созон',
     avatar: '/assets/avatar_default.jpg',
     isSuperuser: false
