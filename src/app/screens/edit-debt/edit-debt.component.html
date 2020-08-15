@@ -33,7 +33,9 @@
         [name]="item.item.name"
         [personalItemsDebt]="item.personal"
         [price]="item.item.price"
-        [sum]="item.item.sum"></ad-edit-debt-item-card>
+        [sum]="item.item.sum"
+        (addPersonalItemClick)="onAddPersonalItemClick(item)"
+        (removePersonalItem)="onRemovePersonalItem($event)"></ad-edit-debt-item-card>
     </li>
   </ul>
 </div>
@@ -44,18 +46,43 @@
   [(visible)]="addParticipantModalVisible"
   (accept)="onAddUserModalAccept()">
 
-  <ad-dropdown
+  <ad-find-textbox
     placeholder="Начните вводить имя или id"
     [itemsFunc]="getUsersFunc"
-    [(value)]="participantsDropdownItemSelected"></ad-dropdown>
+    [(value)]="participantsFindboxItemSelected"></ad-find-textbox>
 
   <div
     *ngIf="participantAlreadyAddedMessageVisible"
-    class="edit-debt__error-participant-added-already">Пользователь уже добавлен в чек!</div>
+    class="edit-debt__error-participant-added-already">Этот пользователь уже добавлен в чек!</div>
 </ad-modal>
 
 <ad-modal mode="confirm" [(visible)]="removeParticipantModalVisible" (accept)="onRemoveParticipantModalAccept()">
   <div>Вы точно хотите удалить участника "{{ participantForRemoveSelected?.participant.username }}" из чека?</div>
+</ad-modal>
+
+<ad-modal
+  [acceptable]="!!editPersonalItemForm.participant && !!editPersonalItemForm.parts"
+  title="Выбрать участника"
+  [preventHideOnAccept]="true"
+  [(visible)]="addPersonalItemModalVisible"
+  (accept)="onAddPersonalItemModalAccept()">
+
+  <div class="edit-debt__modal-field">
+    Пользователь
+    <ad-dropdown
+      [items]="participantsDropdownItems"
+      [styles]="{ width: '100%' }"
+      [(value)]="editPersonalItemForm.participant"></ad-dropdown>
+  </div>
+
+  <div class="edit-debt__modal-field">
+    Доля
+    <ad-textbox
+      [styles]="{ width: '100%' }"
+      type="number"
+      [min]="1"
+      [(value)]="editPersonalItemForm.parts" required></ad-textbox>
+  </div>
 </ad-modal>
 
 <ad-status-bar-bottom [actions]="actions"></ad-status-bar-bottom>

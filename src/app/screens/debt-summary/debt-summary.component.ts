@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { faPlus, faList } from '@fortawesome/free-solid-svg-icons';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 
 import { ApiService } from 'src/app/services/api.service';
 import { DebtType, DebtNormalizeType } from 'src/app/types';
@@ -13,7 +13,8 @@ import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.c
 @Component({
   selector: 'ad-debt-summary',
   templateUrl: './debt-summary.component.html',
-  styleUrls: ['./debt-summary.component.css']
+  styleUrls: ['./debt-summary.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DebtSummaryComponent implements OnInit, OnDestroy {
 
@@ -65,11 +66,10 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
 
   normalizeType: DebtNormalizeType = 'unnormalized';
 
-  userInfo: UserInfo;
+  userInfo$: Observable<UserInfo>;
 
   summaryCreditSubscription: Subscription;
   summaryDebitSubscription: Subscription;
-  userInfoSubscription: Subscription;
 
   constructor(private router: Router,
               private api: ApiService,
@@ -90,14 +90,12 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
         this.updateNormalizedDebt();
       });
 
-    this.userInfoSubscription = this.userService.getUserInfo()
-      .subscribe(userInfo => this.userInfo = userInfo);
+    this.userInfo$ = this.userService.getUserInfo();
   }
 
   ngOnDestroy() {
     this.summaryCreditSubscription.unsubscribe();
     this.summaryDebitSubscription.unsubscribe();
-    this.userInfoSubscription.unsubscribe();
   }
 
   onCheckNormalizeCheck(checked: boolean) {

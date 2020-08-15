@@ -10,7 +10,8 @@ import { ApiService } from 'src/app/services/api.service';
 import { PersonalItem } from 'src/app/models/personal-item';
 import { CheckItem } from 'src/app/models/check-item';
 import { AppStateService } from 'src/app/services/app-state.service';
-import { DropdownItemsFunc, DropdownItem } from '../../controls/dropdown/dropdown.component';
+import { DropdownItemsFunc } from '../../controls/find-textbox/find-textbox.component';
+import { DropdownItem } from 'src/app/models/dropdown-item';
 
 type ParticipantDebt = { participant: Participant, sum?: number, color: string };
 export type PersonalItemDebt = { participant: ParticipantDebt, personalItem: PersonalItem };
@@ -48,6 +49,8 @@ export class EditDebtComponent implements OnInit, OnDestroy {
 
   addParticipantModalVisible = false;
 
+  addPersonalItemModalVisible = false;
+
   checkId: number;
 
   checkInfoSubscription$: Subscription;
@@ -60,6 +63,8 @@ export class EditDebtComponent implements OnInit, OnDestroy {
 
   editMode = true;
 
+  editPersonalItemForm: { participant: Participant, parts: number } = { participant: null, parts: 1 };
+
   faCheck = faCheck;
 
   faMoneyBill = faMoneyBill;
@@ -70,15 +75,19 @@ export class EditDebtComponent implements OnInit, OnDestroy {
 
   items: ItemDebts[];
 
+  itemSelected: ItemDebts;
+
   getUsersFunc: DropdownItemsFunc;
 
   participants: ParticipantDebt[] = [];
+
+  participantsDropdownItems: DropdownItem[] = [];
 
   participantAlreadyAddedMessageVisible = false;
 
   participantForRemoveSelected: ParticipantDebt;
 
-  participantsDropdownItemSelected: DropdownItem;
+  participantsFindboxItemSelected: DropdownItem;
 
   personalItems: PersonalItem[];
 
@@ -130,20 +139,50 @@ export class EditDebtComponent implements OnInit, OnDestroy {
     if (this.checkInfoSubscription$) this.checkInfoSubscription$.unsubscribe();
   }
 
+  onAddPersonalItemClick(item: ItemDebts) {
+    this.itemSelected = item;
+    this.editPersonalItemForm = { participant: null, parts: 1 };
+
+    this.participantsDropdownItems = this.participants.map(participant => ({
+      label: participant.participant.username,
+      value: participant.participant
+    }));
+
+    this.addPersonalItemModalVisible = true;
+  }
+
+  onAddPersonalItemModalAccept() {
+
+    const personalItem = this.personalItems
+      .find(item => item.itemId === this.itemSelected.item.id && item.userId === this.editPersonalItemForm.participant.userId);
+
+    if (personalItem) this.removeElementFromList(this.personalItems, personalItem);
+
+    this.personalItems.push({
+      itemId: this.itemSelected.item.id,
+      userId: this.editPersonalItemForm.participant.userId,
+      part: +this.editPersonalItemForm.parts
+    });
+
+    this.extractCheckItems();
+    this.itemSelected = null;
+    this.addPersonalItemModalVisible = false;
+  }
+
   onAddUserClick() {
     this.addParticipantModalVisible = true;
     this.participantAlreadyAddedMessageVisible = false;
   }
 
   onAddUserModalAccept() {
-    if (this.participantsDropdownItemSelected) {
+    if (this.participantsFindboxItemSelected) {
       if (this.participants.map(part => part.participant.userId)
-        .indexOf(this.participantsDropdownItemSelected.value.id) !== -1) {
+        .indexOf(this.participantsFindboxItemSelected.value.id) !== -1) {
 
         this.participantAlreadyAddedMessageVisible = true;
       } else {
-        this.addParticipant(this.participantsDropdownItemSelected);
-        this.participantsDropdownItemSelected = null;
+        this.addParticipant(this.participantsFindboxItemSelected);
+        this.participantsFindboxItemSelected = null;
         this.addParticipantModalVisible = false;
       }
     }
@@ -165,6 +204,12 @@ export class EditDebtComponent implements OnInit, OnDestroy {
     this.extractCheckItems();
     this.updateParticipantsSum();
     this.updatePerticipantsColors();
+  }
+
+  onRemovePersonalItem(personalItemDebt: PersonalItemDebt) {
+    const personalItem = personalItemDebt.personalItem;
+    this.removeElementFromList(this.personalItems, personalItem);
+    this.extractCheckItems();
   }
 
   isLoaded(): boolean {

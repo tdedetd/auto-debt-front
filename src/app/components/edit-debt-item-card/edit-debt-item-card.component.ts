@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { PersonalItemDebt } from 'src/app/screens/edit-debt/edit-debt.component';
+import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter, AfterContentChecked } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { PersonalItemDebt } from 'src/app/screens/edit-debt/edit-debt.component';
 
 @Component({
   selector: 'ad-edit-debt-item-card',
@@ -8,7 +8,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./edit-debt-item-card.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class EditDebtItemCardComponent implements OnInit {
+export class EditDebtItemCardComponent implements OnInit, AfterContentChecked {
 
   @Input() count: number;
 
@@ -26,10 +26,25 @@ export class EditDebtItemCardComponent implements OnInit {
 
   partsSame: boolean;
 
+  @Output() addPersonalItemClick: EventEmitter<any> = new EventEmitter();
+
+  @Output() removePersonalItem: EventEmitter<PersonalItemDebt> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngAfterContentChecked() {
     this.partsSame = this.checkPartsSame();
+  }
+
+  onAddParticipantClick() {
+    this.addPersonalItemClick.emit();
+  }
+
+  onBadgeClose(personalItemDebt: PersonalItemDebt) {
+    this.removePersonalItem.emit(personalItemDebt);
   }
 
   private checkPartsSame(): boolean {

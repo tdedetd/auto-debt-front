@@ -1,13 +1,16 @@
 <div class="debt-summary__header"></div>
 <h1 class="debt-summary__title">AutoDebt</h1>
-<div class="debt-summary__avatar-wrapper">
-  <img [alt]="userInfo?.username" [src]="userInfo?.avatar" class="debt-summary__avatar">
-</div>
-<div class="debt-summary__total-debt-wrapper">
-  <ad-summary-total-card
-    [debt]="debtSum[normalizeType].debit - debtSum[normalizeType].credit"
-    [username]="userInfo?.username"></ad-summary-total-card>
-</div>
+
+<ng-container *ngIf="(userInfo$ | async) as userInfo">
+  <div class="debt-summary__avatar-wrapper">
+    <img [alt]="userInfo.username" [src]="userInfo.avatar" class="debt-summary__avatar">
+  </div>
+  <div class="debt-summary__total-debt-wrapper">
+    <ad-summary-total-card
+      [debt]="debtSum[normalizeType].debit - debtSum[normalizeType].credit"
+      [username]="userInfo.username"></ad-summary-total-card>
+  </div>
+</ng-container>
 
 <div class="debt-summary__content">
   <ad-checkbox class="debt-summary__checkbox" label="Взаимоуничтоженные долги" (checkedChange)="onCheckNormalizeCheck($event)"></ad-checkbox>

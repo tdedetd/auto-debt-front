@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { faLevelUpAlt, faLevelDownAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'ad-summary-card',
   templateUrl: './summary-card.component.html',
-  styleUrls: ['./summary-card.component.css']
+  styleUrls: ['./summary-card.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class SummaryCardComponent implements OnInit {
 

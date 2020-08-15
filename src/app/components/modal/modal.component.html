@@ -8,12 +8,12 @@
       <ng-content></ng-content>
     </div>
     <div class="modal__footer">
-      <ad-button *ngIf="mode === 'confirm'" width="100px" class="modal__footer-button" (click)="hide()">
+      <ad-button *ngIf="mode === 'confirm'" [styles]="{ width: '100px' }" class="modal__footer-button" (clicked)="hide()">
         <span class="modal__footer-button-label">
           <fa-icon [icon]="faTimes"></fa-icon>
         </span>
       </ad-button>
-      <ad-button width="100px" class="modal__footer-button" (click)="onAcceptClick()">
+      <ad-button [styles]="{ width: '100px' }" class="modal__footer-button" [disabled]="!acceptable" (clicked)="onAcceptClick()">
         <span class="modal__footer-button-label">
           <fa-icon [icon]="faCheck"></fa-icon>
         </span>

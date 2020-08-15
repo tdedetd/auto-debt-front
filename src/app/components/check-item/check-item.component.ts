@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { CheckStatus } from 'src/app/types';
 
 const BADGE_STATUSES = [
@@ -22,7 +22,8 @@ const BADGE_STATUSES = [
 @Component({
   selector: 'ad-check-item',
   templateUrl: './check-item.component.html',
-  styleUrls: ['./check-item.component.css']
+  styleUrls: ['./check-item.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CheckItemComponent implements OnInit {
 

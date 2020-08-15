@@ -35,3 +35,7 @@
   margin: 0px 10px 10px 0;
   font-size: 15px;
 }
+
+.edit-debt-item__add-participant {
+  cursor: pointer;
+}

@@ -1,47 +1,14 @@
 .dropdown {
-  position: relative;
-}
-
-.dropdown__list-container {
-  position: absolute;
-  bottom: 100%;
-  background: #ffffff;
-  text-align: left; /* TODO: delete after fix of modal center aligment */
-  width: 100%;
-  max-height: 40vh;
-  overflow-x: hidden;
-  overflow-y: auto;
-  word-wrap: none;
-  text-overflow: ellipsis;
-}
-
-.dropdown__textbox input:focus + .dropdown__list-container {
-  display: block;
-}
-
-.dropdown__textbox input:not(:focus) + .dropdown__list-container {
-  display: none;
-}
-
-.dropdown__ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.dropdown__li {
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-}
-
-.dropdown__li:hover {
-  color: #ffffff;
-  background: #aaaaaa;
-}
-
-.dropdown__pic {
-  width: 20px;
-  border-radius: 50%;
-  margin-right: 10px;
+  appearance: none;
+  box-sizing: border-box;
+  border: none;
+  height: 30px;
+  font-size: 20px;
+  font-family: roboto, Arial;
+  color: #707070;
+  background: #fafafa;
+  padding: 0 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .16);
+  outline: none;
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -29,6 +29,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { EditDebtComponent } from './screens/edit-debt/edit-debt.component';
 import { AppStateService } from './services/app-state.service';
 import { EditDebtItemCardComponent } from './components/edit-debt-item-card/edit-debt-item-card.component';
+import { FindTextboxComponent } from './controls/find-textbox/find-textbox.component';
 import { DropdownComponent } from './controls/dropdown/dropdown.component';
 
 @NgModule({
@@ -50,9 +51,11 @@ import { DropdownComponent } from './controls/dropdown/dropdown.component';
     ModalComponent,
     EditDebtComponent,
     EditDebtItemCardComponent,
+    FindTextboxComponent,
     DropdownComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,

@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ad-textbox',
   templateUrl: './textbox.component.html',
-  styleUrls: ['./textbox.component.css']
+  styleUrls: ['./textbox.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TextboxComponent implements OnInit {
 
@@ -16,7 +17,11 @@ export class TextboxComponent implements OnInit {
 
   @Input() maxLength: number;
 
+  @Input() max: number;
+
   @Input() minLength: number;
+
+  @Input() min: number;
 
   @Input() pattern: string;
 
@@ -49,6 +54,14 @@ export class TextboxComponent implements OnInit {
 
     if (this.maxLength !== undefined) {
       validators.push(Validators.maxLength(this.maxLength));
+    }
+
+    if (this.min !== undefined) {
+      validators.push(Validators.min(this.min));
+    }
+
+    if (this.max !== undefined) {
+      validators.push(Validators.max(this.max));
     }
 
     this.formControl = new FormControl(this.value, validators);

@@ -5,6 +5,7 @@
 
 .edit-debt__users {
   background: #ffffff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .16);
 }
 
 .edit-debt__users-ul {
@@ -79,4 +80,8 @@
 .edit-debt__error-participant-added-already {
   margin-top: 15px;
   color: #6e3d3d;
+}
+
+.edit-debt__modal-field {
+  margin: 10px 0;
 }

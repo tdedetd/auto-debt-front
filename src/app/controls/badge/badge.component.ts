@@ -1,11 +1,10 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'ad-badge',
   templateUrl: './badge.component.html',
-  styleUrls: ['./badge.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./badge.component.css']
 })
 export class BadgeComponent implements OnInit {
 
@@ -19,9 +18,15 @@ export class BadgeComponent implements OnInit {
 
   faTimes = faTimes;
 
+  @Output() close: EventEmitter<void> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onTimesClick() {
+    this.close.emit();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewEncapsulation } from '@angular/core';
 import { faPencilAlt, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { TextboxComponent } from '../../controls/textbox/textbox.component';
 import { CheckItem } from 'src/app/models/check-item';
@@ -6,7 +6,8 @@ import { CheckItem } from 'src/app/models/check-item';
 @Component({
   selector: 'ad-edit-check-item-card',
   templateUrl: './edit-check-item-card.component.html',
-  styleUrls: ['./edit-check-item-card.component.css']
+  styleUrls: ['./edit-check-item-card.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EditCheckItemCardComponent implements OnInit {
 
