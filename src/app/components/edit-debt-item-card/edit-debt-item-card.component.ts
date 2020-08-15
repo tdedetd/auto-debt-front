@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter, AfterContentChecked } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { PersonalItemDebt } from 'src/app/screens/edit-debt/edit-debt.component';
 
@@ -8,7 +8,7 @@ import { PersonalItemDebt } from 'src/app/screens/edit-debt/edit-debt.component'
   styleUrls: ['./edit-debt-item-card.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class EditDebtItemCardComponent implements OnInit {
+export class EditDebtItemCardComponent implements OnInit, AfterContentChecked {
 
   @Input() count: number;
 
@@ -31,6 +31,9 @@ export class EditDebtItemCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngAfterContentChecked() {
     this.partsSame = this.checkPartsSame();
   }
 

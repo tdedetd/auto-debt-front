@@ -68,9 +68,9 @@
   <div class="edit-debt__modal-field">
     Пользователь
     <ad-dropdown
-      [items]="getParticipantsKeyValue()"
+      [items]="participantsDropdownItems"
       [styles]="{ width: '100%' }"
-      [(value)]="editPersonalItemForm.userId"></ad-dropdown>
+      [(value)]="editPersonalItemForm.participant"></ad-dropdown>
   </div>
 
   <div class="edit-debt__modal-field">

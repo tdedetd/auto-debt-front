@@ -69,7 +69,6 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
 
   summaryCreditSubscription: Subscription;
   summaryDebitSubscription: Subscription;
-  userInfoSubscription: Subscription;
 
   constructor(private router: Router,
               private api: ApiService,
@@ -96,7 +95,6 @@ export class DebtSummaryComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.summaryCreditSubscription.unsubscribe();
     this.summaryDebitSubscription.unsubscribe();
-    this.userInfoSubscription.unsubscribe();
   }
 
   onCheckNormalizeCheck(checked: boolean) {

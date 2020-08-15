@@ -63,7 +63,7 @@ export class EditDebtComponent implements OnInit, OnDestroy {
 
   editMode = true;
 
-  editPersonalItemForm: { userId: any, parts: number } = { userId: null, parts: 1 };
+  editPersonalItemForm: { participant: Participant, parts: number } = { participant: null, parts: 1 };
 
   faCheck = faCheck;
 
@@ -80,6 +80,8 @@ export class EditDebtComponent implements OnInit, OnDestroy {
   getUsersFunc: DropdownItemsFunc;
 
   participants: ParticipantDebt[] = [];
+
+  participantsDropdownItems: DropdownItem[] = [];
 
   participantAlreadyAddedMessageVisible = false;
 
@@ -137,34 +139,36 @@ export class EditDebtComponent implements OnInit, OnDestroy {
     if (this.checkInfoSubscription$) this.checkInfoSubscription$.unsubscribe();
   }
 
-  getParticipantsKeyValue(): DropdownItem[] {
-    return this.participants.map(participant => ({
-      label: participant.participant.username,
-      value: participant.participant.userId
-    }));
-  }
-
   onAddPersonalItemClick(item: ItemDebts) {
     this.itemSelected = item;
+
+    this.participantsDropdownItems = this.participants.map(participant => ({
+      label: participant.participant.username,
+      value: participant.participant
+    }));
+
     this.addPersonalItemModalVisible = true;
   }
 
   onaAddPersonalItemModalAccept() {
-    const personal = this.itemSelected.personal.find(item => item.participant.participant.userId === this.editPersonalItemForm.userId);
+    const personal = this.itemSelected.personal.find(item => item.participant.participant.userId === this.editPersonalItemForm.participant.userId);
     if (personal) {
       personal.personalItem.part = +this.editPersonalItemForm.parts;
     } else {
-      const participant = this.participants.find(part => part.participant.userId === this.editPersonalItemForm.userId);
+      const participant = this.participants.find(part => part.participant.userId === this.editPersonalItemForm.participant.userId);
       this.itemSelected.personal.push({
         participant,
         personalItem: {
           itemId: this.itemSelected.item.id,
-          userId: this.editPersonalItemForm.userId,
+          userId: this.editPersonalItemForm.participant.userId,
           part: +this.editPersonalItemForm.parts
         }
       });
     }
+
+    this.editPersonalItemForm = { participant: null, parts: 1 };
     this.itemSelected = null;
+    this.addPersonalItemModalVisible = false;
   }
 
   onAddUserClick() {
