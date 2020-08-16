@@ -3,8 +3,8 @@ import { Location } from '@angular/common';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 
-import { UserService } from 'src/app/services/user.service';
 import { UserInfo } from 'src/app/models/user-info';
+import { UserService } from 'src/app/services';
 
 @Component({
   selector: 'ad-status-bar-top',

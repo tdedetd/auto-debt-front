@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CheckListComponent } from './screens/check-list/check-list.component';
-import { DebtSummaryComponent } from './screens/debt-summary/debt-summary.component';
-import { EditCheckComponent } from './screens/edit-check/edit-check.component';
-import { EditDebtComponent } from './screens/edit-debt/edit-debt.component';
+import { DebtSummaryComponent, CheckListComponent, EditCheckComponent, EditDebtComponent } from './screens';
 
 const routes: Routes = [
   { path: '', component: DebtSummaryComponent },

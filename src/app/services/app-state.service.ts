@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { CheckInfo } from '../models/check-info';
-import { DebtTypes } from '../enums/debt-type';
-import { DebtNormalizeTypes } from '../enums/debt-normalize-type';
+import { DebtTypes, DebtNormalizeTypes } from '../enums';
 
 class SummaryScreenState {
   debtTypeSelected: DebtTypes;

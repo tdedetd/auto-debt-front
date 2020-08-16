@@ -11,7 +11,7 @@ import { GetUsersParams } from '../params/get-users.params';
 import { ImportCheckParams } from '../params/import-check.params';
 import { CheckInfo } from '../models/check-info';
 import { CheckDebts } from '../models/check-debts';
-import { DebtTypes } from '../enums/debt-type';
+import { DebtTypes } from '../enums';
 
 @Injectable()
 export class ApiService {

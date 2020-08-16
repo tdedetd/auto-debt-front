@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter, AfterContentChecked } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { PersonalItemDebt } from 'src/app/screens/edit-debt/edit-debt.component';
+import { PersonalItemDebt } from 'src/app/screens';
 
 @Component({
   selector: 'ad-edit-debt-item-card',

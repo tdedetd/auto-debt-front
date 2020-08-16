@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { faPlus, faSave, faFileImport, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
 import { CheckInfo } from 'src/app/models/check-info';
-import { ApiService } from 'src/app/services/api.service';
 import { EditCheckItemCard } from 'src/app/models/edit-check-item-card';
 import { CheckItem } from 'src/app/models/check-item';
 import { ImportCheckParams } from 'src/app/params/import-check.params';
+import { Action } from 'src/app/components';
+import { ApiService } from 'src/app/services';
 
 @Component({
   selector: 'ad-edit-check',

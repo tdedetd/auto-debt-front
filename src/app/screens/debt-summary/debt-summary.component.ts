@@ -3,14 +3,11 @@ import { Router } from '@angular/router';
 import { faPlus, faList } from '@fortawesome/free-solid-svg-icons';
 import { Subscription, Observable } from 'rxjs';
 
-import { ApiService } from 'src/app/services/api.service';
-import { UserService } from 'src/app/services/user.service';
 import { UserInfo } from 'src/app/models/user-info';
 import { DebtSummaryItem } from 'src/app/models/debt-summary-item';
-import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
-import { DebtTypes } from 'src/app/enums/debt-type';
-import { DebtNormalizeTypes } from 'src/app/enums/debt-normalize-type';
-import { AppStateService } from 'src/app/services/app-state.service';
+import { Action } from 'src/app/components';
+import { ApiService, UserService, AppStateService } from 'src/app/services';
+import { DebtNormalizeTypes, DebtTypes } from 'src/app/enums';
 
 @Component({
   selector: 'ad-debt-summary',

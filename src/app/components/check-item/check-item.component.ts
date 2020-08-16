@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { CheckStatuses } from 'src/app/enums/check-statuses';
+import { CheckStatuses } from 'src/app/enums';
 
 const BADGE_STATUSES = [
   {

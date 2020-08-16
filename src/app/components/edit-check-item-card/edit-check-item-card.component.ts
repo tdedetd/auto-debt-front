@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewEncapsulation } from '@angular/core';
 import { faPencilAlt, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { TextboxComponent } from '../../controls/textbox/textbox.component';
 import { CheckItem } from 'src/app/models/check-item';
+import { TextboxComponent } from 'src/app/controls';
 
 @Component({
   selector: 'ad-edit-check-item-card',

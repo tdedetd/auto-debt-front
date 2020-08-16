@@ -4,14 +4,13 @@ import { faPlus, faTrash, faTimesCircle, faSave, faCheck, faMoneyBill } from '@f
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
 import { Participant } from 'src/app/models/participant';
-import { ApiService } from 'src/app/services/api.service';
 import { PersonalItem } from 'src/app/models/personal-item';
 import { CheckItem } from 'src/app/models/check-item';
-import { AppStateService } from 'src/app/services/app-state.service';
-import { DropdownItemsFunc } from '../../controls/find-textbox/find-textbox.component';
 import { DropdownItem } from 'src/app/models/dropdown-item';
+import { Action } from 'src/app/components';
+import { DropdownItemsFunc } from 'src/app/controls';
+import { ApiService, AppStateService } from 'src/app/services';
 
 type ParticipantDebt = { participant: Participant, sum?: number, color: string };
 export type PersonalItemDebt = { participant: ParticipantDebt, personalItem: PersonalItem };

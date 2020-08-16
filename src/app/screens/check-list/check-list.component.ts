@@ -3,13 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { faFilter, faLevelUpAlt, faLevelDownAlt } from '@fortawesome/free-solid-svg-icons';
 import { Subscription, Observable } from 'rxjs';
 
-import { Action } from 'src/app/components/status-bar-bottom/status-bar-bottom.component';
-import { ApiService } from 'src/app/services/api.service';
 import { Check } from 'src/app/models/check';
 import { UserInfo } from 'src/app/models/user-info';
 import { GetChecksParams } from 'src/app/params/get-checks.params';
-import { CheckStatuses } from 'src/app/enums/check-statuses';
-import { DebtTypes } from 'src/app/enums/debt-type';
+import { Action } from 'src/app/components';
+import { DebtTypes, CheckStatuses } from 'src/app/enums';
+import { ApiService } from 'src/app/services';
 
 @Component({
   selector: 'ad-check-list',
